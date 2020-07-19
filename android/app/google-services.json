@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "491095378161",
+    "firebase_url": "https://ff-social.firebaseio.com",
+    "project_id": "ff-social",
+    "storage_bucket": "ff-social.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491095378161:android:6937869d9b6f9a7919c150",
+        "android_client_info": {
+          "package_name": "com.flipflop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491095378161-utc752oi8agmlk337to00pqaekjbb92l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flipflop",
+            "certificate_hash": "4699e710b99a0cf12db3cca7fc43204c462a0d4f"
+          }
+        },
+        {
+          "client_id": "491095378161-rvr5ttd6j68bo38di6q9cj9ldmgna9hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN-hwrv7_A-yVPUTsrdcYPvjfExorSHPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491095378161-rvr5ttd6j68bo38di6q9cj9ldmgna9hm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "491095378161-v3ci3nv8s7eu7ptm6jqc6m6posu242ca.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.flipflop"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

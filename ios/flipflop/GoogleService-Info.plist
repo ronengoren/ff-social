@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>491095378161-v3ci3nv8s7eu7ptm6jqc6m6posu242ca.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.491095378161-v3ci3nv8s7eu7ptm6jqc6m6posu242ca</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDquDazgPa8DZA49nmJqz5511c1EccwHxw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>491095378161</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.flipflop</string>
+	<key>PROJECT_ID</key>
+	<string>ff-social</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ff-social.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:491095378161:ios:3507448eaebf141c19c150</string>
+	<key>DATABASE_URL</key>
+	<string>https://ff-social.firebaseio.com</string>
+</dict>
+</plist>

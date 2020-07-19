@@ -11,7 +11,7 @@ import apiCommands from './apiCommands/reducer';
 // import navState from './navigator/reducer';
 // import uploads from './uploads/reducer';
 // import postPage from './postPage/reducer';
-// import infiniteScroll from './InfiniteScroll/reducer';
+import infiniteScroll from './InfiniteScroll/reducer';
 // import pages from './pages/reducer';
 // import results from './results/reducer';
 // import groups from './groups/reducer';
@@ -80,7 +80,7 @@ const configureReducer = () => {
       // stories,
     }),
     // apiQuery,
-    // infiniteScroll,
+    infiniteScroll,
   );
 
   const reducer = (state, action) =>

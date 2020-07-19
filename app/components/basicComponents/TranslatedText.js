@@ -72,7 +72,7 @@ TranslatedText.propTypes = {
   ]),
   map: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.string,
     }),
   ),
 };

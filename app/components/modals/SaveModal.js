@@ -272,11 +272,11 @@ class SaveModal extends React.Component {
 }
 
 SaveModal.propTypes = {
-  themes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  saveToThemes: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  entityId: PropTypes.string.isRequired,
-  entityType: PropTypes.oneOf(Object.values(entityTypes)).isRequired,
+  themes: PropTypes.arrayOf(PropTypes.object),
+  saveToThemes: PropTypes.func,
+  onClose: PropTypes.func,
+  entityId: PropTypes.string,
+  entityType: PropTypes.oneOf(Object.values(entityTypes)),
   entitySubType: PropTypes.string,
   user: userScheme,
   name: PropTypes.string,

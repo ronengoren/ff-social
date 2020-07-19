@@ -9,3 +9,4 @@ export {default as IconButton} from './IconButton';
 export {default as TextInput} from './TextInput';
 export {default as QueryCancelIcon} from './QueryCancelIcon';
 export {default as Avatar} from './Avatar';
+export {default as PlaceholderRectangle} from './PlaceholderRectangle';

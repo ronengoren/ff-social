@@ -1,7 +1,7 @@
 import {NavigationActions, StackActions} from 'react-navigation';
 import {screenNames, screenGroupNames} from '../../vars/enums';
 import {isEqual} from '../utils';
-import {Logger} from '../../infra/reporting';
+// import {Logger} from '../../infra/reporting';
 import {getCurrentRouteName as getCurrentRouteNameUtil} from './utils';
 
 const NON_RESETTABLE_SCREENS = {

@@ -31,7 +31,7 @@ export const solutionScheme = shape({
     solutionTypes.TAG,
     solutionTypes.ENTITY,
   ]),
-  name: string.isRequired,
+  name: string,
   tagName: string,
   entityType: string,
   entityId: string,

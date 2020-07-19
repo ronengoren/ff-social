@@ -252,9 +252,9 @@ Slider.defaultProps = {
 
 Slider.propTypes = {
   initialSlide: PropTypes.number,
-  children: PropTypes.func.isRequired,
+  children: PropTypes.func,
   style: stylesScheme,
-  numberOfSlides: PropTypes.number.isRequired,
+  numberOfSlides: PropTypes.number,
   autoPlay: PropTypes.bool,
   showBullets: PropTypes.bool,
   sliderWidth: PropTypes.number,

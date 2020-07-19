@@ -71,7 +71,7 @@ AwesomeIcon.defaultProps = {
 };
 
 AwesomeIcon.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   weight: PropTypes.oneOf(['light', 'solid', 'brands']),
   size: PropTypes.number,
   color: PropTypes.string,

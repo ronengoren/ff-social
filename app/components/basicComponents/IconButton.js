@@ -102,7 +102,7 @@ IconButton.propTypes = {
     left: PropTypes.number,
     right: PropTypes.number,
   }),
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
   size: PropTypes.string,

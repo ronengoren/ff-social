@@ -74,9 +74,9 @@ function HeaderIndicator({
 }
 
 HeaderIndicator.propTypes = {
-  action: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired,
-  iconName: PropTypes.string.isRequired,
+  action: PropTypes.func,
+  count: PropTypes.number,
+  iconName: PropTypes.string,
   badgeColor: PropTypes.string,
   testID: PropTypes.string,
   iconColor: PropTypes.string,

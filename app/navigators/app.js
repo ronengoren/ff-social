@@ -4,16 +4,16 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import * as screens from '../screens';
 import I18n from '../infra/localization';
 import {screenGroupNames, screenNames} from '../vars/enums';
-// import { Header, CustomTabBar } from '/components';
+import {Header, CustomTabBar} from '../components';
 import {flipFlopColors} from '../vars';
 import {get} from '../infra/utils';
 import Home from './home';
-// import Groups from './groups';
-// import MyCity from './myCity';
-// import People from './people';
-// import Solutions from './solutions';
+import Groups from './groups';
+import MyCity from './myCity';
+import People from './people';
+import Solutions from './solutions';
 // import Chat from './chat';
-// import Notifications from './notifications';
+import Notifications from './notifications';
 // import CreateEvent from './createEvent';
 // import CreatePage from './createPage';
 
@@ -62,34 +62,34 @@ const TabSection = createBottomTabNavigator(
     [screenGroupNames.HOME_TAB]: {
       screen: Home,
     },
-    // [screenGroupNames.PEOPLE_TAB]: {
-    //   screen: People
-    // },
-    // [screenGroupNames.SOLUTIONS]: {
-    //   screen: Solutions,
-    //   navigationOptions: {
-    //     tabBarTestID: 'solutionsTabBtn'
-    //   }
-    // },
-    // [screenGroupNames.GROUPS_TAB]: {
-    //   screen: Groups,
-    //   navigationOptions: {
-    //     tabBarTestID: 'groupsTabBtn'
-    //   }
-    // },
-    // [screenGroupNames.MY_CITY]: {
-    //   screen: MyCity
-    // },
-    // [screenGroupNames.NOTIFICATIONS]: {
-    //   screen: Notifications
-    // },
+    [screenGroupNames.PEOPLE_TAB]: {
+      screen: People,
+    },
+    [screenGroupNames.SOLUTIONS]: {
+      screen: Solutions,
+      navigationOptions: {
+        tabBarTestID: 'solutionsTabBtn',
+      },
+    },
+    [screenGroupNames.GROUPS_TAB]: {
+      screen: Groups,
+      navigationOptions: {
+        tabBarTestID: 'groupsTabBtn',
+      },
+    },
+    [screenGroupNames.MY_CITY]: {
+      screen: MyCity,
+    },
+    [screenGroupNames.NOTIFICATIONS]: {
+      screen: Notifications,
+    },
     // [screenGroupNames.CHAT_LOBBY]: {
     //   screen: Chat
     // }
   },
   {
-    initialRouteName: screenGroupNames.HOME_TAB,
-    // tabBarComponent: CustomTabBar,
+    initialRouteName: screenGroupNames.PEOPLE_TAB,
+    tabBarComponent: CustomTabBar,
     lazy: true,
     animationEnabled: false,
     swipeEnabled: false,

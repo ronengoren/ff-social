@@ -2,7 +2,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import * as screens from '../screens';
 import {screenNames} from '../vars/enums';
 import {flipFlopColors} from '../vars';
-// import sharedRoutes from './sharedRoutes';
+import sharedRoutes from './sharedRoutes';
 
 const Home = createStackNavigator(
   {
@@ -13,7 +13,7 @@ const Home = createStackNavigator(
         animationEnabled: false,
       },
     },
-    // ...sharedRoutes
+    ...sharedRoutes,
   },
   {
     initialRouteName: screenNames.HomeTab,

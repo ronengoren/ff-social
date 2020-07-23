@@ -10,10 +10,10 @@ const store = createStore();
 
 global.store = store; // to access the store outside of react components
 
-const Rooti = () => (
+const Root = () => (
   <Provider store={store}>
     <App />
   </Provider>
 );
 
-export default Rooti;
+export default Root;

@@ -51,7 +51,7 @@ class InfiniteScroll extends React.Component {
   };
   render() {
     const {
-      listType = listTypes.BASIC,
+      listType = listTypes.FEED,
       horizontal,
       keyExtractor,
       data,
@@ -124,10 +124,29 @@ class InfiniteScroll extends React.Component {
     }
     return (
       <FlatList
-        data={DATA1}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        onLayout={onLayout}
+        ref={onRef}
+        data={data}
+        renderItem={this.renderItem}
+        keyExtractor={keyExtractor}
+        onRefresh={!disableRefresh && this.fetchTop}
+        refreshing={refreshing}
+        onEndReached={this.fetchBottom}
+        onEndReachedThreshold={2}
         ListFooterComponent={this.renderFooter}
+        ListHeaderComponent={ListHeaderComponent}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode={keyboardDismissMode}
+        numColumns={numColumns}
+        ListEmptyComponent={this.renderListEmptyComponent()}
+        extraData={extraData}
+        showsVerticalScrollIndicator={false}
+        getItemLayout={getItemLayout}
+        onScroll={onScroll}
+        scrollEventThrottle={50}
+        contentContainerStyle={contentContainerStyle}
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={onViewableItemsChanged}
       />
     );
   }

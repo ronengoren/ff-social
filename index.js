@@ -6,5 +6,7 @@ import I18n from './app/infra/localization';
 import Root from './app/Root';
 import {name as appName} from './app.json';
 
+I18n.init();
+
 LogBox.ignoreAllLogs(true);
 AppRegistry.registerComponent(appName, () => Root);

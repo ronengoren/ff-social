@@ -12,7 +12,7 @@ import Groups from './groups';
 import MyCity from './myCity';
 import People from './people';
 import Solutions from './solutions';
-// import Chat from './chat';
+import Chat from './chat';
 import Notifications from './notifications';
 // import CreateEvent from './createEvent';
 // import CreatePage from './createPage';
@@ -83,12 +83,12 @@ const TabSection = createBottomTabNavigator(
     [screenGroupNames.NOTIFICATIONS]: {
       screen: Notifications,
     },
-    // [screenGroupNames.CHAT_LOBBY]: {
-    //   screen: Chat
-    // }
+    [screenGroupNames.CHAT_LOBBY]: {
+      screen: Chat,
+    },
   },
   {
-    initialRouteName: screenGroupNames.NOTIFICATIONS,
+    initialRouteName: screenGroupNames.CHAT_LOBBY,
     tabBarComponent: CustomTabBar,
     lazy: true,
     animationEnabled: false,

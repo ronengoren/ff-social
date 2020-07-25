@@ -1,5 +1,10 @@
 export {default as Slider} from './Slider';
-export {Header, HeaderSearchInput} from './header';
+export {
+  Header,
+  ConnectionHeader,
+  SimpleHeader,
+  HeaderSearchInput,
+} from './header';
 export {Feed, FeedWithSubheader} from './feed';
 export {default as InfiniteScroll} from './InfiniteScroll';
 export {ScreenErrorBoundary, ItemErrorBoundary} from './errorBoundaries';
@@ -21,3 +26,6 @@ export {default as NativeDateTimePickerAndroid} from './NativeDateTimePickerAndr
 export {default as HtmlText} from './HtmlText';
 export {SuggestedItems} from './feed/suggestedItems';
 export {SubHeader} from './layout';
+export {UsersList, SelectUsers} from './usersList';
+export {mentionUtils} from './posts';
+export {default as HtmlTextWithLinks} from './HtmlTextWithLinks';

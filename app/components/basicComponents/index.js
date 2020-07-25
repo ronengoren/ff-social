@@ -29,3 +29,7 @@ export {default as Switch} from './Switch';
 export {default as Checkbox} from './Checkbox';
 export {default as Separator} from './Separator';
 export {default as ExpandableText} from './ExpandableText';
+export {default as KeyboardAvoidingView} from './KeyboardAvoidingView';
+export {default as TextArea} from './TextArea';
+export {default as TextInLine} from './TextInLine';
+export {default as Triangle} from './Triangle';

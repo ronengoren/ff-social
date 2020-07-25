@@ -23,7 +23,7 @@ const AppTopNavigation = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: screenGroupNames.SIGNED_IN,
+    initialRouteName: screenGroupNames.authentication,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

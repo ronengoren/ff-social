@@ -88,7 +88,7 @@ const TabSection = createBottomTabNavigator(
     // }
   },
   {
-    initialRouteName: screenGroupNames.PEOPLE_TAB,
+    initialRouteName: screenGroupNames.NOTIFICATIONS,
     tabBarComponent: CustomTabBar,
     lazy: true,
     animationEnabled: false,

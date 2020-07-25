@@ -19,3 +19,5 @@ export {
 } from './search';
 export {default as NativeDateTimePickerAndroid} from './NativeDateTimePickerAndroid';
 export {default as HtmlText} from './HtmlText';
+export {SuggestedItems} from './feed/suggestedItems';
+export {SubHeader} from './layout';

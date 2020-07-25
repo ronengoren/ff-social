@@ -79,7 +79,7 @@ class EntityListsView extends Component {
   render() {
     const {onScroll, bottomSectionListProps, listFooterComponent} = this.props;
     const {
-      apiQuery,
+      // apiQuery,
       reducerStatePath,
       ListItemComponent,
       listItemProps,
@@ -94,8 +94,8 @@ class EntityListsView extends Component {
           ref={(node) => {
             this.infiniteScroll = node;
           }}
-          reducerStatePath={reducerStatePath}
-          apiQuery={apiQuery}
+          // reducerStatePath={reducerStatePath}
+          // apiQuery={apiQuery}
           ListItemComponent={ListItemComponent}
           listItemProps={listItemProps}
           ListEmptyComponent={listEmptyState}
@@ -211,7 +211,7 @@ class EntityListsView extends Component {
     const isDataExist = !!(topSectionData && topSectionData.length);
     const {
       reducerStatePath,
-      apiQuery,
+      // apiQuery,
       EntityComponent,
       normalizedSchema,
     } = topSectionListProps;
@@ -225,7 +225,7 @@ class EntityListsView extends Component {
         })}
         <InfiniteScroll
           reducerStatePath={reducerStatePath}
-          apiQuery={apiQuery}
+          // apiQuery={apiQuery}
           ListItemComponent={EntityComponent}
           horizontal
           ref={(node) => {
@@ -343,13 +343,13 @@ EntityListsView.propTypes = {
   bottomSectionSubHeaderProps: PropTypes.shape(subHeaderPropTypes),
   listFooterComponent: PropTypes.node,
   topSectionListProps: PropTypes.shape({
-    apiQuery: PropTypes.object,
+    // apiQuery: PropTypes.object,
     reducerStatePath: PropTypes.string,
     EntityComponent: PropTypes.func,
     normalizedSchema: PropTypes.string,
   }),
   bottomSectionListProps: PropTypes.shape({
-    apiQuery: PropTypes.object,
+    // apiQuery: PropTypes.object,
     reducerStatePath: PropTypes.string,
     entityComponent: PropTypes.node,
     listEmptyState: PropTypes.node,

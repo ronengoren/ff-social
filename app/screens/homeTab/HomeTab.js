@@ -6,10 +6,20 @@ import I18n from '../../infra/localization';
 import {connect} from 'react-redux';
 import {GenericListEmptyState} from '../../components/emptyState';
 import {IntroductionPostEditor} from '../../components/introduction';
+import {getFirstName} from '../../infra/utils/stringUtils';
+import {getGreetingTime} from '../../infra/utils/dateTimeUtils';
+import StoriesCarousel from './stories/StoriesCarousel';
+import UserGroupsCarousel from './UserGroupsCarousel';
 
-import {View, Text, Avatar} from '../../components/basicComponents';
+import {View, Text, Avatar, PostButton} from '../../components/basicComponents';
+import {
+  Screen,
+  Feed,
+  Header,
+  SubHeader,
+  ItemErrorBoundary,
+} from '../../components';
 
-import {Header, Feed} from '../../components';
 import CardButton from './CardButton';
 import {flipFlopColors, commonStyles} from '../../vars';
 import SavedItemsIndicator from './SavedItemsIndicator';
@@ -143,19 +153,6 @@ class HomeTab extends React.Component {
     const isScheduledPostsSubTab =
       activeSubTab === HomeTab.feeds.SCHEDULED_POSTS;
     const normalizedSchema = 'FEED';
-    // const {apiQuery, reducerStatePath} = this.getFeedParams();
-
-    // const {showIntroPost, user} = this.props;
-    // const isNewsFeed = [HomeTab.feeds.NEWS_FEED].includes(activeSubTab);
-    // const isScheduledPostsSubTab =
-    //   activeSubTab === HomeTab.feeds.SCHEDULED_POSTS;
-    // const normalizedSchema = 'FEED';
-    // const {apiQuery, reducerStatePath} = this.getFeedParams();
-    // const contextCountryCode = get(
-    //   user,
-    //   'journey.originCountry.countryCode',
-    //   '',
-    // );
 
     return (
       <View testID="homeTab" style={commonStyles.flex1}>
@@ -235,6 +232,53 @@ class HomeTab extends React.Component {
       />
     );
   }
+  renderFeedHeader = () => {
+    const {showFeedsForAdmins, isRtlDesign} = this.props;
+    const greetingTimeDefinition = getGreetingTime();
+
+    const greetingLines = [
+      I18n.t('home.user_greeting', {name: getFirstName('name')}),
+      I18n.t(`home.${greetingTimeDefinition}`),
+    ];
+
+    return (
+      <View style={styles.feedHeaderWrapper}>
+        <View style={styles.headerUpperSection}>
+          <Text
+            size={32}
+            lineHeight={38}
+            color={flipFlopColors.b30}
+            bolder
+            style={[styles.userName, isRtlDesign && styles.userNameRTL]}>
+            {greetingLines[0]}
+          </Text>
+          <ItemErrorBoundary boundaryName="HomeStories">
+            <StoriesCarousel
+              ref={(node) => {
+                this.refStoriesCarousel = node;
+              }}
+            />
+          </ItemErrorBoundary>
+        </View>
+        <PostButton
+          style={styles.postButtonWrapper}
+          isSecondary
+          text={I18n.t('home.post_button_text')}
+          onPress={this.navigateToPostCreationPage}
+          testID="postButton"
+        />
+        <ItemErrorBoundary boundaryName="HomeGroupsCarousel">
+          <UserGroupsCarousel
+            onRef={(node) => {
+              this.userGroupsCarousel = node;
+            }}
+            onLayout={this.handleUserGroupsLayout}
+            // isAnnotationActive={liveAnnotation === annotationTypes.GROUPS}
+          />
+        </ItemErrorBoundary>
+      </View>
+    );
+  };
   navigateToProfile = async () => {
     // const { user } = this.props;
     // const { id: userId } = user;

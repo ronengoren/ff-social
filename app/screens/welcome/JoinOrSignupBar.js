@@ -56,7 +56,7 @@ function JoinOrSignupBar({
   return (
     <React.Fragment>
       <SubmitButton />
-      {/* <SubmitButton
+      <SubmitButton
         isAbsolute={false}
         isDisabled={isSubmitDisabled}
         onPress={navigateToSignUp}
@@ -77,7 +77,7 @@ function JoinOrSignupBar({
             {I18n.t('onboarding.welcome.have_account_button')}
           </Text>
         </Text>
-      )} */}
+      )}
     </React.Fragment>
   );
 }

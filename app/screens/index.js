@@ -1,12 +1,10 @@
 export {HomeTab} from './homeTab';
 export {Welcome, ChangePassword} from './welcome';
-export {Profile, EditProfile, EditProfileDate} from './profile';
+export {Profile, EditProfile, EditProfileDate, Settings} from './profile';
 // EditProfileRelationship,
 // EditProfileGender,
-// EditProfileDate,
 // ConnectedUsersList,
 // OthersFriendsList,
-// Settings,
 // ChangeEmail,
 // DeleteAccount,
 // DeleteAccountConfirmation,
@@ -15,7 +13,12 @@ export {Profile, EditProfile, EditProfileDate} from './profile';
 export {WebView} from './webView';
 
 export {GroupsTab} from './groupsTab';
-export {PeopleTab} from './peopleTab';
+export {
+  PeopleTab,
+  InviteFriends,
+  ReferralProgramStatus,
+  ReferralRedeemed,
+} from './peopleTab';
 export {SolutionsHome} from './solutionsTab';
 export {Notifications} from './notifications';
 export {

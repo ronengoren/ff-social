@@ -12,12 +12,12 @@ const authentication = createStackNavigator(
         headerShown: false,
       },
     },
-    // [screenNames.WebView]: {
-    //   screen: screens.WebView,
-    //   navigationOptions: {
-    //     headerShown: false
-    //   }
-    // },
+    [screenNames.WebView]: {
+      screen: screens.WebView,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     [screenNames.SignIn]: {
       screen: screens.SignIn,
       navigationOptions: {
@@ -51,7 +51,7 @@ const authentication = createStackNavigator(
     },
   },
   {
-    initialRouteName: screenGroupNames.SIGN_UP_WIZARD,
+    initialRouteName: screenNames.Welcome,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

@@ -5,6 +5,7 @@ import {Wrapper} from '../../components/onboarding';
 import {Slider} from '../../components';
 import {hasNotch} from '../../infra/utils/deviceUtils';
 import JoinOrSignupBar from './JoinOrSignupBar';
+import I18n from '../../infra/localization';
 
 import Slide from './Slide';
 import {View, TranslatedText} from '../../components/basicComponents';
@@ -39,7 +40,7 @@ class Welcome extends React.Component {
           sliderWidth={screenWidth}>
           {(slideProps) => [
             <Slide key={0} repeat slide={0} {...slideProps}>
-              {/* <TranslatedText
+              <TranslatedText
                 style={[
                   styles.subTitle,
                   smallScreen && styles.subTitleSmallScreen,
@@ -49,10 +50,10 @@ class Welcome extends React.Component {
                   smallScreen && styles.subTitleSmallScreen,
                 ]}>
                 {I18n.t('onboarding.welcome.slide1')}
-              </TranslatedText> */}
+              </TranslatedText>
             </Slide>,
             <Slide key={1} repeat slide={1} {...slideProps}>
-              {/* <TranslatedText
+              <TranslatedText
                 style={[
                   styles.subTitle,
                   smallScreen && styles.subTitleSmallScreen,
@@ -62,10 +63,10 @@ class Welcome extends React.Component {
                   smallScreen && styles.subTitleSmallScreen,
                 ]}>
                 {I18n.t('onboarding.welcome.slide2')}
-              </TranslatedText> */}
+              </TranslatedText>
             </Slide>,
             <Slide key={2} slide={2} {...slideProps}>
-              {/* <TranslatedText
+              <TranslatedText
                 style={[
                   styles.subTitle,
                   smallScreen && styles.subTitleSmallScreen,
@@ -76,7 +77,7 @@ class Welcome extends React.Component {
                   smallScreen && styles.subTitleSmallScreen,
                 ]}>
                 {I18n.t('onboarding.welcome.slide3')}
-              </TranslatedText> */}
+              </TranslatedText>
             </Slide>,
           ]}
         </Slider>

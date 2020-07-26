@@ -88,7 +88,7 @@ const TabSection = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: screenGroupNames.CHAT_LOBBY,
+    initialRouteName: screenGroupNames.PEOPLE_TAB,
     tabBarComponent: CustomTabBar,
     lazy: true,
     animationEnabled: false,
@@ -104,12 +104,12 @@ const MiddleSection = createStackNavigator(
         headerShown: false,
       },
     },
-    // [screenNames.WebView]: {
-    //   screen: screens.WebView,
-    //   navigationOptions: {
-    //     headerShown: false
-    //   }
-    // },
+    [screenNames.WebView]: {
+      screen: screens.WebView,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     // [screenNames.PostEditor]: {
     //   screen: screens.PostEditor,
     //   navigationOptions: {

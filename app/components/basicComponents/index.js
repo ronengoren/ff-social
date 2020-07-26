@@ -36,3 +36,4 @@ export {default as Triangle} from './Triangle';
 export {default as TextButton} from './TextButton';
 export {default as KeyboardAwareScrollView} from './KeyboardAwareScrollView';
 export {default as ProgressBar} from './ProgressBar';
+export {default as PostButton} from './PostButton';

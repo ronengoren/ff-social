@@ -16,43 +16,43 @@ const People = createStackNavigator(
         animationEnabled: false,
       },
     },
-    // [screenNames.InviteFriends]: {
-    //   screen: screens.InviteFriends,
-    //   navigationOptions: () => {
-    //     const title = I18n.t('people.invite_friends.screen_header');
-    //     return {
-    //       header: <Header hasBackButton title={title} />
-    //     };
-    //   }
-    // },
-    // [screenNames.ReferralProgramStatus]: {
-    //   screen: screens.ReferralProgramStatus,
-    //   navigationOptions: () => {
-    //     const title = I18n.t('referral_program_status.screen_header');
-    //     return {
-    //       header: <Header hasBackButton title={title} />
-    //     };
-    //   }
-    // },
-    // [screenNames.Settings]: {
-    //   screen: screens.Settings,
-    //   navigationOptions: () => {
-    //     const title = I18n.t('profile.settings.screen_header');
-    //     return {
-    //       header: <Header hasBackButton title={title} />
-    //     };
-    //   }
-    // },
-    // [screenNames.ReferralRedeemed]: {
-    //   screen: screens.ReferralRedeemed,
-    //   navigationOptions: {
-    //     headerShown: false
-    //   }
-    // },
+    [screenNames.InviteFriends]: {
+      screen: screens.InviteFriends,
+      navigationOptions: () => {
+        const title = I18n.t('people.invite_friends.screen_header');
+        return {
+          header: <Header hasBackButton title={title} />,
+        };
+      },
+    },
+    [screenNames.ReferralProgramStatus]: {
+      screen: screens.ReferralProgramStatus,
+      navigationOptions: () => {
+        const title = I18n.t('referral_program_status.screen_header');
+        return {
+          header: <Header hasBackButton title={title} />,
+        };
+      },
+    },
+    [screenNames.Settings]: {
+      screen: screens.Settings,
+      navigationOptions: () => {
+        const title = I18n.t('profile.settings.screen_header');
+        return {
+          header: <Header hasBackButton title={title} />,
+        };
+      },
+    },
+    [screenNames.ReferralRedeemed]: {
+      screen: screens.ReferralRedeemed,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
     ...sharedRoutes,
   },
   {
-    initialRouteName: screenNames.PeopleTab,
+    initialRouteName: screenNames.ReferralRedeemed,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

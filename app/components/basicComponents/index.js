@@ -33,3 +33,6 @@ export {default as KeyboardAvoidingView} from './KeyboardAvoidingView';
 export {default as TextArea} from './TextArea';
 export {default as TextInLine} from './TextInLine';
 export {default as Triangle} from './Triangle';
+export {default as TextButton} from './TextButton';
+export {default as KeyboardAwareScrollView} from './KeyboardAwareScrollView';
+export {default as ProgressBar} from './ProgressBar';

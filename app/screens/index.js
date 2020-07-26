@@ -1,25 +1,22 @@
 export {HomeTab} from './homeTab';
-export {Welcome} from './welcome';
-export {Profile} from './profile';
+export {Welcome, ChangePassword} from './welcome';
+export {Profile, EditProfile, EditProfileDate} from './profile';
+// EditProfileRelationship,
+// EditProfileGender,
+// EditProfileDate,
+// ConnectedUsersList,
+// OthersFriendsList,
+// Settings,
+// ChangeEmail,
+// DeleteAccount,
+// DeleteAccountConfirmation,
+// ProfileGroupsList,
+// ProfilePagesList
+export {WebView} from './webView';
 
-// export {
-//   Profile, //   EditProfile, //   EditProfileRelationship, //   EditProfileGender, //   EditProfileDate, //   ConnectedUsersList,
-// } from //   OthersFriendsList,
-// //   Settings,
-// //   ChangeEmail,
-// //   DeleteAccount,
-// //   DeleteAccountConfirmation,
-// //   ProfileGroupsList,
-// //   ProfilePagesList
-// './profile';
 export {GroupsTab} from './groupsTab';
-export {
-  PeopleTab, // InviteFriends, ReferralProgramStatus, ReferralRedeemed
-} from './peopleTab';
-export {
-  // SolutionsResults,
-  SolutionsHome,
-} from './solutionsTab';
+export {PeopleTab} from './peopleTab';
+export {SolutionsHome} from './solutionsTab';
 export {Notifications} from './notifications';
 export {
   ChatLobby,
@@ -28,3 +25,19 @@ export {
   ConversationsList,
 } from './chat';
 export {Chat} from './chat';
+export {SignIn, ForgotPassword, EmailSent} from './signIn';
+export {
+  SignUp,
+  SetUserGender,
+  SetUserNationality,
+  ContinueWithNationality,
+  SearchCountry,
+  OnBoardingAddFriends,
+  OnBoardingDiscover,
+  AllowNotifications,
+  SetUserDetails,
+  NoNationality,
+  SignUpMethods,
+} from './signup';
+export {SearchAddress} from './searchAddress';
+export {ImageUpload} from './imageUpload';

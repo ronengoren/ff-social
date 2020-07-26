@@ -10,17 +10,17 @@ import {
   FlatList,
   Platform,
 } from 'react-native';
-import I18n from '/infra/localization';
+import I18n from '../../../infra/localization';
 import {
   EmptySearch,
   ItemErrorBoundary,
   HeaderSearchInput,
   SearchAddressResultRow,
-} from '/components';
+} from '../../../components';
 import {Text, Image} from '../../../components/basicComponents';
 import {isEmpty, sortBy} from '../../../infra/utils';
 import images from '../../../assets/images';
-import {flipFlopsColors, uiConstants, commonStyles} from '../../../vars';
+import {flipFlopColors, uiConstants, commonStyles} from '../../../vars';
 import {enhanceWithUseKeyboard} from '../../../hooks';
 
 import countries, {getCountryImageByName} from './countries';
@@ -31,11 +31,11 @@ const RESULT_ROW_HEIGHT = 50;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: flipFlopsColors.transparent,
+    backgroundColor: flipFlopColors.transparent,
   },
   header: {
     alignItems: 'center',
-    backgroundColor: flipFlopsColors.transparent,
+    backgroundColor: flipFlopColors.transparent,
     width: '100%',
     flexDirection: 'row',
     paddingHorizontal: 10,
@@ -201,7 +201,7 @@ class SearchCountry extends Component {
             bold
             size={16}
             lineHeight={22}
-            color={flipFlopsColors.green}
+            color={flipFlopColors.green}
             style={styles.suggestedLabel}
             key="results-title">
             {I18n.t('onboarding.search_country.search_query_title')}
@@ -217,7 +217,7 @@ class SearchCountry extends Component {
         bold
         size={16}
         lineHeight={22}
-        color={flipFlopsColors.green}
+        color={flipFlopColors.green}
         style={styles.suggestedLabel}
         key="title">
         {I18n.t('onboarding.search_country.suggested_title')}
@@ -254,7 +254,7 @@ class SearchCountry extends Component {
         testID={`suggestedCountryItem-${index}`}>
         <View style={styles.suggestedCountryRow}>
           {this.renderCountryIcon(country)}
-          <Text size={16} lineHeight={19} color={flipFlopsColors.b30}>
+          <Text size={16} lineHeight={19} color={flipFlopColors.b30}>
             {countryName}
           </Text>
         </View>
@@ -320,7 +320,7 @@ class SearchCountry extends Component {
         return (
           <Text
             style={styles.countryNote}
-            color={flipFlopsColors.realBlack40}
+            color={flipFlopColors.realBlack40}
             size={14}
             lineHeight={18}>
             {note}

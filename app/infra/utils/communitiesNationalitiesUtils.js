@@ -37,7 +37,7 @@ export const getCommunityTranslationByOriginAndDestination = ({
   forcedLocale,
 }) => {
   const locale = forcedLocale || I18n.getLocale();
-  const {name: originName, countryCode: originCode} = originCountry;
+  // const {name: originName, countryCode: originCode} = originCountry;
   const {
     countryCode: destinationCountryCode,
     name: destinationCountryName,
@@ -48,7 +48,7 @@ export const getCommunityTranslationByOriginAndDestination = ({
   const destination =
     get(currentDestinationCountryFromSet, `translations.${locale}`) ||
     destinationCountryName;
-  const currentOriginFromSet = getCountryByCode(originCode);
+  // const currentOriginFromSet = getCountryByCode(originCode);
 
   const origin =
     get(currentOriginFromSet, `pluralNation.${locale}`) || originName;

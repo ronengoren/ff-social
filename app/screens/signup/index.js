@@ -1,0 +1,12 @@
+export {default as SignUp} from './Signup';
+export {default as UserProfilePictureHeader} from './UserProfilePictureHeader';
+export {default as SetUserNationality} from './SetUserNationality';
+export {default as ContinueWithNationality} from './ContinueWithNationality';
+export {SearchCountry} from './JoinCommunity';
+export {OnBoardingAddFriends} from './OnBoardingAddFriends';
+export {OnBoardingDiscover} from './OnBoardingDiscover';
+export {default as AllowNotifications} from './AllowNotifications';
+export {default as SetUserGender} from './SetUserGender';
+export {default as SetUserDetails} from './SetUserDetails';
+export {default as NoNationality} from './NoNationality';
+export {default as SignUpMethods} from './SignUpMethods';

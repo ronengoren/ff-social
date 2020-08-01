@@ -2884,7 +2884,7 @@ const countries = [
 export const getIconAsset = (country) => {
   if (country) {
     const countryCode = country.alpha2.toLowerCase();
-    return `https://assets.homeis.com/image/upload/c_fill,f_jpg,w_100/v1/homeis-prod/assets/country-flags/v3/${countryCode}.png`;
+    return ``;
   }
   return null;
 };

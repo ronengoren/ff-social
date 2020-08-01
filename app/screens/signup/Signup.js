@@ -149,9 +149,10 @@ class SignUp extends React.Component {
                 this.emailInput = node;
               }}
               onSubmitEditing={() => {
-                isEmailVerified
-                  ? this.passwordInput.focus()
-                  : this.handleNext();
+                this.handleNext();
+                // isEmailVerified
+                //   ? this.passwordInput.focus()
+                //   : this.handleNext();
               }}
               autoCorrect={false}
               focusedBorderColor={flipFlopColors.green}
@@ -246,7 +247,7 @@ class SignUp extends React.Component {
           style={styles.signUpButton}
           keyboardVerticalOffset={15}>
           <SubmitButton
-            // onPress={isEmailVerified ? this.handleSubmit : this.handleNext}
+            onPress={isEmailVerified ? this.handleSubmit : this.handleNext}
             // isDisabled={this.isSubmitDisabled()}
             // busy={isEmailVerified ? isSubmitting : isVerifyingEmail}
             testID="signupSubmitBtn"
@@ -319,91 +320,109 @@ class SignUp extends React.Component {
   };
 
   handleNext = async () => {
-    // const { email } = this.state;
-    // const { apiQuery } = this.props;
-    // if (email.isValid) {
-    //   this.setState({ isVerifyingEmail: true });
-    //   try {
-    //     const res = await apiQuery({ query: { domain: 'auth', key: 'isEmailAddressExists', params: { email: encodeURIComponent(email.value) } } });
-    //     const exists = get(res, 'data.data.exists');
-    //     if (exists) {
-    //       this.navigateToSignIn();
-    //     } else {
-    //       this.setState({ isEmailVerified: true });
-    //       this.passwordInput.focus();
-    //     }
-    //   } catch (err) {
-    //     this.setState({ isEmailVerified: true });
-    //     this.passwordInput.focus();
-    //     Logger.error({ message: 'failed to verify email', err, email });
-    //   }
-    //   this.setState({ isVerifyingEmail: false });
-    // } else {
-    //   this.emailInput.handleInputBlur();
-    // }
+    this.setState({isEmailVerified: true});
+    const {email} = this.state;
+    const {apiQuery} = this.props;
+    if (email.isValid) {
+      this.setState({isVerifyingEmail: true});
+      try {
+        const res = await apiQuery({
+          query: {
+            domain: 'auth',
+            key: 'isEmailAddressExists',
+            params: {email: encodeURIComponent(email.value)},
+          },
+        });
+        const exists = get(res, 'data.data.exists');
+        if (exists) {
+          this.navigateToSignIn();
+        } else {
+          this.setState({isEmailVerified: true});
+          this.passwordInput.focus();
+        }
+      } catch (err) {
+        this.setState({isEmailVerified: true});
+        this.passwordInput.focus();
+        Logger.error({message: 'failed to verify email', err, email});
+      }
+      this.setState({isVerifyingEmail: false});
+    } else {
+      this.emailInput.handleInputBlur();
+    }
   };
 
   handleSubmit = async () => {
-    // const { updateAnnotations, originCountry, destinationCountry, matchedNationality } = this.props;
-    // const misc = (await miscLocalStorage.get()) || {};
+    const {
+      // updateAnnotations,
+      originCountry,
+      destinationCountry,
+      matchedNationality,
+    } = this.props;
+    const misc = (await miscLocalStorage.get()) || {};
     // updateAnnotations(misc.annotations);
-    // if (this.isSubmitDisabled()) {
-    //   Alert.alert('There was a problem', 'Please review the form and try again', [{ text: 'OK' }]);
-    //   return;
-    // }
-    // Keyboard.dismiss();
-    // const { email, firstName, lastName, password, referrer } = this.state;
-    // const { id, linkType } = referrer;
-    // const { signUp } = this.props;
-    // this.setState({ isSubmitting: true });
+    if (this.isSubmitDisabled()) {
+      Alert.alert(
+        'There was a problem',
+        'Please review the form and try again',
+        [{text: 'OK'}],
+      );
+      return;
+    }
+    Keyboard.dismiss();
+    const {email, firstName, lastName, password, referrer} = this.state;
+    const {id, linkType} = referrer;
+    const {signUp} = this.props;
+    this.setState({isSubmitting: true});
+    this.onNewUserRegistration();
     // await signUp({
     //   method: signUpMethodTypes.EMAIL,
-    //   params: {
-    //     email: email.value,
-    //     firstName: firstName.value,
-    //     lastName: lastName.value,
-    //     password: password.value,
-    //     referrer: {
-    //       id,
-    //       linkType
-    //     },
-    //     originCountryCode: get(originCountry, 'countryCode'),
-    //     originPlaceSearchCountryFilter: get(originCountry, 'alpha2'),
-    //     originCountryName: get(originCountry, 'name'),
-    //     destinationCountryCode: get(destinationCountry, 'countryCode'),
-    //     destinationCountryName: get(destinationCountry, 'name'),
-    //     settings: {
-    //       language: I18n.getLocale()
-    //     }
-    //   },
+
+    //   // params: {
+    //   //   email: email.value,
+    //   //   firstName: firstName.value,
+    //   //   lastName: lastName.value,
+    //   //   password: password.value,
+    //   //   referrer: {
+    //   //     id,
+    //   //     linkType,
+    //   //   },
+    //   //   originCountryCode: get(originCountry, 'countryCode'),
+    //   //   originPlaceSearchCountryFilter: get(originCountry, 'alpha2'),
+    //   //   originCountryName: get(originCountry, 'name'),
+    //   //   destinationCountryCode: get(destinationCountry, 'countryCode'),
+    //   //   destinationCountryName: get(destinationCountry, 'name'),
+    //   //   settings: {
+    //   //     language: I18n.getLocale(),
+    //   //   },
+    //   // },
     //   onNewUserSignUp: this.onNewUserRegistration,
-    //   onError: this.regularSignUpErrorHandler,
-    //   matchedNationality
+    //   // onError: this.regularSignUpErrorHandler,
+    //   // matchedNationality,
     // });
   };
 
-  onNewUserRegistration = ({user}) => {
-    // const {email} = this.state;
-    // const {
-    //   matchedNationality,
-    //   suggestedNationalities,
-    //   originCountry,
-    //   destinationCountry,
-    // } = this.props;
-    // this.setState({isSubmitting: false});
+  onNewUserRegistration = () => {
+    const {email} = this.state;
+    const {
+      matchedNationality,
+      suggestedNationalities,
+      originCountry,
+      destinationCountry,
+    } = this.props;
+    this.setState({isSubmitting: false});
     // analytics.actionEvents
     //   .onboardingClickedClickedGetStarted({email: email.value, success: true})
     //   .dispatch();
-    // const nextScreen = getRelevantOnboardingScreen({
-    //   user,
-    //   matchedNationality,
-    //   suggestedNationalities,
-    // });
-    // navigationService.navigate(nextScreen, {
-    //   suggestedNationalities,
-    //   originCountry,
-    //   destinationCountry,
-    // });
+    const nextScreen = getRelevantOnboardingScreen({
+      // user,
+      matchedNationality,
+      suggestedNationalities,
+    });
+    navigationService.navigate(nextScreen, {
+      suggestedNationalities,
+      originCountry,
+      destinationCountry,
+    });
   };
 
   regularSignUpErrorHandler = (err) => {

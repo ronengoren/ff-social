@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
 });
 
 function EmailSignUpBtn({onPress}) {
-  // function handlePress() {
-  //   analytics.actionEvents.onboardingClickedContinueWithEmail().dispatch();
-  //   onPress();
-  // }
+  function handlePress() {
+    // analytics.actionEvents.onboardingClickedContinueWithEmail().dispatch();
+    onPress();
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -37,7 +37,7 @@ function EmailSignUpBtn({onPress}) {
         iconSize={22}
         style={styles.button}
         iconStyle={styles.icon}
-        // onPress={handlePress}
+        onPress={handlePress}
         testID="signUpContinueWithEmailBtn">
         {I18n.t('onboarding.sign_up.email_button')}
       </TextButton>

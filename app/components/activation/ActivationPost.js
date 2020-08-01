@@ -9,7 +9,7 @@ import {get} from '../../infra/utils';
 import {PostContent, PostFooter} from '../../components';
 // import { EntityAction } from '/components/entity';
 import {View} from '../basicComponents';
-import {flipFlopColors, commonStyles} from '../vars';
+import {flipFlopColors, commonStyles} from '../../vars';
 import {postTypes, entityTypes, originTypes} from '../../vars/enums';
 import {PostContentMedia} from '../posts';
 // import ActivationHeader from '../feed/ActivationHeader';

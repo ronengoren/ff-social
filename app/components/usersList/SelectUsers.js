@@ -92,30 +92,30 @@ class SelectUsers extends React.Component {
   };
 
   render() {
-    const {queryField, searchTerm, selectedUsers, isSearchFocused} = this.state;
-    const {
-      headerProps: {mandatorySelect, doneAction, doneText, title},
-      subHeader,
-      listProps,
-    } = this.props;
+    // const {queryField, searchTerm, selectedUsers, isSearchFocused} = this.state;
+    // const {
+    //   headerProps: {mandatorySelect, doneAction, doneText, title},
+    //   subHeader,
+    //   listProps,
+    // } = this.props;
 
-    const apiQuery = {
-      ...listProps.apiQuery,
-      params: {...listProps.apiQuery.params, perPage: 15, searchTerm},
-    };
-    const isSubmitEnabled = mandatorySelect ? selectedUsers.size > 0 : true;
+    // const apiQuery = {
+    //   ...listProps.apiQuery,
+    //   params: {...listProps.apiQuery.params, perPage: 15, searchTerm},
+    // };
+    // const isSubmitEnabled = mandatorySelect ? selectedUsers.size > 0 : true;
 
     return (
       <View style={commonStyles.flex1}>
         <SimpleHeader
           hasBackBtn
           doneAction={() => doneAction({selectedUsers})}
-          doneText={doneText}
-          isDoneBtnActive={isSubmitEnabled}
-          title={title}
+          // doneText={doneText}
+          // isDoneBtnActive={isSubmitEnabled}
+          // title={title}
           testID="selectUsersSubmitCommand"
         />
-        {subHeader}
+        {/* {subHeader} */}
         <View style={styles.inputOuterWrapper}>
           <AwesomeIcon
             name="search"
@@ -129,12 +129,9 @@ class SelectUsers extends React.Component {
               onChange={(val) => this.setState({queryField: val})}
               onChangeDebounced={(query) => this.setState({searchTerm: query})}
               debounceTime={250}
-              containerStyle={[
-                styles.inputContainer,
-                isSearchFocused && styles.inputContainerFocused,
-              ]}
+              containerStyle={[styles.inputContainer]}
               autoCapitalize="none"
-              value={queryField}
+              value={'queryField'}
               placeholder={I18n.t('select_users.search_input_placeholder')}
               placeholderTextColor={flipFlopColors.b60}
               inputStyle={styles.input}
@@ -147,19 +144,17 @@ class SelectUsers extends React.Component {
                 isSearchFocused && this.setState({isSearchFocused: false})
               }
             />
-            {!!searchTerm && (
-              <QueryCancelIcon
-                onPress={() => this.setState({queryField: null})}
-                iconColor={flipFlopColors.b70}
-                style={styles.cancelIcon}
-              />
-            )}
+            <QueryCancelIcon
+              onPress={() => this.setState({queryField: null})}
+              iconColor={flipFlopColors.b70}
+              style={styles.cancelIcon}
+            />
           </View>
         </View>
         <View style={commonStyles.flex1}>
           <UsersList
-            reducerStatePath={listProps.reducerStatePath}
-            apiQuery={apiQuery}
+            // reducerStatePath={listProps.reducerStatePath}
+            // apiQuery={apiQuery}
             extraData={this.state}
             renderRightComponent={this.renderRightComponent}
             ListEmptyComponent={
@@ -223,7 +218,7 @@ SelectUsers.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  data: get(state, `${ownProps.listProps.reducerStatePath}.data`, []),
+  // data: get(state, `${ownProps.listProps.reducerStatePath}.data`, []),
 });
 
 const mapDispatchToProps = {

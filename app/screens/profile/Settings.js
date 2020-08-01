@@ -264,28 +264,26 @@ class Settings extends React.Component {
           })}
           <View style={styles.settingsChapterSeparator} />
 
-          {isAppAdmin(data.user) && (
-            <View>
-              <View medium style={styles.settingsChapterTitleWrapper}>
-                <Text style={styles.settingsChapterTitle}>
-                  {I18n.t('profile.settings.feature_flags.header')}
-                </Text>
-              </View>
-              {this.renderFeatureFlagRow({
-                translationKey: 'referral_program',
-                stateKey: 'enableReferralProgram',
-              })}
-              {this.renderFeatureFlagRow({
-                translationKey: 'feeds_for_admins',
-                stateKey: 'feedsForAdmins',
-              })}
-              {this.renderFeatureFlagRow({
-                translationKey: 'disable_rich_text_editor',
-                stateKey: 'disableRichTextEditor',
-              })}
-              <View style={styles.settingsChapterSeparator} />
+          <View>
+            <View medium style={styles.settingsChapterTitleWrapper}>
+              <Text style={styles.settingsChapterTitle}>
+                {I18n.t('profile.settings.feature_flags.header')}
+              </Text>
             </View>
-          )}
+            {this.renderFeatureFlagRow({
+              translationKey: 'referral_program',
+              stateKey: 'enableReferralProgram',
+            })}
+            {this.renderFeatureFlagRow({
+              translationKey: 'feeds_for_admins',
+              stateKey: 'feedsForAdmins',
+            })}
+            {this.renderFeatureFlagRow({
+              translationKey: 'disable_rich_text_editor',
+              stateKey: 'disableRichTextEditor',
+            })}
+            <View style={styles.settingsChapterSeparator} />
+          </View>
 
           {this.renderSettingsRow({
             translationKey: 'app_version',

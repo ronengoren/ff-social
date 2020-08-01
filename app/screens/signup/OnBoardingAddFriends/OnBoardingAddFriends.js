@@ -4,7 +4,7 @@ import {StyleSheet, StatusBar, BackHandler} from 'react-native';
 import I18n from '../../../infra/localization';
 import {connect} from 'react-redux';
 // import { apiCommand } from '/redux/apiCommands/actions';
-// import { finishedOnBoarding } from '/redux/auth/actions';
+import {finishedOnBoarding} from '../../../redux/auth/actions';
 // import { apiQuery } from '/redux/apiQuery/actions';
 // import { register } from '/infra/pushNotifications';
 import {Screen} from '../../../components';
@@ -169,8 +169,9 @@ class OnBoardingAddFriends extends React.Component {
   }
 
   onNextButtonPress = async () => {
+    navigationService.navigate(screenNames.AllowNotifications);
     // const { selected } = this.state;
-    // const { apiCommand, user, finishedOnBoarding } = this.props;
+    const {finishedOnBoarding} = this.props;
     // try {
     //   this.setState({ isSubmitting: true });
     //   analytics.actionEvents.onboardingAddFriends({ addedFriendsCount: this.state.selected.size }).dispatch();
@@ -185,7 +186,7 @@ class OnBoardingAddFriends extends React.Component {
     //     // android requests for permission on app install so this code is important cause it does actual registration to pushwoosh
     //     analytics.actionEvents.onboardingEnableNotificationsPopup({ userId: user.id, enabled: true }).dispatch();
     //     register(user.id);
-    //     finishedOnBoarding();
+    finishedOnBoarding();
     //   } else {
     //     navigationService.navigate(screenNames.AllowNotifications);
     //   }
@@ -215,7 +216,7 @@ class OnBoardingAddFriends extends React.Component {
 OnBoardingAddFriends.propTypes = {
   user: PropTypes.object,
   //   apiCommand: PropTypes.func,
-  //   finishedOnBoarding: PropTypes.func,
+  finishedOnBoarding: PropTypes.func,
   //   apiQuery: PropTypes.func,
   suggestedFriends: PropTypes.array,
   navigation: PropTypes.object,
@@ -229,7 +230,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   //   apiCommand,
   //   apiQuery,
-  //   finishedOnBoarding
+  finishedOnBoarding,
 };
 
 OnBoardingAddFriends = connect(

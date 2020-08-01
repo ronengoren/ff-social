@@ -6,6 +6,7 @@ import {screenNames} from '../vars/enums';
 import {get} from '../infra/utils';
 import {flipFlopColors} from '../vars';
 import sharedRoutes from './sharedRoutes';
+import ResultsHeaderChips from '../screens/solutionsTab/results/ResultsHeaderChips';
 
 const Solutions = createStackNavigator(
   {
@@ -17,21 +18,23 @@ const Solutions = createStackNavigator(
         ...TransitionPresets.SlideFromRightIOS,
       },
     },
-    // [screenNames.SolutionsResults]: {
-    //   screen: screens.SolutionsResults,
-    //   navigationOptions: ({ navigation }) => {
-    //     const solution = get(navigation, 'state.params');
-    //     return {
-    //       header: <ResultsHeaderChips navigation={navigation} solution={solution} />,
-    //       animationEnabled: true,
-    //       ...TransitionPresets.SlideFromRightIOS
-    //     };
-    //   }
-    // },
+    [screenNames.SolutionsResults]: {
+      screen: screens.SolutionsResults,
+      navigationOptions: ({navigation}) => {
+        const solution = get(navigation, 'state.params');
+        return {
+          header: (
+            <ResultsHeaderChips navigation={navigation} solution={solution} />
+          ),
+          animationEnabled: true,
+          ...TransitionPresets.SlideFromRightIOS,
+        };
+      },
+    },
     ...sharedRoutes,
   },
   {
-    initialRouteName: screenNames.SolutionsHome,
+    initialRouteName: screenNames.SolutionsResults,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

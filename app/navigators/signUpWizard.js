@@ -124,7 +124,7 @@ const SignUpWizard = createStackNavigator(
     },
   },
   {
-    initialRouteName: screenNames.WebView,
+    initialRouteName: screenNames.SetUserNationality,
     defaultNavigationOptions: {
       cardStyle: {
         backgroundColor: flipFlopColors.white,

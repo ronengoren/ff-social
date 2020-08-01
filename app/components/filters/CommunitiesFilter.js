@@ -261,7 +261,7 @@ CommunitiesFilter.propTypes = {
 
 const mapStateToProps = (state) => ({
   searchAddressData: state.searchAddress,
-  user: state.auth.user,
+  // user: state.auth.user,
   communitiesResults: get(state, 'search.searchStack.communities.results'),
   nationalityGroupId: get(state, 'auth.user.nationalityGroup.id'),
 });

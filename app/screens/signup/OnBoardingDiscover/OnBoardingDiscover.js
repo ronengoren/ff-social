@@ -88,7 +88,7 @@ class OnBoardingDiscover extends React.Component {
             withTopGradient
             onPress={this.onDoneButtonPress}
             testID="discoverSubmitButton"
-            isDisabled={!this.isValid()}
+            isDisabled={this.isValid()}
           />
         </View>
       </Wrapper>
@@ -191,7 +191,7 @@ class OnBoardingDiscover extends React.Component {
   };
 
   onDoneButtonPress = async () => {
-    if (!this.pressedDone && this.validate()) {
+    if (!this.pressedDone && !this.validate()) {
       this.pressedDone = true;
       this.followTopics();
       navigationService.navigate(screenNames.OnBoardingAddFriends);

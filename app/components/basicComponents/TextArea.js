@@ -326,10 +326,10 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-  searchMentions: state.mentions.searchMentions,
-  mentionsList: state.mentions.mentionsList,
-  communityId: get(state, 'auth.user.community.id'),
-  nationalityGroupId: get(state, 'auth.user.nationalityGroup.id'),
+  // searchMentions: state.mentions.searchMentions,
+  // mentionsList: state.mentions.mentionsList,
+  // communityId: get(state, 'auth.user.community.id'),
+  // nationalityGroupId: get(state, 'auth.user.nationalityGroup.id'),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

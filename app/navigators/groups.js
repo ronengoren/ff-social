@@ -4,7 +4,7 @@ import * as screens from '../screens';
 import {Header} from '../components';
 import {screenGroupNames, screenNames} from '../vars/enums';
 import {flipFlopColors} from '../vars';
-// import CreateGroup from './createGroup';
+import CreateGroup from './createGroup';
 import sharedRoutes from './sharedRoutes';
 
 const Groups = createStackNavigator(
@@ -16,23 +16,23 @@ const Groups = createStackNavigator(
         animationEnabled: false,
       },
     },
-    // [screenNames.InviteMembers]: {
-    //   screen: screens.InviteMembers,
-    //   navigationOptions: {
-    //     headerShown: false
-    //   }
-    // },
-    // [screenGroupNames.CREATE_GROUP_MODAL]: {
-    //   screen: CreateGroup,
-    //   navigationOptions: {
-    //     headerShown: false,
-    //     gesturesEnabled: false
-    //   }
-    // },
+    [screenNames.InviteMembers]: {
+      screen: screens.InviteMembers,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+    [screenGroupNames.CREATE_GROUP_MODAL]: {
+      screen: CreateGroup,
+      navigationOptions: {
+        headerShown: false,
+        gesturesEnabled: false,
+      },
+    },
     ...sharedRoutes,
   },
   {
-    initialRouteName: screenNames.GroupsTab,
+    initialRouteName: screenGroupNames.CREATE_GROUP_MODAL,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

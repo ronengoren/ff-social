@@ -88,7 +88,7 @@ const TabSection = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: screenGroupNames.PEOPLE_TAB,
+    initialRouteName: screenGroupNames.HOME_TAB,
     tabBarComponent: CustomTabBar,
     lazy: true,
     animationEnabled: false,
@@ -110,13 +110,13 @@ const MiddleSection = createStackNavigator(
         headerShown: false,
       },
     },
-    // [screenNames.PostEditor]: {
-    //   screen: screens.PostEditor,
-    //   navigationOptions: {
-    //     headerShown: false,
-    //     gesturesEnabled: false
-    //   }
-    // },
+    [screenNames.PostEditor]: {
+      screen: screens.PostEditor,
+      navigationOptions: {
+        headerShown: false,
+        gesturesEnabled: false,
+      },
+    },
     // [screenNames.RichTextEditor]: {
     //   screen: screens.RichTextEditor,
     //   navigationOptions: {
@@ -240,7 +240,7 @@ const MiddleSection = createStackNavigator(
     // }
   },
   {
-    initialRouteName: screenGroupNames.TABS,
+    initialRouteName: screenNames.TABS,
     defaultNavigationOptions: {
       cardStyle: {
         backgroundColor: flipFlopColors.white,

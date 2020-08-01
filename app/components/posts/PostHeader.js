@@ -548,7 +548,7 @@ class PostHeader extends React.Component {
         {' · '}
       </Text>
     );
-    const isAdmin = isAppAdmin(user);
+    // const isAdmin = isAppAdmin(user);
     const postTimeText = getPostTimeText({eventTime, scheduledDate, user});
     let postTime = postTimeText;
     if (score && isAdmin) {

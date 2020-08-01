@@ -174,9 +174,7 @@ function SignUpMethods({navigation}) {
         />
         <FBSignUpBtn />
         <EmailSignUpBtn
-        // onPress={() =>
-        //   navigationService.navigate(screenNames.SignUp, navigationParams)
-        // }
+          onPress={() => navigationService.navigate(screenNames.SignUp)}
         />
         {/* {showAppleSignUp && (
           <AppleSignUpBtn

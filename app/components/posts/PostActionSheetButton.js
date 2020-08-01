@@ -1,27 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { apiCommand } from '/redux/apiCommands/actions';
+import {connect} from 'react-redux';
+import {apiCommand} from '/redux/apiCommands/actions';
 // import { openActionSheet, closeActionSheet } from '/redux/general/actions';
 // import { deletePost, removeFromFeed, boostUpPost, boostDownPost } from '/redux/feed/actions';
 // import { deleteScheduledPost } from '/redux/scheduledPosts/actions';
 // import { setHiddenPinnedItems } from '/redux/auth/actions';
 // import { highlightEntity, dehighlightEntity } from '/redux/groups/actions';
-import { IconButton } from '../basicComponents';
+import {IconButton} from '../basicComponents';
 // import { postActionSheetDefinition } from '/components/posts';
 // import { reportActionSheetDefinition } from '/common/actionsheets';
-import { screenNames, entityTypes, postTypes, reportTypes } from '../../vars/enums';
+import {
+  screenNames,
+  entityTypes,
+  postTypes,
+  reportTypes,
+} from '../../vars/enums';
 // import { hiddenPinnedItems as hiddenPinnedItemsLocalStorage } from '/infra/localStorage';
-import { get, isAppAdmin } from '../../infra/utils';
-import { navigationService } from '../../infra/navigation';
-import { userScheme, mentionsSchema } from '../../schemas/common';
+import {get, isAppAdmin} from '../../infra/utils';
+import {navigationService} from '../../infra/navigation';
+import {userScheme, mentionsSchema} from '../../schemas/common';
 
 class PostActionSheetButton extends React.Component {
   render() {
-    const { style, iconSize, iconColor, iconName, isAwesomeIcon } = this.props;
+    const {style, iconSize, iconColor, iconName, isAwesomeIcon} = this.props;
 
     return (
-      <IconButton isAwesomeIcon={isAwesomeIcon} name={iconName} iconColor={iconColor} iconSize={iconSize} onPress={this.onMenuClick} testID="postHeaderMoreBtn" style={style} />
+      <IconButton
+        isAwesomeIcon={isAwesomeIcon}
+        name={iconName}
+        iconColor={iconColor}
+        iconSize={iconSize}
+        onPress={this.onMenuClick}
+        testID="postHeaderMoreBtn"
+        style={style}
+      />
     );
   }
 
@@ -65,7 +78,6 @@ class PostActionSheetButton extends React.Component {
     //   entityId: post.id,
     //   reports: isAdmin ? [reportTypes.BAD_CONTENT] : undefined
     // });
-
     // const formSheet = formSheetHandler({});
     // closeActionSheet();
     // navigationService.navigate(screenNames.AbusiveReportForm, { formSheet, entityType: entityTypes.POST, entityId: post.id });
@@ -91,7 +103,6 @@ class PostActionSheetButton extends React.Component {
     //   deleteScheduledPost,
     //   post: { id, context, scheduledDate }
     // } = this.props;
-
     // if (scheduledDate) {
     //   deleteScheduledPost({ postId: id });
     // } else {
@@ -108,7 +119,6 @@ class PostActionSheetButton extends React.Component {
     //   post: { id },
     //   setHiddenPinnedItems
     // } = this.props;
-
     // await hiddenPinnedItemsLocalStorage.add(id);
     // setHiddenPinnedItems();
   };
@@ -165,9 +175,9 @@ class PostActionSheetButton extends React.Component {
     const {
       apiCommand,
       refreshFeed,
-      post: { id }
+      post: {id},
     } = this.props;
-    await apiCommand('posts.pin', { postId: id });
+    await apiCommand('posts.pin', {postId: id});
     refreshFeed();
   };
 
@@ -175,9 +185,9 @@ class PostActionSheetButton extends React.Component {
     const {
       apiCommand,
       refreshFeed,
-      post: { id }
+      post: {id},
     } = this.props;
-    await apiCommand('posts.unpin', { postId: id });
+    await apiCommand('posts.unpin', {postId: id});
     refreshFeed();
   };
 
@@ -190,28 +200,32 @@ class PostActionSheetButton extends React.Component {
   };
 
   handleBoostDownPost = async () => {
-//     const {
-//       post: { id },
-//       boostDownPost
-//     } = this.props;
-//     boostDownPost({ postId: id });
-//   };
+    //     const {
+    //       post: { id },
+    //       boostDownPost
+    //     } = this.props;
+    //     boostDownPost({ postId: id });
+  };
 }
 
 PostActionSheetButton.propTypes = {
-  style: PropTypes.oneOfType([PropTypes.number, PropTypes.array, PropTypes.object]),
+  style: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   post: PropTypes.shape({
     actor: PropTypes.shape({
       id: PropTypes.string,
       thumbnail: PropTypes.string,
-      name: PropTypes.string
+      name: PropTypes.string,
     }),
     eventTime: PropTypes.string,
     payload: PropTypes.shape({
       postType: PropTypes.oneOf(Object.values(postTypes)),
       text: PropTypes.string,
       image: PropTypes.string,
-      templateData: PropTypes.object
+      templateData: PropTypes.object,
     }),
     context: PropTypes.object,
     liked: PropTypes.bool,
@@ -222,61 +236,61 @@ PostActionSheetButton.propTypes = {
       entityId: PropTypes.string,
       entityType: PropTypes.string,
       entity: PropTypes.object,
-      highlighted: PropTypes.bool
+      highlighted: PropTypes.bool,
     }),
     hasPermissions: PropTypes.array,
     id: PropTypes.string,
     scheduledDate: PropTypes.string,
-    eventType: PropTypes.string
+    eventType: PropTypes.string,
   }),
   activeHomeTab: PropTypes.string,
   refreshFeed: PropTypes.func,
   user: userScheme,
   isPostPage: PropTypes.bool,
-//   deletePost: PropTypes.func,
-//   removeFromFeed: PropTypes.func,
-//   boostUpPost: PropTypes.func,
-//   boostDownPost: PropTypes.func,
-//   deleteScheduledPost: PropTypes.func,
-//   openActionSheet: PropTypes.func,
-//   closeActionSheet: PropTypes.func,
-//   setHiddenPinnedItems: PropTypes.func,
+  //   deletePost: PropTypes.func,
+  //   removeFromFeed: PropTypes.func,
+  //   boostUpPost: PropTypes.func,
+  //   boostDownPost: PropTypes.func,
+  //   deleteScheduledPost: PropTypes.func,
+  //   openActionSheet: PropTypes.func,
+  //   closeActionSheet: PropTypes.func,
+  //   setHiddenPinnedItems: PropTypes.func,
   apiCommand: PropTypes.func,
-//   highlightEntity: PropTypes.func,
-//   dehighlightEntity: PropTypes.func,
+  //   highlightEntity: PropTypes.func,
+  //   dehighlightEntity: PropTypes.func,
   iconColor: PropTypes.string,
   iconName: PropTypes.string,
   iconSize: PropTypes.number,
-  isAwesomeIcon: PropTypes.bool
+  isAwesomeIcon: PropTypes.bool,
 };
 
 PostActionSheetButton.defaultProps = {
   iconSize: 22,
   iconColor: 'b80',
-  iconName: 'more'
+  iconName: 'more',
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  userHood: get(state, 'auth.user.journey.neighborhood', null)
+  userHood: get(state, 'auth.user.journey.neighborhood', null),
 });
 
 const mapDispatchToProps = {
-//   openActionSheet,
-//   closeActionSheet,
-//   deletePost,
-//   removeFromFeed,
-//   boostUpPost,
-//   boostDownPost,
-//   deleteScheduledPost,
-//   setHiddenPinnedItems,
-//   apiCommand,
-//   highlightEntity,
-//   dehighlightEntity
+  //   openActionSheet,
+  //   closeActionSheet,
+  //   deletePost,
+  //   removeFromFeed,
+  //   boostUpPost,
+  //   boostDownPost,
+  //   deleteScheduledPost,
+  //   setHiddenPinnedItems,
+  //   apiCommand,
+  //   highlightEntity,
+  //   dehighlightEntity
 };
 
 PostActionSheetButton = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(PostActionSheetButton);
 export default PostActionSheetButton;

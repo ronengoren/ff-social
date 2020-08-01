@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Dimensions, StyleSheet} from 'react-native';
 import I18n from '../../infra/localization';
 import {connect} from 'react-redux';
-// import { finishedOnBoarding } from '/redux/auth/actions';
+import {finishedOnBoarding} from '../../redux/auth/actions';
 // import { register } from '/infra/pushNotifications';
 // import { analytics } from '/infra/reporting';
 import {View, Video, Text} from '../../components/basicComponents';
@@ -12,6 +12,8 @@ import {flipFlopColors} from '../../vars';
 import {uiConstants} from '../../vars/uiConstants';
 import videos from '../../assets/videos';
 import {SubmitButton} from '../../components/onboarding';
+import {navigationService} from '../../infra/navigation';
+import {screenGroupNames} from '../../vars/enums';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,24 +66,28 @@ const styles = StyleSheet.create({
 });
 
 const AllowNotifications = ({user, finishedOnBoarding}) => {
+  console.log('AllowNotifications');
   let processing;
   const {height} = Dimensions.get('window');
   const smallScreen = height <= uiConstants.NORMAL_DEVICE_HEIGHT;
-  const allowPushNotifications = async () => {
+
+  const allowPushNotifications = () => {
+    navigationService.navigate(screenGroupNames.SIGNED_IN, {}, {noPush: true});
+
     if (processing) {
       return;
     }
-    analytics.actionEvents
-      .onboardingEnableNotificationsPopup({userId: user.id, enabled: true})
-      .dispatch();
+    // analytics.actionEvents
+    //   .onboardingEnableNotificationsPopup({userId: user.id, enabled: true})
+    //   .dispatch();
     processing = true;
-    await register(user.id);
+    // await register(user.id);
     // finishedOnBoarding();
   };
   const dontAllowPushNotifications = () => {
-    analytics.actionEvents
-      .onboardingEnableNotificationsPopup({userId: user.id, enabled: false})
-      .dispatch();
+    // analytics.actionEvents
+    //   .onboardingEnableNotificationsPopup({userId: user.id, enabled: false})
+    //   .dispatch();
     // finishedOnBoarding();
   };
   return (
@@ -135,7 +141,7 @@ const AllowNotifications = ({user, finishedOnBoarding}) => {
 
 AllowNotifications.propTypes = {
   user: PropTypes.object,
-  //   finishedOnBoarding: PropTypes.func
+  finishedOnBoarding: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -143,7 +149,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  //   finishedOnBoarding
+  finishedOnBoarding,
 };
 
 const wrappedAllowNotifications = connect(

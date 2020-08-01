@@ -55,8 +55,8 @@ const fieldNames = {
 };
 
 const errorTypes = {
-  ...fieldNames,
-  CONFLICTING_COUNTRIES: 'conflicting_types',
+  // ...fieldNames,
+  // CONFLICTING_COUNTRIES: 'conflicting_types',
 };
 
 const MAX_FEATURED_COUNTRIES = 4;
@@ -324,9 +324,9 @@ class SetUserNationality extends React.Component {
 
   componentDidMount() {
     const {nationalityGroups} = this.props;
-    if (isEmpty(nationalityGroups)) {
-      this.fetchNationalities();
-    }
+    // if (isEmpty(nationalityGroups)) {
+    //   this.fetchNationalities();
+    // }
 
     this.preloadCountryImages();
     this.conditionallyFetchNationality(true);
@@ -475,22 +475,22 @@ class SetUserNationality extends React.Component {
     const {errors, originCountry, destinationCountry} = this.state;
     const {user} = this.props;
     let onPress;
-
-    const isDisabled =
-      !!errors[errorTypes.CONFLICTING_COUNTRIES] ||
-      !originCountry.countryCode ||
-      !destinationCountry.countryCode;
-    const isOriginDestinationSame = SetUserNationality.checkIfOriginAndDestinationAreTheSame(
-      {originCountry, destinationCountry},
-    );
-    if (!isOriginDestinationSame) {
-      onPress = isDisabled ? this.showError : this.submit;
-    }
+    onPress = this.submit;
+    // const isDisabled =
+    //   !!errors[errorTypes.CONFLICTING_COUNTRIES] ||
+    //   !originCountry.countryCode ||
+    //   !destinationCountry.countryCode;
+    // const isOriginDestinationSame = SetUserNationality.checkIfOriginAndDestinationAreTheSame(
+    //   {originCountry, destinationCountry},
+    // );
+    // if (!isOriginDestinationSame) {
+    //   onPress = isDisabled ? this.showError : this.submit;
+    // }
 
     return (
       <View style={styles.mainPadding}>
         <JoinOrSignupBar
-          isSubmitDisabled={isDisabled}
+          isSubmitDisabled={false}
           onClickSignIn={this.navigateToSignIn}
           onClickSignUp={onPress}
           signUpTestID="setUserNationalitySubmitButton"
@@ -681,11 +681,12 @@ class SetUserNationality extends React.Component {
     this.setState({errors: omit(this.state.errors, key)});
   };
 
-  updateProfileAndNavigateToContinueWithNationalityScreen = async ({
-    navigationParams,
-  }) => {
-    // await this.updateProfileJourney({ navigationParams });
-    // navigationService.navigate(screenNames.ContinueWithNationality, cloneDeep(navigationParams));
+  updateProfileAndNavigateToContinueWithNationalityScreen = async () => {
+    // await this.updateProfileJourney({navigationParams});
+    navigationService.navigate(
+      screenNames.ContinueWithNationality,
+      // cloneDeep(navigationParams),
+    );
   };
 
   updateProfileJourney = async ({navigationParams}) => {
@@ -720,13 +721,31 @@ class SetUserNationality extends React.Component {
   };
 
   submit = async () => {
-    // const { originCountry, destinationCountry, matchedNationality, suggestedNationalities } = this.state;
-    // const { showModal } = this.props;
-    // analytics.actionEvents.onboardingClickedSetNationality({ originCountryName: originCountry.name, destinationCountryName: destinationCountry.name }).dispatch();
-    // const navigationParams = { matchedNationality, originCountry, destinationCountry, suggestedNationalities };
+    this.updateProfileAndNavigateToContinueWithNationalityScreen(); // const {
+    //   originCountry,
+    //   destinationCountry,
+    //   matchedNationality,
+    //   suggestedNationalities,
+    // } = this.state;
+    // const {showModal} = this.props;
+    // // analytics.actionEvents
+    // //   .onboardingClickedSetNationality({
+    // //     originCountryName: originCountry.name,
+    // //     destinationCountryName: destinationCountry.name,
+    // //   })
+    // //   .dispatch();
+    // const navigationParams = {
+    //   matchedNationality,
+    //   originCountry,
+    //   destinationCountry,
+    //   suggestedNationalities,
+    // };
     // try {
     //   if (!matchedNationality && !suggestedNationalities) {
-    //     const data = await this.fetchMatchedNationalityRequest({ originCode: originCountry.countryCode, destinationCode: destinationCountry.countryCode });
+    //     const data = await this.fetchMatchedNationalityRequest({
+    //       originCode: originCountry.countryCode,
+    //       destinationCode: destinationCountry.countryCode,
+    //     });
     //     if (Array.isArray(data)) {
     //       navigationParams.suggestedNationalities = data;
     //     } else {
@@ -740,17 +759,36 @@ class SetUserNationality extends React.Component {
     //         <ReversedNationalityModal
     //           originCountry={originCountry}
     //           destinationCountry={destinationCountry}
-    //           onOriginalNationalityPress={() => this.updateProfileAndNavigateToContinueWithNationalityScreen({ navigationParams })}
-    //           onReversedNationalityPress={() => this.onReversedNationalityPress({ navigationParams, reversedNationality })}
+    //           onOriginalNationalityPress={() =>
+    //             this.updateProfileAndNavigateToContinueWithNationalityScreen({
+    //               navigationParams,
+    //             })
+    //           }
+    //           onReversedNationalityPress={() =>
+    //             this.onReversedNationalityPress({
+    //               navigationParams,
+    //               reversedNationality,
+    //             })
+    //           }
     //         />
-    //       )
+    //       ),
     //     });
-    //     analytics.viewEvents.countryReverse({ originCountryName: originCountry.adjustedName, destinationCountryName: destinationCountry.adjustedName }).dispatch();
+    //     // analytics.viewEvents
+    //     //   .countryReverse({
+    //     //     originCountryName: originCountry.adjustedName,
+    //     //     destinationCountryName: destinationCountry.adjustedName,
+    //     //   })
+    //     //   .dispatch();
     //   } else {
-    //     this.updateProfileAndNavigateToContinueWithNationalityScreen({ navigationParams });
+    //     this.updateProfileAndNavigateToContinueWithNationalityScreen({
+    //       navigationParams,
+    //     });
     //   }
     // } catch (err) {
-    //   Logger.error({ message: 'fetch matched nationality request failed', data: { originCountry, destinationCountry } });
+    //   // Logger.error({
+    //   //   message: 'fetch matched nationality request failed',
+    //   //   data: {originCountry, destinationCountry},
+    //   // });
     // }
   };
 }

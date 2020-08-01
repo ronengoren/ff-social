@@ -127,7 +127,7 @@ class PostFooter extends React.Component {
       (postType === postTypes.INTRODUCTION || this.isJoinedCommunityPost) &&
       !!likes;
     const isThanksVisible = postType === postTypes.ACTIVATION && !!likes;
-    const isAdmin = isAppAdmin(user);
+    // const isAdmin = isAppAdmin(user);
 
     return (
       <View

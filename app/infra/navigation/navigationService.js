@@ -83,6 +83,10 @@ function navigate(routeName, params, options = {}) {
   }
 }
 
+// function navigate(routeName) {
+//   console.log(routeName);
+//   NavigationActions.navigate({routeName: routeName});
+// }
 function goBack({key} = {}) {
   _navigator && _navigator.dispatch(NavigationActions.back({key}));
 }

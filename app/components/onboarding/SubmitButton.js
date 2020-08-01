@@ -64,7 +64,7 @@ function SubmitButton({
             resizeMode="stretch"
           />
         )}
-        {/* <NewTextButton
+        <NewTextButton
           style={styles.submitBtn}
           textStyle={styles.text}
           activeOpacity={0.5}
@@ -73,10 +73,9 @@ function SubmitButton({
               ? transparentize(flipFlopColors.green, 30)
               : flipFlopColors.green
           }
-          {...restProps}
-          >
+          {...restProps}>
           {label || children}
-        </NewTextButton> */}
+        </NewTextButton>
       </View>
     </View>
   );

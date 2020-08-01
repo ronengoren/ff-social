@@ -1,13 +1,18 @@
 export {HomeTab} from './homeTab';
 export {Welcome, ChangePassword} from './welcome';
-export {Profile, EditProfile, EditProfileDate, Settings} from './profile';
-// EditProfileRelationship,
-// EditProfileGender,
-// ConnectedUsersList,
-// OthersFriendsList,
-// ChangeEmail,
-// DeleteAccount,
-// DeleteAccountConfirmation,
+export {
+  Profile,
+  EditProfile,
+  EditProfileDate,
+  Settings,
+  EditProfileRelationship,
+  EditProfileGender,
+  ChangeEmail,
+  DeleteAccountConfirmation,
+  DeleteAccount,
+  ConnectedUsersList,
+} from './profile';
+
 // ProfileGroupsList,
 // ProfilePagesList
 export {WebView} from './webView';
@@ -19,7 +24,7 @@ export {
   ReferralProgramStatus,
   ReferralRedeemed,
 } from './peopleTab';
-export {SolutionsHome} from './solutionsTab';
+export {SolutionsResults, SolutionsHome} from './solutionsTab';
 export {Notifications} from './notifications';
 export {
   ChatLobby,
@@ -44,3 +49,7 @@ export {
 } from './signup';
 export {SearchAddress} from './searchAddress';
 export {ImageUpload} from './imageUpload';
+// export { CreateGroup, InviteMembers, GroupView, GroupEdit, ViewOnlyMembersList, ManageGroupMembers, GroupRules } from './group';
+export {CreateGroup, InviteMembers} from './group';
+// export {DatesPicker} from './dates';
+export {PostEditor} from './post';

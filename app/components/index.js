@@ -27,7 +27,15 @@ export {default as HtmlText} from './HtmlText';
 export {SuggestedItems} from './feed/suggestedItems';
 export {SubHeader} from './layout';
 export {UsersList, SelectUsers} from './usersList';
-export {mentionUtils} from './posts';
+export {
+  Comment,
+  postActionSheetDefinition,
+  mentionUtils,
+  Post,
+  PostFooter,
+  PostContent,
+  PostHeader,
+} from './posts';
 export {default as HtmlTextWithLinks} from './HtmlTextWithLinks';
 export {default as ApiCommandTextButton} from './ApiCommandTextButton';
 export {
@@ -38,3 +46,6 @@ export {
   FormSectionSeparator,
   PasswordInput,
 } from './formElements';
+export {default as TextForm} from './TextForm';
+export {RichTextEditor, RichTextShowAndEdit} from './richTextEditor';
+export {SuggestionItem} from './searchableForm';

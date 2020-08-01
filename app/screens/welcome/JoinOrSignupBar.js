@@ -55,7 +55,6 @@ function JoinOrSignupBar({
   const isHebrewText = isHebrewOrArabic(titleText);
   return (
     <React.Fragment>
-      <SubmitButton />
       <SubmitButton
         isAbsolute={false}
         isDisabled={isSubmitDisabled}

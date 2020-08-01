@@ -114,7 +114,7 @@ function OriginDestinationCountryIcons({
     }
   }, [showIcons]);
 
-  const {destinationNumericCountryCode} = matchedNationality;
+  // const {destinationNumericCountryCode} = matchedNationality;
 
   const iconSources = {
     // left: getCountryImageByCode(get(originCountry, 'countryCode')),
@@ -162,21 +162,21 @@ OriginDestinationCountryIcons.propTypes = {
 
 let ContinueWithNationality = ({navigation}) => {
   // const user = useSelector((state) => state.auth.user);
-  // const matchedNationality = get(navigation, 'state.params.matchedNationality');
-  // const hasMatchedNationality = !isEmpty(matchedNationality);
-  // const suggestedNationalities =
-  //   get(navigation, 'state.params.suggestedNationalities') || [];
-  // const originCountry = get(navigation, 'state.params.originCountry');
-  // const destinationCountry = get(navigation, 'state.params.destinationCountry');
+  const matchedNationality = get(navigation, 'state.params.matchedNationality');
+  const hasMatchedNationality = !isEmpty(matchedNationality);
+  const suggestedNationalities =
+    get(navigation, 'state.params.suggestedNationalities') || [];
+  const originCountry = get(navigation, 'state.params.originCountry');
+  const destinationCountry = get(navigation, 'state.params.destinationCountry');
 
-  // const nationality = matchedNationality || {};
-  // if (!hasMatchedNationality) {
-  //   nationality.originNumericCountryCodes = [originCountry.countryCode];
-  //   nationality.destinationNumericCountryCode = destinationCountry.countryCode;
-  //   nationality.originNativesName = originCountry.name;
-  //   nationality.destinationCountryName = destinationCountry.name;
-  //   nationality.isDummy = true;
-  // }
+  const nationality = matchedNationality || {};
+  if (!hasMatchedNationality) {
+    // nationality.originNumericCountryCodes = [originCountry.countryCode];
+    // nationality.destinationNumericCountryCode = destinationCountry.countryCode;
+    // nationality.originNativesName = originCountry.name;
+    // nationality.destinationCountryName = destinationCountry.name;
+    // nationality.isDummy = true;
+  }
 
   const handleBackPress = useCallback(() => navigation.isFocused(), [
     navigation,
@@ -197,34 +197,34 @@ let ContinueWithNationality = ({navigation}) => {
   }, []);
 
   const afterCountriesIconsShown = () => {
-    // Animated.sequence([
-    //   Animated.delay(DELAY_BEFORE_SHOWING_TITLE),
-    //   Animated.timing(titleOpacity, commonAnimationProps),
-    //   Animated.delay(DELAY_BEFORE_NAVIGATE_TO_SIGNUP),
-    // ]).start(() => {
-    //   if (user) {
-    //     const nextScreen = getRelevantOnboardingScreen({
-    //       user,
-    //       matchedNationality,
-    //       suggestedNationalities,
-    //     });
-    //     navigationService.navigate(nextScreen, {
-    //       suggestedNationalities,
-    //       matchedNationality,
-    //       nationality,
-    //       originCountry,
-    //       destinationCountry,
-    //     });
-    //   } else {
-    //     navigationService.navigate(screenNames.SignUpMethods, {
-    //       suggestedNationalities,
-    //       matchedNationality,
-    //       nationality,
-    //       originCountry,
-    //       destinationCountry,
-    //     });
-    //   }
-    // });
+    Animated.sequence([
+      Animated.delay(DELAY_BEFORE_SHOWING_TITLE),
+      Animated.timing(titleOpacity, commonAnimationProps),
+      Animated.delay(DELAY_BEFORE_NAVIGATE_TO_SIGNUP),
+    ]).start(() => {
+      // if (user) {
+      //   const nextScreen = getRelevantOnboardingScreen({
+      //     user,
+      //     matchedNationality,
+      //     suggestedNationalities,
+      //   });
+      //   navigationService.navigate(nextScreen, {
+      //     suggestedNationalities,
+      //     matchedNationality,
+      //     nationality,
+      //     originCountry,
+      //     destinationCountry,
+      //   });
+      // } else {
+      navigationService.navigate(screenNames.SignUpMethods, {
+        suggestedNationalities,
+        matchedNationality,
+        nationality,
+        originCountry,
+        destinationCountry,
+      });
+      // }
+    });
   };
 
   return (
@@ -256,12 +256,12 @@ let ContinueWithNationality = ({navigation}) => {
 
         <View style={[styles.mainContent, styles.mainPadding]}>
           {/* <ItemErrorBoundary boundaryName="OnboardingCountriesIcons"> */}
-          {/* <OriginDestinationCountryIcons
-              showIcons={showIcons}
-              afterIconsShown={afterCountriesIconsShown}
-              // matchedNationality={nationality}
-              // originCountry={originCountry}
-            /> */}
+          <OriginDestinationCountryIcons
+            showIcons={showIcons}
+            afterIconsShown={afterCountriesIconsShown}
+            // matchedNationality={nationality}
+            // originCountry={originCountry}
+          />
           {/* </ItemErrorBoundary> */}
           <Animated.View style={[styles.title, {opacity: titleOpacity}]}>
             <JoinNationalityTitle

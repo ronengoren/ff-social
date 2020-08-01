@@ -207,9 +207,10 @@ class SetUserDetails extends Component {
         <Animated.View style={[{transform: [{translateY: btnY}]}]}>
           <SubmitButton
             withShadow={false}
-            isDisabled={isDisabled}
+            isDisabled={false}
             wrapperStyle={styles.mainPadding}
-            onPress={isDisabled ? this.scrollToBottom : this.submit}
+            onPress={this.submit}
+            // onPress={isDisabled ? this.scrollToBottom : this.submit}
             testID="setUserDetailsSubmitButton"
             busy={isSubmitting}
           />
@@ -458,7 +459,7 @@ class SetUserDetails extends Component {
     //   const { id: communityId, name: communityName } = (await this.getMatchedCommunity()) || {};
     //   await this.updateProfilePromises(communityId);
     //   await joinedCommunity({ communityId, communityName, destinationCity, isOnWaitingList });
-    //   navigationService.navigate(screenNames.OnBoardingDiscover);
+    navigationService.navigate(screenNames.OnBoardingDiscover);
     // } catch (err) {
     //   Logger.error({ message: 'failed to submit setUserDetails form', destinationCity, err });
     // }

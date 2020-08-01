@@ -406,7 +406,7 @@ class SignIn extends React.Component {
     //   if (exists === true) {
     //     this.setState({ isEmailExists: true });
     //   } else {
-    //     this.setState({ email: { ...this.state.email, errorText: 'Couldn’t find your homeis account' }, isRenderCreateAccount: true });
+    //     this.setState({ email: { ...this.state.email, errorText: 'Couldn’t find your flipflop account' }, isRenderCreateAccount: true });
     //   }
     // } catch (err) {
     //   this.setState({

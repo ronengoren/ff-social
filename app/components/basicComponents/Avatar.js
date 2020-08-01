@@ -10,7 +10,7 @@ import {
   avatarBadgePosition,
 } from '../../vars/enums';
 import {flipFlopColors, uiConstants} from '../../vars';
-import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
+import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
 import {getInitials} from '../../infra/utils/stringUtils';
 import {stylesScheme} from '../../schemas';
 import {navigationService} from '../../infra/navigation';
@@ -463,7 +463,7 @@ export class Avatar extends Component {
             size={awesomeIconFontSize[size] || 30}
           />
         ) : (
-          <HomeisIcon
+          <FlipFlopIcon
             name={entityIcon}
             color={flipFlopColors.b90}
             size={iconFontSize[size] || 30}
@@ -566,7 +566,7 @@ export class Avatar extends Component {
         );
       }
       return (
-        <HomeisIcon
+        <FlipFlopIcon
           style={[styles.badgeIcon, {backgroundColor: badgeColor}]}
           name={iconName}
           color={flipFlopColors.white}

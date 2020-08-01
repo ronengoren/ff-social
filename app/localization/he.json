@@ -16,7 +16,7 @@
             "decline_button": "סרב לשיחה",
             "allow_button": "אישור"
         },
-        "image_fallback_message": "אנחנו אוהבים תמונות, אבל לא יכולנו להציג את התמונה הזו. לצפייה בתמונה יש לעדכן את האפליקציה.\nhttps://www.homeis.com/downloads",
+        "image_fallback_message": "אנחנו אוהבים תמונות, אבל לא יכולנו להציג את התמונה הזו. לצפייה בתמונה יש לעדכן את האפליקציה.\nhttps://www.FlipFlop.com/downloads",
         "interactions": {
             "drink": {
                 "interaction_screen": {
@@ -127,7 +127,7 @@
             "share_externally": "אפשרויות שיתוף נוספות",
             "whatsApp": "וואטסאפ",
             "email": "אימייל",
-            "homeis": "הומיז",
+            "Flip_Flop": "פליפ פלופ",
             "link": "העתק לינק",
             "sms": "הודעת טקסט",
             "facebook": "פייסבוק",
@@ -2409,7 +2409,7 @@
         "insiders": {
             "name": "Insiders",
             "modal": {
-                "title": "homeis Insiders",
+                "title": "Flip Flop Insiders",
                 "description": "האינסיידרים הם חברי הומיז בולטים ומובילים בקהילה באזור מגוריהם שרוצים להפוך את הקהילה הישראלית לחזקה יותר.",
                 "go_to_lobby": "למידע נוסף",
                 "question": "חושב/ת שיש לך מה שצריך כדי להיות אינסיידר?",

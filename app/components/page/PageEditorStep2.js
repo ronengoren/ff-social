@@ -16,7 +16,7 @@ import {
   NewTextButton,
   Image,
 } from '../../components/basicComponents';
-import {AwesomeIcon, HomeisIcon} from '../../assets/icons';
+import {AwesomeIcon, FlipFlopIcon} from '../../assets/icons';
 import images from '../../assets/images';
 import {
   commonStyles,
@@ -282,7 +282,7 @@ class PageEditorStep2 extends React.Component {
     const color =
       !location && isNewPage ? flipFlopColors.green : flipFlopColors.b30;
     const icon = (
-      <HomeisIcon
+      <FlipFlopIcon
         name="location"
         size={16}
         color={flipFlopColors.b30}

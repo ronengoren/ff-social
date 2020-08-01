@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text} from '../basicComponents';
-import {HomeisIcon} from '../../assets/icons';
+import {FlipFlopIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {stylesScheme} from '../../schemas/common';
 
@@ -22,7 +22,11 @@ const styles = {
 
 const EmptySearch = ({text, style}) => (
   <View style={[styles.container, style]}>
-    <HomeisIcon name="search-big" size={50} color={flipFlopColors.emptyGrey} />
+    <FlipFlopIcon
+      name="search-big"
+      size={50}
+      color={flipFlopColors.emptyGrey}
+    />
     <Text medium size={22} lineHeight={30} style={styles.text}>
       {text}
     </Text>

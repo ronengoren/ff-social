@@ -4,7 +4,7 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View, Image, Spinner, Text} from '../basicComponents';
 import images from '../../assets/images';
 import {flipFlopColors, uiConstants, commonStyles} from '../../vars';
-import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
+import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
 import {stylesScheme} from '../../schemas/common';
 
 const styles = StyleSheet.create({
@@ -160,7 +160,7 @@ class NewTextButton extends React.Component {
       iconStyle,
     ];
     const spinnerColor = flipFlopColors.white;
-    const IconComponent = iconWeight ? AwesomeIcon : HomeisIcon;
+    const IconComponent = iconWeight ? AwesomeIcon : FlipFlopIcon;
 
     return (
       <TouchableOpacity

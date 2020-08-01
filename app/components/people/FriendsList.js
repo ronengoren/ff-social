@@ -122,7 +122,7 @@ class FriendsList extends React.Component {
       listEmptyState: (
         <GenericEmptyState
           iconName="cat"
-          isHomeisIcon={false}
+          isFlipFlopIcon={false}
           headerText={I18n.t('empty_states.users.header')}
           bodyText={I18n.t('empty_states.users.body')}
         />

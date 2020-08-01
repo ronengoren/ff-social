@@ -1,11 +1,11 @@
 import {Share, Platform} from 'react-native';
 import {
-  getHomeisWebLink,
+  getFlipFlopWebLink,
   mailto,
   sendSMSLink,
   sendWhatsappLink,
   sendFacebookLink,
-  setClipboardHomeisWebLink,
+  setClipboardFlipFlopWebLink,
 } from '../../infra/utils/linkingUtils';
 import I18n from '../../infra/localization';
 import {flipFlopColors} from '../../vars';
@@ -14,7 +14,7 @@ import {shareTypes} from '../../vars/enums';
 import {isRTL} from '../../infra/utils/stringUtils';
 
 const openNativeShare = ({entityId, entityType, urlSlug}) => {
-  const entityUrl = getHomeisWebLink({urlSlug, entityType, entityId});
+  const entityUrl = getFlipFlopWebLink({urlSlug, entityType, entityId});
   Share.share(
     {
       ...Platform.select({
@@ -69,7 +69,7 @@ const shareActionSheetDefinition = ({
   componentName,
   urlSlug,
 }) => {
-  const webLink = getHomeisWebLink({entityId, entityType, urlSlug});
+  const webLink = getFlipFlopWebLink({entityId, entityType, urlSlug});
   const analyticsShareActionEvent = (option) => {
     // const dataToSend = {
     //   actorId,
@@ -126,7 +126,7 @@ const shareActionSheetDefinition = ({
       shouldClose: true,
       action: () => {
         analyticsShareActionEvent(shareTypes.LINK);
-        setClipboardHomeisWebLink({entityId, entityType, urlSlug});
+        setClipboardFlipFlopWebLink({entityId, entityType, urlSlug});
       },
       iconWrapperStyle: {borderColor: '#ffc107'},
       iconStyle: {color: '#ffc107'},
@@ -179,16 +179,16 @@ const shareActionSheetDefinition = ({
 
   if (navigateToPostEditor) {
     options.unshift({
-      id: shareTypes.HOMEIS,
-      text: I18n.t('common.share.homeis'),
+      id: shareTypes.FLIPFLOP,
+      text: I18n.t('common.share.flipflop'),
       iconSize: 20,
-      iconName: 'homeis-symbol',
+      iconName: 'flipflop-symbol',
       shouldClose: true,
       action: () => {
-        analyticsShareActionEvent(shareTypes.HOMEIS);
+        analyticsShareActionEvent(shareTypes.FLIPFLOP);
         navigateToPostEditor();
       },
-      textStyle: {marginTop: isRTL(I18n.t('common.share.homeis')) ? 3 : 0},
+      textStyle: {marginTop: isRTL(I18n.t('common.share.flipflop')) ? 3 : 0},
       iconWrapperStyle: {borderColor: flipFlopColors.green},
       iconStyle: {color: flipFlopColors.green},
     });

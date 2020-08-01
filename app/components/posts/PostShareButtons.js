@@ -12,7 +12,7 @@ import {
 import {ShareableProvider} from '..';
 
 const VISIBLE_SHARE_OPTIONS = [
-  shareTypes.HOMEIS,
+  shareTypes.FLIPFLOP,
   shareTypes.WHATSAPP,
   shareTypes.FACEBOOK,
   shareTypes.MORE,

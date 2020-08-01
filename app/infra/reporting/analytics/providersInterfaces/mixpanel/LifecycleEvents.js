@@ -1,15 +1,34 @@
-import { Platform } from 'react-native';
-import { get } from '/infra/utils';
-import { genderType } from '/vars/enums';
+import {Platform} from 'react-native';
+import {get} from '/infra/utils';
+import {genderType} from '/vars/enums';
 
 class LifecycleEvents {
   constructor(provider) {
     this.provider = provider;
   }
 
-  appInstall = ({ campaign, channel, tags, linkId, thirdParty, ...restBranchProps }) => {
-    this.provider.trackWithProperties('Homeis Install', { campaign, channel, tags, linkId, thirdParty, ...restBranchProps });
-    this.provider.set({ initialChannel: channel, initialCampaign: campaign, channel, campaign });
+  appInstall = ({
+    campaign,
+    channel,
+    tags,
+    linkId,
+    thirdParty,
+    ...restBranchProps
+  }) => {
+    this.provider.trackWithProperties('Flip Flop Install', {
+      campaign,
+      channel,
+      tags,
+      linkId,
+      thirdParty,
+      ...restBranchProps,
+    });
+    this.provider.set({
+      initialChannel: channel,
+      initialCampaign: campaign,
+      channel,
+      campaign,
+    });
   };
 
   createIdentity = ({
@@ -24,7 +43,7 @@ class LifecycleEvents {
     contextCountryName,
     destinationCountryName,
     roles,
-    hasProfilePicture
+    hasProfilePicture,
   }) => {
     this.provider.createAlias(userId);
     this.startSession({
@@ -39,7 +58,7 @@ class LifecycleEvents {
       contextCountryName,
       destinationCountryName,
       roles,
-      hasProfilePicture
+      hasProfilePicture,
     });
   };
 
@@ -60,7 +79,7 @@ class LifecycleEvents {
     contextCountryName,
     destinationCountryName,
     roles,
-    hasProfilePicture
+    hasProfilePicture,
   }) => {
     this.provider.identify(userId);
     let resolvedGender = gender;
@@ -85,7 +104,7 @@ class LifecycleEvents {
       UserOrigin: origin,
       CurrentlyLiveIn: currentlyLiveIn,
       'User Roles': roles,
-      'Has Profile Picture': hasProfilePicture
+      'Has Profile Picture': hasProfilePicture,
     };
 
     if (deviceLanguage) {
@@ -117,16 +136,22 @@ class LifecycleEvents {
 
   registerUserId = (userId) => {
     this.provider.registerSuperProperties({
-      'User Id': userId
+      'User Id': userId,
     });
   };
 
-  addPushToken = ({ token }) => {
-    Platform.OS === 'ios' ? this.provider.addPushDeviceToken(token) : this.provider.setPushRegistrationId(token);
+  addPushToken = ({token}) => {
+    Platform.OS === 'ios'
+      ? this.provider.addPushDeviceToken(token)
+      : this.provider.setPushRegistrationId(token);
   };
 
-  universalLinkOpened = ({ url, route }) => {
-    this.provider.trackWithProperties('Universal Link Open', { url, screenName: get(route, 'screenName'), entityId: get(route, 'params.entityId') });
+  universalLinkOpened = ({url, route}) => {
+    this.provider.trackWithProperties('Universal Link Open', {
+      url,
+      screenName: get(route, 'screenName'),
+      entityId: get(route, 'params.entityId'),
+    });
   };
 }
 

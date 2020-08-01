@@ -43,14 +43,14 @@ class HtmlTextWithLinks extends Component {
     if (isIosAndItunesLink(link)) {
       Linking.openURL(link);
     } else if (
-      link.includes('l.homeis.com') ||
-      link.includes('homeis.test-app.link')
+      link.includes('l.flipflop.com') ||
+      link.includes('flipflop.test-app.link')
     ) {
       branch.openURL(link);
     } else if (link.startsWith('mailto:')) {
       mailto(link.replace('mailto:', ''));
-    } else if (link.includes('homeis.com')) {
-      this.handleHomeisLinkPress(link);
+    } else if (link.includes('flipflop.com')) {
+      this.handleFlipFlopLinkPress(link);
     } else if (link.startsWith('tel:')) {
       call(link.replace('tel:', ''));
     } else if (url(null)(link).isValid) {
@@ -63,7 +63,7 @@ class HtmlTextWithLinks extends Component {
     }
   };
 
-  handleHomeisLinkPress = (link) => {
+  handleFlipFlopLinkPress = (link) => {
     const [entityTitle, entitySlug] = link.split('?')[0].split('/').reverse();
 
     const {postSubType, tags} = getQueryStringParams(link);

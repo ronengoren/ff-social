@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import {View} from '../../../components/basicComponents';
-import {HomeisIcon} from '../../../assets/icons';
+import {FlipFlopIcon} from '../../../assets/icons';
 import {flipFlopColors} from '../../../vars';
 import {stylesScheme} from '../../../schemas';
 import {isShortDevice} from '../../../infra/utils/deviceUtils';
@@ -32,19 +32,19 @@ function OnBoardingProgressBar({step, style, backgroundColor}) {
 
   return (
     <View style={[styles.container, style, {backgroundColor}]}>
-      <HomeisIcon
+      <FlipFlopIcon
         name="progress-bar-1"
         size={24}
         color={flipFlopColors.green}
       />
       <View style={[styles.statusLine, step > 1 && styles.activeScreen]} />
-      <HomeisIcon
+      <FlipFlopIcon
         name="progress-bar-2"
         size={24}
         color={step > 1 ? flipFlopColors.green : flipFlopColors.b70}
       />
       <View style={[styles.statusLine, step > 2 && styles.activeScreen]} />
-      <HomeisIcon
+      <FlipFlopIcon
         name="progress-bar-3"
         size={24}
         color={step > 2 ? flipFlopColors.green : flipFlopColors.b70}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import I18n from '../../infra/localization';
 import {View, Text, Image, NewTextButton} from '../basicComponents';
-import {HomeisIcon} from '../../assets/icons';
+import {FlipFlopIcon} from '../../assets/icons';
 import images from '../../assets/images';
 import {flipFlopColors} from '../../vars';
 import {stylesScheme, userScheme} from '../../schemas';
@@ -152,7 +152,7 @@ class FriendshipRequestComponent extends Component {
 
     return (
       <View style={[styles.avatar, styles.avatarPlaceholder]}>
-        <HomeisIcon name="discover" size={120} color={flipFlopColors.b90} />
+        <FlipFlopIcon name="discover" size={120} color={flipFlopColors.b90} />
       </View>
     );
   };

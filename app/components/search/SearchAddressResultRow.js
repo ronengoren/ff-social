@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {TouchableOpacity} from 'react-native';
 import {BoldedText} from '../basicComponents';
-import {HomeisIcon} from '../../assets/icons';
+import {FlipFlopIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {removeAddressSuffix} from '../../infra/utils/addressUtils';
 import {stylesScheme} from '../../schemas';
@@ -54,7 +54,7 @@ SearchAddressResultRow.ITEM_HEIGHT = 61;
 
 SearchAddressResultRow.defaultProps = {
   renderIcon: () => (
-    <HomeisIcon
+    <FlipFlopIcon
       name="location"
       size={20}
       color={flipFlopColors.emptyGrey}

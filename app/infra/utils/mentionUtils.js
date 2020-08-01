@@ -1,6 +1,6 @@
 import {sortedIndexBy} from 'lodash';
 // import { Logger } from '/infra/reporting/index';
-import {getHomeisWebLink} from './linkingUtils';
+import {getFlipFlopWebLink} from './linkingUtils';
 import {postTypes} from '../../vars/enums';
 import {enrichTextWithLinks} from './stringUtils';
 
@@ -182,7 +182,7 @@ const getTrimmedTextWithMentionLinks = (text, mentions) => {
   // We want to make the changes from the end, so we won't need to deal with index changes
   mentions.reverse().forEach((mention) => {
     const {entityType, postType, objectID: entityId} = mention.entity;
-    const href = getHomeisWebLink({
+    const href = getFlipFlopWebLink({
       entityType: postType === postTypes.GUIDE ? postType : entityType,
       entityId,
     });

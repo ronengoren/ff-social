@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
 class GenericListEmptyState extends React.Component {
   render() {
     const {type, headerText, bodyText, style} = this.props;
-    const {isHomeisIcon, name} = uiDefinitions[type];
+    const {isFlipFlopIcon, name} = uiDefinitions[type];
     return (
       <GenericEmptyState
-        isHomeisIcon={isHomeisIcon}
+        isFlipFlopIcon={isFlipFlopIcon}
         iconName={name}
         headerText={headerText}
         bodyText={bodyText}

@@ -41,7 +41,7 @@ import {SearchAddress} from '/screens/searchAddress';
 import HeaderSearch from '../../components/header/HeaderSearch';
 
 import {screenNames} from '../../vars/enums';
-import {AwesomeIcon, HomeisIcon} from '../../assets/icons';
+import {AwesomeIcon, FlipFlopIcon} from '../../assets/icons';
 import images from '../../assets/images';
 import {formatTopCitiesToMatchPlacesServiceResponse} from '../../infra/utils/onboardingUtils';
 import {
@@ -349,7 +349,7 @@ class SetUserDetails extends Component {
             isValid ? (
               mapMarkerIcon
             ) : (
-              <HomeisIcon
+              <FlipFlopIcon
                 name="search"
                 color={flipFlopColors.green}
                 size={22}

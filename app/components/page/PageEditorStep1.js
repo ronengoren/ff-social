@@ -5,7 +5,7 @@ import I18n from '/infra/localization';
 import * as Animatable from 'react-native-animatable';
 import {SuggestionsList} from '../../components/searchableForm';
 import {View, Text, TextInput} from '../basicComponents';
-import {HomeisIcon} from '../../assets/icons';
+import {FlipFlopIcon} from '../../assets/icons';
 import {commonStyles, uiConstants, flipFlopColors} from '../../vars';
 import {editModes} from '../../vars/enums';
 
@@ -72,7 +72,7 @@ class PageEditorStep1 extends React.Component {
         )}
         <View style={styles.textAreaWrapper}>
           {hasSearchIcon && (
-            <HomeisIcon
+            <FlipFlopIcon
               name="search"
               size={22}
               color={flipFlopColors.b70}

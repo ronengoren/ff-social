@@ -160,7 +160,7 @@ class ChatService {
       'messaging',
       `page-${pageId}-${participantId}`,
       {
-        homeisChannelType: internalConversationTypes.PAGE,
+        flipFlopChannelType: internalConversationTypes.PAGE,
         members: [participantId, pageId, ...ownersIds],
         ...tabsPerUser,
       },
@@ -508,8 +508,8 @@ class ChatService {
   }
 
   isPageChannel({channel}) {
-    const homeisChannelType = get(channel, 'data.homeisChannelType');
-    return homeisChannelType === internalConversationTypes.PAGE;
+    const flipFlopChannelType = get(channel, 'data.flipFlopChannelType');
+    return flipFlopChannelType === internalConversationTypes.PAGE;
   }
 
   isActorPageOwner({message, channel}) {

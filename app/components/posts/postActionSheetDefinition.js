@@ -1,4 +1,4 @@
-import {setClipboardHomeisWebLink} from '../../infra/utils/linkingUtils';
+import {setClipboardFlipFlopWebLink} from '../../infra/utils/linkingUtils';
 import I18n from '../../infra/localization';
 import {
   editModes,
@@ -266,7 +266,7 @@ const postActionSheetDefinition = ({
         awesomeIconName: 'link',
         shouldClose: true,
         action: () =>
-          setClipboardHomeisWebLink({
+          setClipboardFlipFlopWebLink({
             urlSlug,
             entityType: entityTypes.POST,
             entityId: post.id,

@@ -280,7 +280,7 @@ class DeleteAccountConfirmation extends React.Component {
         <ActionBox
           containerStyle={styles.box}
           title={I18n.t(
-            'profile.settings.delete_account.turn_off_flags.homeis_emails',
+            'profile.settings.delete_account.turn_off_flags.flipflop_emails',
           )}
           titleColor={flipFlopColors.b30}
           icons={['envelope-open-text']}

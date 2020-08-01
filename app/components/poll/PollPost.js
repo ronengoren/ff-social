@@ -121,7 +121,7 @@ class PollPost extends React.Component {
             withCreatorAvatar={false}
             isTitleBold
             mediaUrl={media.url}
-            mediaSource={images.common.gradientGreenWithHomeisLogo}
+            mediaSource={images.common.gradientGreenWithFlipFlopLogo}
           />
           {isAppUserPostCreator && (
             <View

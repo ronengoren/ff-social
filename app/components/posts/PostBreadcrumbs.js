@@ -16,7 +16,7 @@ import {
   groupType,
 } from '../../vars/enums';
 import {stylesScheme} from '../../schemas';
-import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
+import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
 import {get} from '../../infra/utils';
 import {
   addSpaceOnCapitalsAndCapitalize,
@@ -71,13 +71,13 @@ class PostBreadcrumbs extends React.Component {
     const color = uiColorDefinitions[entityType || postType];
     const iconDefinitions = uiDefinitions[entityType || postType];
     const {
-      isHomeisIcon,
+      isFlipFlopIcon,
       name,
       postBreadcrumbIconSize,
       postBreadcrumbIconLineHeight,
     } = iconDefinitions;
-    const IconComponent = isHomeisIcon ? HomeisIcon : AwesomeIcon;
-    const iconSize = isHomeisIcon ? postBreadcrumbIconSize : 11;
+    const IconComponent = isFlipFlopIcon ? FlipFlopIcon : AwesomeIcon;
+    const iconSize = isFlipFlopIcon ? postBreadcrumbIconSize : 11;
     const iconLineHeight = postBreadcrumbIconLineHeight || 11;
     const beforeTextComponent = (
       <IconComponent

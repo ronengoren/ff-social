@@ -26,7 +26,7 @@ import {get, isAppAdmin, getTopUserRole} from '../../infra/utils';
 import {numberWithCommas} from '../../infra/utils/stringUtils';
 import {navigationService} from '../../infra/navigation';
 import {isBoundlessEnabled} from '../../infra/utils/communitiesNationalitiesUtils';
-import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
+import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
 import {userScheme, mentionsSchema} from '../../schemas/common';
 import {CountryIcon} from '../../components/onboarding';
 import PostHeaderAddFriendButton from './PostHeaderAddFriendButton';
@@ -584,7 +584,7 @@ class PostHeader extends React.Component {
         content.push(separator(2));
       }
       content.push([
-        <HomeisIcon
+        <FlipFlopIcon
           name="edit"
           size={12}
           color={flipFlopColors.b70}

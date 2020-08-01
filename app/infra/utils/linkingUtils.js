@@ -71,7 +71,7 @@ const isIosAndItunesLink = (link) => {
   return match;
 };
 
-const getHomeisWebLink = ({entityId, entityType, urlSlug}) => {
+const getFlipFlopWebLink = ({entityId, entityType, urlSlug}) => {
   if (urlSlug) {
     return `${config.web.url}/${urlSlug}`;
   }
@@ -98,8 +98,8 @@ const getHomeisWebLink = ({entityId, entityType, urlSlug}) => {
   return config.web.url;
 };
 
-const setClipboardHomeisWebLink = ({entityId, entityType, urlSlug}) => {
-  const link = getHomeisWebLink({entityId, entityType, urlSlug});
+const setClipboardFlipFlopWebLink = ({entityId, entityType, urlSlug}) => {
+  const link = getFlipFlopWebLink({entityId, entityType, urlSlug});
   Clipboard.setString(link);
 };
 
@@ -152,7 +152,7 @@ export {
   sendSMSLink,
   sendFacebookLink,
   isIosAndItunesLink,
-  getHomeisWebLink,
-  setClipboardHomeisWebLink,
+  getFlipFlopWebLink,
+  setClipboardFlipFlopWebLink,
   getQueryStringParams,
 };

@@ -19,7 +19,7 @@ import {
 } from '../../components/basicComponents';
 import {flipFlopColors, commonStyles} from '../../vars';
 import {screenNames} from '../../vars/enums';
-import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
+import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
 import {get, isAppAdmin} from '../../infra/utils';
 
 import {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const HOMEIS_CONTACT_US_EMAIL = 'info@homeis.com';
+const FLIPFLOP_CONTACT_US_EMAIL = 'info@flipflop.com';
 
 const checkStatusMessages = {
   CHECKING: 'Looking for update...',
@@ -156,7 +156,7 @@ class Settings extends React.Component {
               <Text style={styles.rightText}>
                 {I18n.getLanguageName(form.language)}
               </Text>
-              <HomeisIcon
+              <FlipFlopIcon
                 name="right-arrow"
                 size={20}
                 color={flipFlopColors.black}
@@ -370,7 +370,7 @@ class Settings extends React.Component {
       </Text>
       {!!rightText && <Text style={styles.rightText}>{rightText}</Text>}
       {isWithArrow && (
-        <HomeisIcon
+        <FlipFlopIcon
           name="right-arrow"
           size={20}
           color={flipFlopColors.black}
@@ -459,7 +459,7 @@ class Settings extends React.Component {
           <Text medium>{I18n.t(`profile.settings.general.email`)}</Text>
           <View style={commonStyles.flexDirectionRow}>
             <Text style={styles.rightText}>{email}</Text>
-            <HomeisIcon
+            <FlipFlopIcon
               name="right-arrow"
               size={20}
               color={flipFlopColors.black}
@@ -518,13 +518,13 @@ class Settings extends React.Component {
     const {data} = this.props;
     const {communityManagerEmail} = data.user;
     Linking.openURL(
-      `mailto:${communityManagerEmail}?cc=${HOMEIS_CONTACT_US_EMAIL}&subject=Hi, Homeis`,
+      `mailto:${communityManagerEmail}?cc=${FLIPFLOP_CONTACT_US_EMAIL}&subject=Hi, FlipFlops`,
     );
   };
 
   navigateToTermsAndConditions = () => {
     navigationService.navigate(screenNames.WebView, {
-      url: 'https://www.homeis.com/terms',
+      url: 'https://www.flipflop.com/terms',
     });
   };
 
@@ -534,7 +534,7 @@ class Settings extends React.Component {
 
   navigateToPrivacyPolicy = () => {
     navigationService.navigate(screenNames.WebView, {
-      url: 'https://www.homeis.com/privacy',
+      url: 'https://www.flipflop.com/privacy',
     });
   };
 

@@ -9,7 +9,7 @@ import {
   uiConstants,
   commonStyles,
 } from '../../vars';
-import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
+import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
 import {stylesScheme} from '../../schemas';
 
 const styles = StyleSheet.create({
@@ -247,7 +247,7 @@ const TextButton = ({
   const spinnerColor =
     active || secondary ? flipFlopColors.green : flipFlopColors.white;
 
-  const IconComponent = isAwesomeIcon ? AwesomeIcon : HomeisIcon;
+  const IconComponent = isAwesomeIcon ? AwesomeIcon : FlipFlopIcon;
 
   if (['big', 'big50Height', 'huge'].includes(size)) {
     return (

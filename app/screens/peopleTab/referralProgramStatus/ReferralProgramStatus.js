@@ -166,7 +166,7 @@ class ReferralProgramStatus extends Component {
     <View style={styles.emptyStateWrap}>
       <GenericEmptyState
         iconName="child"
-        isHomeisIcon={false}
+        isFlipFlopIcon={false}
         headerText={I18n.t('referral_program_status.empty_state.title')}
         bodyText={I18n.t('referral_program_status.empty_state.body')}
       />

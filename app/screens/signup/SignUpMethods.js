@@ -120,7 +120,7 @@ function SignUpMethods({navigation}) {
   //   return () =>
   //     navigationService.navigate(screenNames.WebView, {
   //       title: ' ',
-  //       url: `https://www.homeis.com/${suffix}`,
+  //       url: `https://www.flipflop.com/${suffix}`,
   //     });
   // }
 

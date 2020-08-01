@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Text} from '../basicComponents';
-import {HomeisIcon} from '../../assets/icons';
+import {FlipFlopIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {stylesScheme} from '../../schemas';
 
@@ -43,7 +43,7 @@ const CallToActionArea = ({
     onPress={onPress}
     activeOpacity={1}>
     {!!iconName && (
-      <HomeisIcon
+      <FlipFlopIcon
         name={iconName}
         size={iconSize}
         color={iconColor}

@@ -36,7 +36,7 @@ const postTypes = {
 };
 
 const shareTypes = {
-  HOMEIS: 'homeis',
+  FLIPFLOP: 'flipFlop',
   WHATSAPP: 'whatsApp',
   EMAIL: 'email',
   LINK: 'copy link',
@@ -255,7 +255,7 @@ const uiDefinitions = {
     breadcrumbIconSize: 16,
     breadcrumbLineHeight: 15,
     name: 'page-post',
-    isHomeisIcon: true,
+    isFlipFlopIcon: true,
     disclaimerIcon: 'info-circle',
   },
   [entityTypes.EVENT]: {
@@ -281,7 +281,7 @@ const uiDefinitions = {
     breadcrumbLineHeight: 14,
     postBreadcrumbIconSize: 10,
     postBreadcrumbIconLineHeight: 13,
-    isHomeisIcon: true,
+    isFlipFlopIcon: true,
     name: 'groups-fill',
   },
   [entityTypes.PAGE]: {
@@ -909,12 +909,14 @@ const authErrors = {
   14: {message: ''},
   15: {
     signIn: {
-      message: 'Make sure you’ve allowed Homeis to use Facebook and try again',
+      message:
+        'Make sure you’ve allowed FlipFlop to use Facebook and try again',
       header: 'Couldn’t Sign In',
       button: 'Try again',
     },
     signUp: {
-      message: 'Make sure you’ve allowed Homeis to use Facebook and try again',
+      message:
+        'Make sure you’ve allowed FlipFlop to use Facebook and try again',
       header: 'Couldn’t Sign Up',
       button: 'Try again',
     },
@@ -949,11 +951,11 @@ const dateTimeSelectorModes = {
 };
 
 const downloadLinks = {
-  sms: 'https://l.homeis.com/app-invite-sms',
-  email: 'https://l.homeis.com/app-invite-email',
-  whatsapp: 'https://l.homeis.com/app-invite-whatsapp',
-  messenger: 'https://l.homeis.com/app-invite-fb',
-  download: 'https://l.homeis.com/app-invite-download',
+  sms: 'https://ronengoren.com',
+  email: 'https://ronengoren.com',
+  whatsapp: 'https://ronengoren.com',
+  messenger: 'https://ronengoren.com',
+  download: 'https://ronengoren.com',
 };
 
 const userInviteMethods = {

@@ -52,7 +52,7 @@ const People = createStackNavigator(
     ...sharedRoutes,
   },
   {
-    initialRouteName: screenNames.ReferralRedeemed,
+    initialRouteName: screenNames.PeopleTab,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

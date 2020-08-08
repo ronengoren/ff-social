@@ -255,7 +255,7 @@ const uiDefinitions = {
     breadcrumbIconSize: 16,
     breadcrumbLineHeight: 15,
     name: 'page-post',
-    isFlipFlopIcon: true,
+    isHomeisIcon: true,
     disclaimerIcon: 'info-circle',
   },
   [entityTypes.EVENT]: {
@@ -281,7 +281,7 @@ const uiDefinitions = {
     breadcrumbLineHeight: 14,
     postBreadcrumbIconSize: 10,
     postBreadcrumbIconLineHeight: 13,
-    isFlipFlopIcon: true,
+    isHomeisIcon: true,
     name: 'groups-fill',
   },
   [entityTypes.PAGE]: {

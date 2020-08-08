@@ -4,8 +4,8 @@ import {Keyboard, StyleSheet, Alert, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 // import { updateAnnotations } from '/redux/general/actions';
 import I18n from '../../infra/localization';
-// import { apiQuery } from '/redux/apiQuery/actions';
-// import {signUp} from '/redux/auth/actions';
+import {apiQuery} from '../../redux/apiQuery/actions';
+import {signUp} from '../../redux/auth/actions';
 import {Screen, FormInput, PasswordInput} from '../../components';
 import {
   View,
@@ -19,7 +19,6 @@ import {
   SubmitButton,
   CountriesIcons,
 } from '../../components/onboarding';
-
 import {ErrorModal} from '../../components/modals';
 import {misc as miscLocalStorage} from '../../infra/localStorage';
 // import {Logger, analytics} from '/infra/reporting';
@@ -149,10 +148,9 @@ class SignUp extends React.Component {
                 this.emailInput = node;
               }}
               onSubmitEditing={() => {
-                this.handleNext();
-                // isEmailVerified
-                //   ? this.passwordInput.focus()
-                //   : this.handleNext();
+                isEmailVerified
+                  ? this.passwordInput.focus()
+                  : this.handleNext();
               }}
               autoCorrect={false}
               focusedBorderColor={flipFlopColors.green}
@@ -248,8 +246,8 @@ class SignUp extends React.Component {
           keyboardVerticalOffset={15}>
           <SubmitButton
             onPress={isEmailVerified ? this.handleSubmit : this.handleNext}
-            // isDisabled={this.isSubmitDisabled()}
-            // busy={isEmailVerified ? isSubmitting : isVerifyingEmail}
+            isDisabled={this.isSubmitDisabled()}
+            busy={isEmailVerified ? isSubmitting : isVerifyingEmail}
             testID="signupSubmitBtn"
             label={
               isEmailVerified
@@ -468,7 +466,7 @@ SignUp.propTypes = {
   destinationCountry: PropTypes.object,
   //   signUp: PropTypes.func,
   //   updateAnnotations: PropTypes.func,
-  //   apiQuery: PropTypes.func
+  apiQuery: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -478,7 +476,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   //   signUp,
   //   updateAnnotations,
-  //   apiQuery
+  apiQuery,
 };
 
 SignUp = connect(mapStateToProps, mapDispatchToProps)(SignUp);

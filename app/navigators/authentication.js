@@ -46,7 +46,7 @@ const authentication = createStackNavigator(
       screen: SignUpWizard,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
   },

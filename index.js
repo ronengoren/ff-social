@@ -8,5 +8,5 @@ import {name as appName} from './app.json';
 
 I18n.init();
 
-LogBox.ignoreAllLogs(true);
+LogBox.ignoreAllLogs();
 AppRegistry.registerComponent(appName, () => Root);

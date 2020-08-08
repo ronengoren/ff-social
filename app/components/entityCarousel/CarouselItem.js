@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from '../../infra/localization';
 import {StyleSheet, TouchableOpacity, Platform} from 'react-native';
-import {AwesomeIcon, FlipFlopIcon} from '../../assets/icons';
+import {AwesomeIcon, HomeisIcon} from '../../assets/icons';
 // import { HtmlTextWithLinks } from '/components';
 import {View, Text, Image, BreadCrumbs} from '../basicComponents';
 import {EntityImagePlaceholder} from '../../components/entity';
@@ -294,7 +294,7 @@ class CarouselItem extends Component {
         {showBadge && (
           <View style={styles.badgeOuter}>
             <View style={styles.badgeInner}>
-              <FlipFlopIcon
+              <HomeisIcon
                 name="star"
                 size={16}
                 color={flipFlopColors.white}

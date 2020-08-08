@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from '../basicComponents';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {removeAddressSuffix} from '../../infra/utils/addressUtils';
 import {navigationService} from '../../infra/navigation';
@@ -37,7 +37,7 @@ class PostContentLocation extends React.Component {
           }
           style={styles.detailsRow}
           activeOpacity={1}>
-          <FlipFlopIcon
+          <HomeisIcon
             name="location"
             style={styles.iconLocation}
             color={flipFlopColors.b70}

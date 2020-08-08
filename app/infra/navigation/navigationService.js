@@ -137,14 +137,23 @@ function resetToHomePage(forceReset) {
   resetToScreen(screenNames.HomeTab);
 }
 
-function navigateToProfile(params, options) {
-  const appUserId = global.store.getState().auth.user.id;
-  const screenName =
-    params && params.entityId === appUserId
-      ? screenGroupNames.MY_CITY
-      : screenNames.Profile;
-  navigate(screenName, params, options);
+function navigateToProfile() {
+  // const appUserId = global.store.getState().auth.user.id;
+  // const screenName =
+  //   params && params.entityId === appUserId
+  //     ? screenGroupNames.MY_CITY
+  //     : screenNames.Profile;
+  navigate(screenNames.Profile);
 }
+
+// function navigateToProfile(params, options) {
+//   const appUserId = global.store.getState().auth.user.id;
+//   const screenName =
+//     params && params.entityId === appUserId
+//       ? screenGroupNames.MY_CITY
+//       : screenNames.Profile;
+//   navigate(screenName, params, options);
+// }
 
 function navigateToMap({location, title}) {
   navigate(screenNames.MapScreen, {title, location});

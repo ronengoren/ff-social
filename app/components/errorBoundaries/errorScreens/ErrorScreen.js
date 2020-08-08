@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, IconButton} from '../../basicComponents';
-import {FlipFlopIcon} from '../../../assets/icons';
+import {HomeisIcon} from '../../../assets/icons';
 import {flipFlopColors} from '../../../vars';
 
 const styles = {
@@ -41,7 +41,7 @@ const ErrorScreen = ({icon, title, content, onRefresh}) => (
         iconColor={'white'}
       />
     ) : (
-      <FlipFlopIcon
+      <HomeisIcon
         name={icon}
         size={100}
         color={flipFlopColors.emptyGrey}

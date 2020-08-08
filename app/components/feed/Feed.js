@@ -14,7 +14,11 @@ class Feed extends Component {
     const {showErrorPageOnFail} = this.props;
 
     if (showErrorPageOnFail) {
-      return <View>{this.renderList()}</View>;
+      return (
+        <ScreenErrorBoundary boundaryName={boundaryNames.FEED}>
+          {this.renderList()}
+        </ScreenErrorBoundary>
+      );
     } else {
       return this.renderList();
     }

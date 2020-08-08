@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {flipFlopColors} from '../../vars';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {stylesScheme} from '../../schemas';
 
 const styles = StyleSheet.create({
@@ -45,7 +45,7 @@ class ShareTypeIcon extends Component {
             style={iconStyle}
           />
         ) : (
-          <FlipFlopIcon
+          <HomeisIcon
             name={iconName}
             size={iconSize}
             color={color || flipFlopColors.black}

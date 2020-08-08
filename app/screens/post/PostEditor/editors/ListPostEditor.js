@@ -36,7 +36,7 @@ import {
 import {DeleteModal, ErrorModal} from '../../../../components/modals';
 import {TagPicker} from '../../../../components/formElements';
 import {getFormattedDateAndTime} from '../../../../infra/utils/dateTimeUtils';
-import {FlipFlopIcon, AwesomeIcon} from '../../../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../../../assets/icons';
 import {
   listViewTypes,
   editModes,
@@ -353,7 +353,7 @@ class ListPostEditor extends Component {
             style={styles.coverImageUpdateBtn}
             onPress={() => this.handleAddMedia(mediaTypes.IMAGE)}>
             <View style={styles.coverImageUpdateBtnIcon}>
-              <FlipFlopIcon
+              <HomeisIcon
                 name="camera"
                 size={22}
                 color={flipFlopColors.white}

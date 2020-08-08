@@ -13,7 +13,7 @@ import {
   Image,
   Switch,
 } from '../../../components/basicComponents';
-import {FlipFlopIcon} from '../../../assets/icons';
+import {HomeisIcon} from '../../../assets/icons';
 import {flipFlopColors, commonStyles} from '../../../vars';
 import {
   groupPrivacyType,
@@ -206,7 +206,7 @@ class CreateGroup extends React.Component {
           onPress={this.handleAddImage}
           activeOpacity={0.5}
           style={styles.coverImageUpdateBtn}>
-          <FlipFlopIcon
+          <HomeisIcon
             name="camera"
             size={22}
             color={flipFlopColors.white}

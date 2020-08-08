@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {StyleSheet, Dimensions, Platform, StatusBar, Text} from 'react-native';
-import {flipFlopColors, uiConstants} from '../../vars';
-import {Wrapper} from '../../components/onboarding';
-import {Slider, Screen} from '../../components';
-import {hasNotch} from '../../infra/utils/deviceUtils';
-import JoinOrSignupBar from './JoinOrSignupBar';
 import I18n from '../../infra/localization';
-import {navigationService} from '../../infra/navigation';
-import {screenNames, screenGroupNames} from '../../vars/enums';
-
-import Slide from './Slide';
+import {Slider, persistentAuth, Screen} from '../../components';
 import {View, TranslatedText} from '../../components/basicComponents';
+import {navigationService} from '../../infra/navigation';
+import {Wrapper} from '../../components/onboarding';
+import {flipFlopColors, uiConstants} from '../../vars';
+import {screenNames, screenGroupNames} from '../../vars/enums';
+import {hasNotch} from '../../infra/utils/deviceUtils';
+import Slide from './Slide';
+import JoinOrSignupBar from './JoinOrSignupBar';
 
-const NUMBER_OF_SLIDES = 3;
+const SLIDER_MARGIN_TOP = hasNotch() ? 40 : 0;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SLIDER_MARGIN_TOP = hasNotch() ? 40 : 0;
+const NUMBER_OF_SLIDES = 3;
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -134,6 +133,9 @@ class Welcome extends React.Component {
     navigationService.navigate(screenNames.SignIn, {}, {noPush: true});
   };
   navigateToSignUp = () => {
+    const {currentSlide} = this.state;
+
+    console.log('navigateToSignUp');
     this.setState({autoPlay: false});
     navigationService.navigate(
       screenGroupNames.SIGN_UP_WIZARD,
@@ -147,6 +149,7 @@ Welcome.propTypes = {
   navigation: PropTypes.object,
 };
 
+Welcome = persistentAuth(Welcome);
 Welcome = Screen({modalError: true})(Welcome);
 
 export default Welcome;

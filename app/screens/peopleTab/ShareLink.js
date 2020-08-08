@@ -8,7 +8,7 @@ import {
   Triangle,
   TextInLine,
 } from '../../components/basicComponents';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 
 const styles = StyleSheet.create({
@@ -93,7 +93,7 @@ class ShareLink extends Component {
           ]}>
           {copied ? (
             <View style={styles.copiedLinkTextWrapper}>
-              <FlipFlopIcon
+              <HomeisIcon
                 name="check-mark"
                 size={18}
                 color={flipFlopColors.white}

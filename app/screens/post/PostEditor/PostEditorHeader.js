@@ -6,7 +6,7 @@ import {View, Text, Toast, Avatar} from '../../../components/basicComponents';
 import {uiConstants, flipFlopColors} from '../../../vars';
 import {screenNames, editModes, postTypes} from '../../../vars/enums';
 import {isRTL} from '../../../infra/utils/stringUtils';
-import {AwesomeIcon, FlipFlopIcon} from '../../../assets/icons';
+import {AwesomeIcon, HomeisIcon} from '../../../assets/icons';
 import {get, isEmpty} from '../../../infra/utils';
 import {navigationService} from '../../../infra/navigation';
 import UploadHeader from './commons/UploadHeader';
@@ -457,7 +457,7 @@ class PostEditorHeader extends Component {
               {I18n.p(errorsCount, 'post_editor.image_upload_error.toast')}
             </Text>
           </View>
-          <FlipFlopIcon
+          <HomeisIcon
             name="close"
             size={11}
             color={flipFlopColors.white}

@@ -501,9 +501,9 @@ export const joinedCommunity = ({
 };
 
 export const finishedOnBoarding = () => () => {
-  // dispatch({type: TURN_ON_NEW_USER_WELCOME});
-  // dispatch({type: SIGN_IN_SUCCESS});
-  // dispatch(apiCommand('auth.onboarded'));
+  dispatch({type: TURN_ON_NEW_USER_WELCOME});
+  dispatch({type: SIGN_IN_SUCCESS});
+  dispatch(apiCommand('auth.onboarded'));
   navigationService.navigate(screenGroupNames.SIGNED_IN, {}, {noPush: true});
 };
 

@@ -1,4 +1,4 @@
-// import { ErrorsLogger } from '/infra/reporting';
+import {ErrorsLogger} from '../../infra/reporting';
 import {shuffleArray} from '../utils/common';
 import {handleNormalizedData} from '../normalizer';
 

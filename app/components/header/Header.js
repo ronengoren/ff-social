@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Keyboard, TouchableOpacity, StatusBar} from 'react-native';
 import I18n from '../../infra/localization';
-import {View, Text, IconButton} from '../../components/basicComponents';
+import {View, Text, IconButton} from '../basicComponents';
 import {stylesScheme} from '../../schemas';
 import {flipFlopColors, uiConstants, commonStyles} from '../../vars';
 import {screenNames} from '../../vars/enums';

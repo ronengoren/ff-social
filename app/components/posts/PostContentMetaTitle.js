@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import {View, Text} from '../basicComponents';
-import {AwesomeIcon, FlipFlopIcon} from '../../assets/icons';
+import {AwesomeIcon, HomeisIcon} from '../../assets/icons';
 import {flipFlopColors, commonStyles} from '../../vars';
 import {uiDefinitions, entityTypes, postTypes} from '../../vars/enums';
 import {isHebrewOrArabic} from '../../infra/utils/stringUtils';
@@ -39,8 +39,8 @@ const PostContentMetaTitle = ({
   isRtl,
 }) => {
   const iconDefinitions = uiDefinitions[contentType];
-  const {isFlipFlopIcon, name} = iconDefinitions;
-  const IconComponent = isFlipFlopIcon ? FlipFlopIcon : AwesomeIcon;
+  const {isHomeisIcon, name} = iconDefinitions;
+  const IconComponent = isHomeisIcon ? HomeisIcon : AwesomeIcon;
   const separator = <Text color={flipFlopColors.azure}> · </Text>;
   const content = [title];
 

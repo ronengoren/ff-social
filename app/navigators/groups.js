@@ -26,13 +26,13 @@ const Groups = createStackNavigator(
       screen: CreateGroup,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     ...sharedRoutes,
   },
   {
-    initialRouteName: screenGroupNames.CREATE_GROUP_MODAL,
+    initialRouteName: screenNames.GroupsTab,
     headerMode: 'screen',
     defaultNavigationOptions: {
       cardStyle: {

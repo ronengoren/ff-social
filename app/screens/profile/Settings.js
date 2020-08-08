@@ -19,7 +19,7 @@ import {
 } from '../../components/basicComponents';
 import {flipFlopColors, commonStyles} from '../../vars';
 import {screenNames} from '../../vars/enums';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {get, isAppAdmin} from '../../infra/utils';
 
 import {
@@ -156,7 +156,7 @@ class Settings extends React.Component {
               <Text style={styles.rightText}>
                 {I18n.getLanguageName(form.language)}
               </Text>
-              <FlipFlopIcon
+              <HomeisIcon
                 name="right-arrow"
                 size={20}
                 color={flipFlopColors.black}
@@ -370,7 +370,7 @@ class Settings extends React.Component {
       </Text>
       {!!rightText && <Text style={styles.rightText}>{rightText}</Text>}
       {isWithArrow && (
-        <FlipFlopIcon
+        <HomeisIcon
           name="right-arrow"
           size={20}
           color={flipFlopColors.black}
@@ -459,7 +459,7 @@ class Settings extends React.Component {
           <Text medium>{I18n.t(`profile.settings.general.email`)}</Text>
           <View style={commonStyles.flexDirectionRow}>
             <Text style={styles.rightText}>{email}</Text>
-            <FlipFlopIcon
+            <HomeisIcon
               name="right-arrow"
               size={20}
               color={flipFlopColors.black}

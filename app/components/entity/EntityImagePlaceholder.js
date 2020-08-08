@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import {View, Image} from '../basicComponents';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import images from '../../assets/images';
 import {flipFlopColors} from '../../vars';
 import {entityTypes} from '../../vars/enums';
@@ -78,7 +78,7 @@ const EntityImagePlaceholder = ({
     {showBadge && (
       <View style={styles.badgeOuter}>
         <View style={styles.badgeInner}>
-          <FlipFlopIcon
+          <HomeisIcon
             name="star"
             size={16}
             color={flipFlopColors.white}

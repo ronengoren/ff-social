@@ -17,7 +17,7 @@ import {
   OverlayText,
   LocalTimeOffsetIndicator,
 } from '../basicComponents';
-import {AwesomeIcon, FlipFlopIcon} from '../../assets/icons';
+import {AwesomeIcon, HomeisIcon} from '../../assets/icons';
 import images from '../../assets/images';
 import {flipFlopColors, commonStyles} from '../../vars';
 import {
@@ -525,12 +525,12 @@ class EntityCompactView extends Component {
     // } = entity;
     // const color = uiColorDefinitions[this.contentType];
     // const {
-    //   isFlipFlopIcon,
+    //   isHomeisIcon,
     //   name,
     //   breadcrumbIconSize,
     //   breadcrumbLineHeight,
     // } = uiDefinitions[this.contentType];
-    // const IconComponent = isFlipFlopIcon ? FlipFlopIcon : AwesomeIcon;
+    // const IconComponent = isHomeisIcon ? HomeisIcon : AwesomeIcon;
     // const iconTestID = `${testIdPrefix}${name}_icon`;
     // let shouldRenderLocation = false;
     // let isShowHoodItemsNumber = false;
@@ -788,7 +788,7 @@ class EntityCompactView extends Component {
           ]}
           activeOpacity={1}
           key="location">
-          <FlipFlopIcon
+          <HomeisIcon
             name="location"
             style={[
               styles.iconLocation,

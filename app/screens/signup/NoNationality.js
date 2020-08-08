@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {TouchableOpacity, Keyboard, Animated, StyleSheet} from 'react-native';
 import I18n from '../../infra/localization';
 import {useDispatch, useSelector} from 'react-redux';
-// import { addToWaitingList as addToWaitingListAction } from '/redux/auth/actions';
-// import { updateProfile } from '/redux/profile/actions';
+import {addToWaitingList as addToWaitingListAction} from '../../redux/auth/actions';
+import {updateProfile} from '../../redux/profile/actions';
 import {useBackHandler} from '/hooks';
 import {Text, View, ScrollView} from '../../components/basicComponents';
 import {Screen, FormInput} from '../../components';
@@ -142,14 +142,14 @@ const fakeScreenNamesBySceneType = {
   [sceneTypes.SUGGESTED_NATIONALITIES]: 'SuggestedNationalities',
 };
 let NoNationality = (props) => {
-  // const {animationUtils, isKeyboardShown} = props;
+  const {animationUtils, isKeyboardShown} = props;
 
-  // const {btnY, contentY, androidInputY, messureMediaComponent} = animationUtils;
+  const {btnY, contentY, androidInputY, messureMediaComponent} = animationUtils;
 
   const headerMedia = (
     <View>
       <HeaderMedia
-        // videoSource={videoSource}
+        videoSource={videoSource}
         wrapperStyle={styles.headerMedia}
       />
     </View>
@@ -163,20 +163,23 @@ let NoNationality = (props) => {
     <Wrapper>
       <ScrollView
         contentContainerStyle={styles.container}
-        // scrollEnabled={sceneTypes.SUGGESTED_NATIONALITIES}
+        scrollEnabled={currentScene !== sceneTypes.SUGGESTED_NATIONALITIES}
         keyboardShouldPersistTaps="handled">
+        {showGoBackButton && <GoBackButton onPress={onPressGoBack} />}
         <View style={styles.contentWrapper}>
-          <Text>NoNationality</Text>
+          {!isShortDevice && headerMedia}
+          {content}
         </View>
       </ScrollView>
+      {buttons}
     </Wrapper>
   );
 };
 
 NoNationality.propTypes = {
-  // isKeyboardShown: PropTypes.bool,
-  // animationUtils: PropTypes.object,
-  // navigation: PropTypes.object,
+  isKeyboardShown: PropTypes.bool,
+  animationUtils: PropTypes.object,
+  navigation: PropTypes.object,
 };
 
 export default React.memo(NoNationality);

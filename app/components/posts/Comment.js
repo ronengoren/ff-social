@@ -11,7 +11,7 @@ import {isDateToday} from '../../infra/utils/dateTimeUtils';
 import {isAppAdmin, getTopUserRole, get} from '../../infra/utils';
 import {navigationService} from '../../infra/navigation';
 import {isBoundlessEnabled} from '../../infra/utils/communitiesNationalitiesUtils';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import {
   Text,
   View,
@@ -263,7 +263,7 @@ class _Comment extends React.Component {
               accessibilityComponentType="button"
               activeOpacity={1}
               onPress={this.handleMoreButtonPress}>
-              <FlipFlopIcon
+              <HomeisIcon
                 name="more-horizontal"
                 size={22}
                 style={styles.moreIcon}
@@ -369,7 +369,7 @@ class _Comment extends React.Component {
           activeOpacity={1}
           style={styles.footerSectionWrapper}
           onPress={this.handleLikePress}>
-          <FlipFlopIcon
+          <HomeisIcon
             name={liked ? 'like' : 'like-secondary-'}
             size={20}
             color={liked ? flipFlopColors.red : flipFlopColors.b30}
@@ -388,7 +388,7 @@ class _Comment extends React.Component {
           activeOpacity={1}
           style={styles.footerSectionWrapper}
           onPress={this.handleReply}>
-          <FlipFlopIcon
+          <HomeisIcon
             name="comment-secondary"
             size={20}
             color={flipFlopColors.b30}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, Image} from '../basicComponents';
 import {flipFlopColors} from '../../vars';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import {stylesScheme} from '../../schemas';
 
 const styles = {
@@ -46,7 +46,7 @@ const EmptyList = ({
 }) => (
   <View style={[styles.wrapper, style]}>
     {iconName && (
-      <FlipFlopIcon
+      <HomeisIcon
         name={iconName}
         color={flipFlopColors.buttonGrey}
         size={iconSize}

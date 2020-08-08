@@ -83,63 +83,68 @@ const styles = StyleSheet.create({
 });
 
 function SignUpMethods({navigation}) {
-  // const {
-  //   matchedNationality,
-  //   nationality,
-  //   suggestedNationalities,
-  //   originCountry,
-  //   destinationCountry,
-  // } = get(navigation, 'state.params', {});
+  const {
+    matchedNationality,
+    nationality,
+    suggestedNationalities,
+    originCountry,
+    destinationCountry,
+  } = get(navigation, 'state.params', {});
 
-  // if (!originCountry || !destinationCountry) {
-  //   Logger.debug({ message: 'Reached sign up methods without origin or destination', originCountry, destinationCountry, matchedNationality });
-  // }
+  if (!originCountry || !destinationCountry) {
+    Logger.debug({
+      message: 'Reached sign up methods without origin or destination',
+      originCountry,
+      destinationCountry,
+      matchedNationality,
+    });
+  }
 
-  // const handleBackPress = useCallback(() => {
-  //   if (navigation.isFocused()) {
-  //     goBack();
-  //   }
-  //   return true;
-  // });
-  // useBackHandler(handleBackPress);
+  const handleBackPress = useCallback(() => {
+    if (navigation.isFocused()) {
+      goBack();
+    }
+    return true;
+  });
+  useBackHandler(handleBackPress);
 
-  // function showErrorAlert(err) {
-  //   const code = get(err, 'response.data.error.code');
-  //   if (!code && code !== 0) {
-  //     ErrorModal.showAlert('Sign Up failed');
-  //   } else {
-  //     Alert.alert(
-  //       authErrors[code].signUp.header,
-  //       authErrors[code].signUp.message,
-  //       [{text: authErrors[code].signUp.button}],
-  //     );
-  //   }
-  // }
+  function showErrorAlert(err) {
+    const code = get(err, 'response.data.error.code');
+    if (!code && code !== 0) {
+      ErrorModal.showAlert('Sign Up failed');
+    } else {
+      Alert.alert(
+        authErrors[code].signUp.header,
+        authErrors[code].signUp.message,
+        [{text: authErrors[code].signUp.button}],
+      );
+    }
+  }
 
-  // function navigateToUrl(suffix) {
-  //   return () =>
-  //     navigationService.navigate(screenNames.WebView, {
-  //       title: ' ',
-  //       url: `https://www.flipflop.com/${suffix}`,
-  //     });
-  // }
+  function navigateToUrl(suffix) {
+    return () =>
+      navigationService.navigate(screenNames.WebView, {
+        title: ' ',
+        url: `https://www.flipflop.com/${suffix}`,
+      });
+  }
 
-  // function goBack() {
-  //   if (originCountry && destinationCountry) {
-  //     navigationService.replace(screenNames.SetUserNationality, {
-  //       originCountry,
-  //       destinationCountry,
-  //       matchedNationality,
-  //     });
-  //   }
-  // }
+  function goBack() {
+    if (originCountry && destinationCountry) {
+      navigationService.replace(screenNames.SetUserNationality, {
+        originCountry,
+        destinationCountry,
+        matchedNationality,
+      });
+    }
+  }
 
-  // const navigationParams = {
-  //   matchedNationality,
-  //   suggestedNationalities,
-  //   originCountry,
-  //   destinationCountry,
-  // };
+  const navigationParams = {
+    matchedNationality,
+    suggestedNationalities,
+    originCountry,
+    destinationCountry,
+  };
 
   return (
     <Wrapper>
@@ -156,15 +161,15 @@ function SignUpMethods({navigation}) {
           iconColor="green"
           iconSize={20}
           weight="solid"
-          // onPress={goBack}
+          onPress={goBack}
           hitSlop={uiConstants.BTN_HITSLOP}
           style={styles.backBtn}
         />
 
         <JoinNationalityTitle
-          // nationality={nationality}
-          // originCountry={originCountry}
-          // destinationCountry={destinationCountry}
+          nationality={nationality}
+          originCountry={originCountry}
+          destinationCountry={destinationCountry}
           translationKey="sign_up_methods_screen"
           textStyle={styles.text}
           smallTextStyle={[styles.text, styles.smallText]}
@@ -174,8 +179,11 @@ function SignUpMethods({navigation}) {
         />
         <FBSignUpBtn />
         <EmailSignUpBtn
-          onPress={() => navigationService.navigate(screenNames.SignUp)}
+          onPress={() =>
+            navigationService.navigate(screenNames.SignUp, navigationParams)
+          }
         />
+
         {/* {showAppleSignUp && (
           <AppleSignUpBtn
             showErrorAlert={showErrorAlert}

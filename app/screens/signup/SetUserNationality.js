@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import I18n from '../../infra/localization';
 import {connect} from 'react-redux';
-// import { apiQuery } from '/redux/apiQuery/actions';
-// import { updateProfile } from '/redux/profile/actions';
+import {apiQuery} from '../../redux/apiQuery/actions';
+import {updateProfile} from '../../redux/profile/actions';
 // import { analytics, Logger } from '/infra/reporting';
 import {
   Image,
@@ -23,7 +23,7 @@ import {AwesomeIcon} from '../../assets/icons';
 import {flipFlopColors, uiConstants, commonStyles} from '../../vars';
 import {screenNames} from '../../vars/enums';
 import images from '../../assets/images';
-// import { getNationalityGroups } from '/redux/auth/actions';
+import {getNationalityGroups} from '../../redux/auth/actions';
 import {get, isEmpty, omit, sumBy, cloneDeep} from '../../infra/utils';
 import {navigationService} from '../../infra/navigation';
 import {
@@ -55,8 +55,8 @@ const fieldNames = {
 };
 
 const errorTypes = {
-  // ...fieldNames,
-  // CONFLICTING_COUNTRIES: 'conflicting_types',
+  ...fieldNames,
+  CONFLICTING_COUNTRIES: 'conflicting_types',
 };
 
 const MAX_FEATURED_COUNTRIES = 4;
@@ -143,25 +143,31 @@ const styles = StyleSheet.create({
 });
 
 const getStateByCampaign = (branchData) => {
-  // const state = {};
-  // const { originCountry, destinationCountry } = branchData;
-  // try {
-  //   if (originCountry) {
-  //     const resolvedOriginCountry = getCountryByCode(Number(originCountry));
-  //     if (resolvedOriginCountry) {
-  //       state.originCountry = resolvedOriginCountry;
-  //     }
-  //   }
-  //   if (destinationCountry) {
-  //     const resolvedDestinationCountry = getCountryByCode(Number(destinationCountry));
-  //     if (resolvedDestinationCountry) {
-  //       state.destinationCountry = resolvedDestinationCountry;
-  //     }
-  //   }
-  // } catch (err) {
-  //   Logger.error({ message: 'Failed to convert branch data to countries', err, branchData });
-  // }
-  // return state;
+  const state = {};
+  const {originCountry, destinationCountry} = branchData;
+  try {
+    if (originCountry) {
+      const resolvedOriginCountry = getCountryByCode(Number(originCountry));
+      if (resolvedOriginCountry) {
+        state.originCountry = resolvedOriginCountry;
+      }
+    }
+    if (destinationCountry) {
+      const resolvedDestinationCountry = getCountryByCode(
+        Number(destinationCountry),
+      );
+      if (resolvedDestinationCountry) {
+        state.destinationCountry = resolvedDestinationCountry;
+      }
+    }
+  } catch (err) {
+    console.error({
+      message: 'Failed to convert branch data to countries',
+      err,
+      branchData,
+    });
+  }
+  return state;
 };
 
 class SetUserNationality extends React.Component {
@@ -324,9 +330,9 @@ class SetUserNationality extends React.Component {
 
   componentDidMount() {
     const {nationalityGroups} = this.props;
-    // if (isEmpty(nationalityGroups)) {
-    //   this.fetchNationalities();
-    // }
+    if (isEmpty(nationalityGroups)) {
+      this.fetchNationalities();
+    }
 
     this.preloadCountryImages();
     this.conditionallyFetchNationality(true);
@@ -357,37 +363,57 @@ class SetUserNationality extends React.Component {
   };
 
   fetchNationalities = async () => {
-    // const { getNationalityGroups } = this.props;
-    // this.setState({ isFetchingNationalities: true });
-    // await getNationalityGroups();
-    // this.setState({ isFetchingNationalities: false });
+    const {getNationalityGroups} = this.props;
+    this.setState({isFetchingNationalities: true});
+    await getNationalityGroups();
+    this.setState({isFetchingNationalities: false});
   };
 
   fetchMatchedNationality = async (isInitialFetch) => {
-    // const { originCountry, destinationCountry, didUserSetLanguage } = this.state;
-    // const { countryCode: originCode } = originCountry;
-    // const { countryCode: destinationCode } = destinationCountry;
-    // try {
-    //   const data = await this.fetchMatchedNationalityRequest({ originCode, destinationCode });
-    //   const persistMatching = () => {
-    //     miscLocalStorage.update({ nationalityChoices: this.state });
-    //   };
-    //   if (Array.isArray(data)) {
-    //     this.setState({ matchedNationality: null, suggestedNationalities: data }, persistMatching);
-    //   } else {
-    //     const { defaultLanguage } = data;
-    //     if (!isInitialFetch && defaultLanguage) {
-    //       !didUserSetLanguage && I18n.changeLocalization({ locale: defaultLanguage });
-    //       this.setState({ matchedNationality: data, suggestedNationalities: null }, () => {
-    //         miscLocalStorage.update({ nationalityChoices: this.state, language: defaultLanguage });
-    //       });
-    //     } else {
-    //       this.setState({ matchedNationality: data, suggestedNationalities: null }, persistMatching);
-    //     }
-    //   }
-    // } catch (err) {
-    //   Logger.error({ message: 'fetch matched nationality request failed', data: { originCountry, destinationCountry } });
-    // }
+    console.log('fetchMatchedNationality');
+    const {originCountry, destinationCountry, didUserSetLanguage} = this.state;
+    const {countryCode: originCode} = originCountry;
+    const {countryCode: destinationCode} = destinationCountry;
+    try {
+      const data = await this.fetchMatchedNationalityRequest({
+        originCode,
+        destinationCode,
+      });
+      const persistMatching = () => {
+        miscLocalStorage.update({nationalityChoices: this.state});
+      };
+      if (Array.isArray(data)) {
+        this.setState(
+          {matchedNationality: null, suggestedNationalities: data},
+          persistMatching,
+        );
+      } else {
+        const {defaultLanguage} = data;
+        if (!isInitialFetch && defaultLanguage) {
+          !didUserSetLanguage &&
+            I18n.changeLocalization({locale: defaultLanguage});
+          this.setState(
+            {matchedNationality: data, suggestedNationalities: null},
+            () => {
+              miscLocalStorage.update({
+                nationalityChoices: this.state,
+                language: defaultLanguage,
+              });
+            },
+          );
+        } else {
+          this.setState(
+            {matchedNationality: data, suggestedNationalities: null},
+            persistMatching,
+          );
+        }
+      }
+    } catch (err) {
+      console.error({
+        message: 'fetch matched nationality request failed',
+        data: {originCountry, destinationCountry},
+      });
+    }
   };
 
   fetchMatchedNationalityRequest = async ({originCode, destinationCode}) => {
@@ -403,24 +429,32 @@ class SetUserNationality extends React.Component {
   };
 
   renderLanguageModal = () => {
-    // const { showModal, hideModal } = this.props;
-    // this.hideHints();
-    // showModal({
-    //   content: (
-    //     <View style={[styles.modalContent, { paddingBottom: uiConstants.FOOTER_MARGIN_BOTTOM + 10 }]}>
-    //       <LanguageSelectorModal
-    //         onSelectLanguage={(lang) => {
-    //           analytics.actionEvents.onboardingLanguageChanged({ from: I18n.getLocale(), to: lang }).dispatch();
-    //           I18n.changeLocalization({ locale: lang });
-    //           hideModal({ type: SetUserNationality.modalTypes.languageSelector });
-    //           this.setState({ didUserSetLanguage: true });
-    //         }}
-    //         onClose={() => hideModal({ type: SetUserNationality.modalTypes.languageSelector })}
-    //       />
-    //     </View>
-    //   ),
-    //   type: SetUserNationality.modalTypes.languageSelector
-    // });
+    const {showModal, hideModal} = this.props;
+    this.hideHints();
+    showModal({
+      content: (
+        <View
+          style={[
+            styles.modalContent,
+            {paddingBottom: uiConstants.FOOTER_MARGIN_BOTTOM + 10},
+          ]}>
+          <LanguageSelectorModal
+            onSelectLanguage={(lang) => {
+              analytics.actionEvents
+                .onboardingLanguageChanged({from: I18n.getLocale(), to: lang})
+                .dispatch();
+              I18n.changeLocalization({locale: lang});
+              hideModal({type: SetUserNationality.modalTypes.languageSelector});
+              this.setState({didUserSetLanguage: true});
+            }}
+            onClose={() =>
+              hideModal({type: SetUserNationality.modalTypes.languageSelector})
+            }
+          />
+        </View>
+      ),
+      type: SetUserNationality.modalTypes.languageSelector,
+    });
   };
 
   renderCountryField = (type) => {
@@ -450,7 +484,9 @@ class SetUserNationality extends React.Component {
         onPress={this.showCountryModal(type)}
         value={value}
         testID={testID}
-        isDisabled={isFetchingNationalities}
+        isDisabled={false}
+        // isDisabled={isFetchingNationalities}
+
         isDummy
         showError={showError}
         onPressHintIcon={this.handleHintVisibility(type)}
@@ -475,22 +511,21 @@ class SetUserNationality extends React.Component {
     const {errors, originCountry, destinationCountry} = this.state;
     const {user} = this.props;
     let onPress;
-    onPress = this.submit;
-    // const isDisabled =
-    //   !!errors[errorTypes.CONFLICTING_COUNTRIES] ||
-    //   !originCountry.countryCode ||
-    //   !destinationCountry.countryCode;
-    // const isOriginDestinationSame = SetUserNationality.checkIfOriginAndDestinationAreTheSame(
-    //   {originCountry, destinationCountry},
-    // );
-    // if (!isOriginDestinationSame) {
-    //   onPress = isDisabled ? this.showError : this.submit;
-    // }
+    const isDisabled =
+      !!errors[errorTypes.CONFLICTING_COUNTRIES] ||
+      !originCountry.countryCode ||
+      !destinationCountry.countryCode;
+    const isOriginDestinationSame = SetUserNationality.checkIfOriginAndDestinationAreTheSame(
+      {originCountry, destinationCountry},
+    );
+    if (!isOriginDestinationSame) {
+      onPress = isDisabled ? this.showError : this.submit;
+    }
 
     return (
       <View style={styles.mainPadding}>
         <JoinOrSignupBar
-          isSubmitDisabled={false}
+          isSubmitDisabled={isDisabled}
           onClickSignIn={this.navigateToSignIn}
           onClickSignUp={onPress}
           signUpTestID="setUserNationalitySubmitButton"
@@ -501,112 +536,141 @@ class SetUserNationality extends React.Component {
   }
 
   showCountryModal = (type) => () => {
-    // const { showModal, hideModal } = this.props;
-    // const { onCountrySelection } = this;
-    // const suggestedCountries = this.getSuggestedCountries(type);
-    // const isSelectingOriginCountryUSA = (country) => type === fieldNames.ORIGIN && country.countryCode === 840;
-    // this.hideHints();
-    // showModal({
-    //   content: (
-    //     <View style={[styles.modalContent, styles.searchCountryModalContent]} onStartShouldSetResponder={() => true}>
-    //       <SearchCountry
-    //         type={type}
-    //         suggestedCountries={suggestedCountries}
-    //         onClose={hideModal}
-    //         shouldRenderNote={isSelectingOriginCountryUSA}
-    //         onSelectResult={onCountrySelection(type)}
-    //       />
-    //     </View>
-    //   ),
-    //   type
-    // });
+    const {showModal, hideModal} = this.props;
+    const {onCountrySelection} = this;
+    const suggestedCountries = this.getSuggestedCountries(type);
+    const isSelectingOriginCountryUSA = (country) =>
+      type === fieldNames.ORIGIN && country.countryCode === 840;
+    this.hideHints();
+    showModal({
+      content: (
+        <View
+          style={[styles.modalContent, styles.searchCountryModalContent]}
+          onStartShouldSetResponder={() => true}>
+          <SearchCountry
+            type={type}
+            suggestedCountries={suggestedCountries}
+            onClose={hideModal}
+            shouldRenderNote={isSelectingOriginCountryUSA}
+            onSelectResult={onCountrySelection(type)}
+          />
+        </View>
+      ),
+      type,
+    });
   };
 
   getSuggestedCountriesByType = (type) => {
-    // const { nationalityGroups } = this.props;
-    // const { originCountry, destinationCountry } = this.state;
-    // const featuredCountries = [];
-    // const filteredFeaturedCountires = [];
-    // nationalityGroups.forEach((nationality) => {
-    //   const { originCountryName, destinationCountryName, featured } = nationality;
-    //   if (featured) {
-    //     const loweredCaseDestinationCountryName = destinationCountryName.toLowerCase();
-    //     const loweredCaseOriginCountryName = originCountryName.toLowerCase();
-    //     if (type === fieldNames.ORIGIN) {
-    //       featuredCountries.push(loweredCaseOriginCountryName);
-    //       if (isEmpty(destinationCountry) || destinationCountry.name.toLowerCase() === loweredCaseDestinationCountryName) {
-    //         filteredFeaturedCountires.push(loweredCaseOriginCountryName);
-    //       }
-    //     }
-    //     if (type === fieldNames.DESTINATION) {
-    //       featuredCountries.push(loweredCaseDestinationCountryName);
-    //       if (isEmpty(originCountry) || originCountry.name.toLowerCase() === loweredCaseOriginCountryName) {
-    //         filteredFeaturedCountires.push(loweredCaseDestinationCountryName);
-    //       }
-    //     }
-    //   }
-    // });
-    // return filteredFeaturedCountires.length ? filteredFeaturedCountires : featuredCountries;
+    const {nationalityGroups} = this.props;
+    const {originCountry, destinationCountry} = this.state;
+    const featuredCountries = [];
+    const filteredFeaturedCountires = [];
+    nationalityGroups.forEach((nationality) => {
+      const {originCountryName, destinationCountryName, featured} = nationality;
+      if (featured) {
+        const loweredCaseDestinationCountryName = destinationCountryName.toLowerCase();
+        const loweredCaseOriginCountryName = originCountryName.toLowerCase();
+        if (type === fieldNames.ORIGIN) {
+          featuredCountries.push(loweredCaseOriginCountryName);
+          if (
+            isEmpty(destinationCountry) ||
+            destinationCountry.name.toLowerCase() ===
+              loweredCaseDestinationCountryName
+          ) {
+            filteredFeaturedCountires.push(loweredCaseOriginCountryName);
+          }
+        }
+        if (type === fieldNames.DESTINATION) {
+          featuredCountries.push(loweredCaseDestinationCountryName);
+          if (
+            isEmpty(originCountry) ||
+            originCountry.name.toLowerCase() === loweredCaseOriginCountryName
+          ) {
+            filteredFeaturedCountires.push(loweredCaseDestinationCountryName);
+          }
+        }
+      }
+    });
+    return filteredFeaturedCountires.length
+      ? filteredFeaturedCountires
+      : featuredCountries;
   };
 
   getNationalityGroupsByType = (type, item) => {
-    // const { nationalityGroups } = this.props;
-    // const isOriginType = type === fieldNames.ORIGIN;
-    // const countryFieldName = `${isOriginType ? 'origin' : 'destination'}CountryName`;
-    // return nationalityGroups.filter((nationalityGroup) => nationalityGroup[countryFieldName].toLowerCase() === item.name.toLowerCase());
+    const {nationalityGroups} = this.props;
+    const isOriginType = type === fieldNames.ORIGIN;
+    const countryFieldName = `${
+      isOriginType ? 'origin' : 'destination'
+    }CountryName`;
+    return nationalityGroups.filter(
+      (nationalityGroup) =>
+        nationalityGroup[countryFieldName].toLowerCase() ===
+        item.name.toLowerCase(),
+    );
   };
 
   sortSuggestedCountriesByType = (type) => (item1, item2) => {
-    // const item1NationalityGroups = this.getNationalityGroupsByType(type, item1);
-    // const item2NationalityGroups = this.getNationalityGroupsByType(type, item2);
-    // return sumBy(item2NationalityGroups, 'totals.users') - sumBy(item1NationalityGroups, 'totals.users');
+    const item1NationalityGroups = this.getNationalityGroupsByType(type, item1);
+    const item2NationalityGroups = this.getNationalityGroupsByType(type, item2);
+    return (
+      sumBy(item2NationalityGroups, 'totals.users') -
+      sumBy(item1NationalityGroups, 'totals.users')
+    );
   };
 
   getSuggestedCountries = (type) => {
-    // const { branchData } = this.props;
-    // const branchSuggestions = get(branchData, `${type}Suggestions`);
-    // if (!isEmpty(branchSuggestions)) {
-    //   try {
-    //     const suggestedCountries = branchSuggestions
-    //       .split(',')
-    //       .map((countryCode) => getCountryByCode(Number(countryCode)))
-    //       .filter((country) => country);
-    //     if (suggestedCountries.length) {
-    //       return suggestedCountries;
-    //     }
-    //   } catch (err) {
-    //     Logger.error({ message: 'Failed to convert branch data to suggested countries', err, branchData });
-    //   }
-    // }
-    // const suggestedCountriesByType = this.getSuggestedCountriesByType(type);
-    // return countries
-    //   .filter((item) => {
-    //     const { name } = item;
-    //     return suggestedCountriesByType.includes(name.toLowerCase());
-    //   })
-    //   .slice(0, MAX_FEATURED_COUNTRIES)
-    //   .sort(this.sortSuggestedCountriesByType(type));
+    const {branchData} = this.props;
+    const branchSuggestions = get(branchData, `${type}Suggestions`);
+    if (!isEmpty(branchSuggestions)) {
+      try {
+        const suggestedCountries = branchSuggestions
+          .split(',')
+          .map((countryCode) => getCountryByCode(Number(countryCode)))
+          .filter((country) => country);
+        if (suggestedCountries.length) {
+          return suggestedCountries;
+        }
+      } catch (err) {
+        Logger.error({
+          message: 'Failed to convert branch data to suggested countries',
+          err,
+          branchData,
+        });
+      }
+    }
+    const suggestedCountriesByType = this.getSuggestedCountriesByType(type);
+    return countries
+      .filter((item) => {
+        const {name} = item;
+        return suggestedCountriesByType.includes(name.toLowerCase());
+      })
+      .slice(0, MAX_FEATURED_COUNTRIES)
+      .sort(this.sortSuggestedCountriesByType(type));
   };
 
   hideHints = () => {
-    // this.hideHint(fieldNames.ORIGIN);
-    // this.hideHint(fieldNames.DESTINATION);
+    this.hideHint(fieldNames.ORIGIN);
+    this.hideHint(fieldNames.DESTINATION);
   };
 
   handleHintVisibility = (type) => () => {
-    // analytics.actionEvents.onboardingTooltipView({ field: type === fieldNames.ORIGIN ? 'origin' : 'destination' }).dispatch();
-    // if (type === fieldNames.ORIGIN) {
-    //   this.hideHint(fieldNames.DESTINATION);
-    // } else {
-    //   this.hideHint(fieldNames.ORIGIN);
-    // }
+    analytics.actionEvents
+      .onboardingTooltipView({
+        field: type === fieldNames.ORIGIN ? 'origin' : 'destination',
+      })
+      .dispatch();
+    if (type === fieldNames.ORIGIN) {
+      this.hideHint(fieldNames.DESTINATION);
+    } else {
+      this.hideHint(fieldNames.ORIGIN);
+    }
   };
 
   hideHint = (type) => {
-    // const hideHintFunction = get(this, `${type}Input.current.hideHint`);
-    // if (hideHintFunction) {
-    //   hideHintFunction();
-    // }
+    const hideHintFunction = get(this, `${type}Input.current.hideHint`);
+    if (hideHintFunction) {
+      hideHintFunction();
+    }
   };
 
   navigateToSignIn = () => {
@@ -614,29 +678,33 @@ class SetUserNationality extends React.Component {
   };
 
   onCountrySelection = (type) => ({country}) => {
-    // const { hideModal } = this.props;
+    const {hideModal} = this.props;
     // if (type === fieldNames.ORIGIN) {
-    //   analytics.actionEvents.onboardingSetOriginCountry({ country: country.name }).dispatch();
+    //   analytics.actionEvents
+    //     .onboardingSetOriginCountry({country: country.name})
+    //     .dispatch();
     // } else {
-    //   analytics.actionEvents.onboardingSetDestinationCountry({ country: country.name }).dispatch();
+    //   analytics.actionEvents
+    //     .onboardingSetDestinationCountry({country: country.name})
+    //     .dispatch();
     // }
-    // this.setCountryState({ [type]: country });
-    // hideModal();
+    this.setCountryState({[type]: country});
+    hideModal();
   };
 
   androidBackButtonListener = () => true;
 
   setCountryState = (changes) => {
-    // this.setState(changes, () => {
-    //   const { destinationCountry, originCountry } = this.state;
-    //   if (originCountry.countryCode === destinationCountry.countryCode) {
-    //     this.showError(errorTypes.CONFLICTING_COUNTRIES);
-    //   } else {
-    //     this.conditionallyFetchNationality(false);
-    //     this.clearError(errorTypes.CONFLICTING_COUNTRIES);
-    //   }
-    //   miscLocalStorage.update({ nationalityChoices: this.state });
-    // });
+    this.setState(changes, () => {
+      const {destinationCountry, originCountry} = this.state;
+      if (originCountry.countryCode === destinationCountry.countryCode) {
+        this.showError(errorTypes.CONFLICTING_COUNTRIES);
+      } else {
+        this.conditionallyFetchNationality(false);
+        this.clearError(errorTypes.CONFLICTING_COUNTRIES);
+      }
+      miscLocalStorage.update({nationalityChoices: this.state});
+    });
   };
 
   isReversedNationality = ({
@@ -648,24 +716,37 @@ class SetUserNationality extends React.Component {
     nationality.originNumericCountryCodes.includes(destinationCountryCode);
 
   getReversedNationality = (navigationParams) => {
-    // const { matchedNationality, suggestedNationalities, originCountry, destinationCountry } = navigationParams;
-    // if (matchedNationality) return false;
-    // const reversedNationality = suggestedNationalities.find((curr) =>
-    //   this.isReversedNationality({ nationality: curr, originCountryCode: originCountry.countryCode, destinationCountryCode: destinationCountry.countryCode })
-    // );
-    // return reversedNationality;
+    const {
+      matchedNationality,
+      suggestedNationalities,
+      originCountry,
+      destinationCountry,
+    } = navigationParams;
+    if (matchedNationality) return false;
+    const reversedNationality = suggestedNationalities.find((curr) =>
+      this.isReversedNationality({
+        nationality: curr,
+        originCountryCode: originCountry.countryCode,
+        destinationCountryCode: destinationCountry.countryCode,
+      }),
+    );
+    return reversedNationality;
   };
 
   getInputValidationErrorsState = () => {
-    // const { originCountry, destinationCountry } = this.state;
-    // const originDestinationValidations = {
-    //   ...(!originCountry.countryCode && { [fieldNames.ORIGIN]: 'origin not selected' }),
-    //   ...(!destinationCountry.countryCode && { [fieldNames.DESTINATION]: 'dest not selected' })
-    // };
-    // return {
-    //   ...this.state.errors,
-    //   ...originDestinationValidations
-    // };
+    const {originCountry, destinationCountry} = this.state;
+    const originDestinationValidations = {
+      ...(!originCountry.countryCode && {
+        [fieldNames.ORIGIN]: 'origin not selected',
+      }),
+      ...(!destinationCountry.countryCode && {
+        [fieldNames.DESTINATION]: 'dest not selected',
+      }),
+    };
+    return {
+      ...this.state.errors,
+      ...originDestinationValidations,
+    };
   };
 
   showError = (key) => {
@@ -681,128 +762,132 @@ class SetUserNationality extends React.Component {
     this.setState({errors: omit(this.state.errors, key)});
   };
 
-  updateProfileAndNavigateToContinueWithNationalityScreen = async () => {
-    // await this.updateProfileJourney({navigationParams});
+  updateProfileAndNavigateToContinueWithNationalityScreen = async ({
+    navigationParams,
+  }) => {
+    await this.updateProfileJourney({navigationParams});
     navigationService.navigate(
       screenNames.ContinueWithNationality,
-      // cloneDeep(navigationParams),
+      cloneDeep(navigationParams),
     );
   };
 
   updateProfileJourney = async ({navigationParams}) => {
-    // const { originCountry, destinationCountry } = navigationParams;
-    // const { updateProfile, user } = this.props;
-    // if (user) {
-    //   const dataToSend = {
-    //     user: {
-    //       journey: {
-    //         originPlaceSearchCountryFilter: originCountry.alpha2,
-    //         originCountryName: originCountry.name,
-    //         originCountryCode: originCountry.countryCode,
-    //         destinationCountryCode: destinationCountry.countryCode,
-    //         destinationCountryName: destinationCountry.name,
-    //         destinationCountryAlpha2: destinationCountry.alpha2
-    //       },
-    //       settings: {
-    //         language: I18n.getLocale()
-    //       }
-    //     }
-    //   };
-    //   await updateProfile({ userId: user.id, delta: dataToSend });
-    // }
+    const {originCountry, destinationCountry} = navigationParams;
+    const {updateProfile, user} = this.props;
+    if (user) {
+      const dataToSend = {
+        user: {
+          journey: {
+            originPlaceSearchCountryFilter: originCountry.alpha2,
+            originCountryName: originCountry.name,
+            originCountryCode: originCountry.countryCode,
+            destinationCountryCode: destinationCountry.countryCode,
+            destinationCountryName: destinationCountry.name,
+            destinationCountryAlpha2: destinationCountry.alpha2,
+          },
+          settings: {
+            language: I18n.getLocale(),
+          },
+        },
+      };
+      await updateProfile({userId: user.id, delta: dataToSend});
+    }
   };
 
   onReversedNationalityPress = ({navigationParams, reversedNationality}) => {
-    // const newNavigationParams = { ...navigationParams };
-    // newNavigationParams.originCountry = navigationParams.destinationCountry;
-    // newNavigationParams.destinationCountry = navigationParams.originCountry;
-    // newNavigationParams.matchedNationality = reversedNationality;
-    // this.updateProfileAndNavigateToContinueWithNationalityScreen({ navigationParams: newNavigationParams });
+    const newNavigationParams = {...navigationParams};
+    newNavigationParams.originCountry = navigationParams.destinationCountry;
+    newNavigationParams.destinationCountry = navigationParams.originCountry;
+    newNavigationParams.matchedNationality = reversedNationality;
+    this.updateProfileAndNavigateToContinueWithNationalityScreen({
+      navigationParams: newNavigationParams,
+    });
   };
 
   submit = async () => {
-    this.updateProfileAndNavigateToContinueWithNationalityScreen(); // const {
-    //   originCountry,
-    //   destinationCountry,
-    //   matchedNationality,
-    //   suggestedNationalities,
-    // } = this.state;
-    // const {showModal} = this.props;
-    // // analytics.actionEvents
-    // //   .onboardingClickedSetNationality({
-    // //     originCountryName: originCountry.name,
-    // //     destinationCountryName: destinationCountry.name,
-    // //   })
-    // //   .dispatch();
-    // const navigationParams = {
-    //   matchedNationality,
-    //   originCountry,
-    //   destinationCountry,
-    //   suggestedNationalities,
-    // };
-    // try {
-    //   if (!matchedNationality && !suggestedNationalities) {
-    //     const data = await this.fetchMatchedNationalityRequest({
-    //       originCode: originCountry.countryCode,
-    //       destinationCode: destinationCountry.countryCode,
-    //     });
-    //     if (Array.isArray(data)) {
-    //       navigationParams.suggestedNationalities = data;
-    //     } else {
-    //       navigationParams.matchedNationality = data;
-    //     }
-    //   }
-    //   const reversedNationality = this.getReversedNationality(navigationParams);
-    //   if (reversedNationality) {
-    //     showModal({
-    //       content: (
-    //         <ReversedNationalityModal
-    //           originCountry={originCountry}
-    //           destinationCountry={destinationCountry}
-    //           onOriginalNationalityPress={() =>
-    //             this.updateProfileAndNavigateToContinueWithNationalityScreen({
-    //               navigationParams,
-    //             })
-    //           }
-    //           onReversedNationalityPress={() =>
-    //             this.onReversedNationalityPress({
-    //               navigationParams,
-    //               reversedNationality,
-    //             })
-    //           }
-    //         />
-    //       ),
-    //     });
-    //     // analytics.viewEvents
-    //     //   .countryReverse({
-    //     //     originCountryName: originCountry.adjustedName,
-    //     //     destinationCountryName: destinationCountry.adjustedName,
-    //     //   })
-    //     //   .dispatch();
-    //   } else {
-    //     this.updateProfileAndNavigateToContinueWithNationalityScreen({
-    //       navigationParams,
-    //     });
-    //   }
-    // } catch (err) {
-    //   // Logger.error({
-    //   //   message: 'fetch matched nationality request failed',
-    //   //   data: {originCountry, destinationCountry},
-    //   // });
-    // }
+    const {
+      originCountry,
+      destinationCountry,
+      matchedNationality,
+      suggestedNationalities,
+    } = this.state;
+    const {showModal} = this.props;
+    // analytics.actionEvents
+    //   .onboardingClickedSetNationality({
+    //     originCountryName: originCountry.name,
+    //     destinationCountryName: destinationCountry.name,
+    //   })
+    //   .dispatch();
+    const navigationParams = {
+      matchedNationality,
+      originCountry,
+      destinationCountry,
+      suggestedNationalities,
+    };
+    try {
+      if (!matchedNationality && !suggestedNationalities) {
+        const data = await this.fetchMatchedNationalityRequest({
+          originCode: originCountry.countryCode,
+          destinationCode: destinationCountry.countryCode,
+        });
+        if (Array.isArray(data)) {
+          navigationParams.suggestedNationalities = data;
+        } else {
+          navigationParams.matchedNationality = data;
+        }
+      }
+      const reversedNationality = this.getReversedNationality(navigationParams);
+      if (reversedNationality) {
+        showModal({
+          content: (
+            <ReversedNationalityModal
+              originCountry={originCountry}
+              destinationCountry={destinationCountry}
+              onOriginalNationalityPress={() =>
+                this.updateProfileAndNavigateToContinueWithNationalityScreen({
+                  navigationParams,
+                })
+              }
+              onReversedNationalityPress={() =>
+                this.onReversedNationalityPress({
+                  navigationParams,
+                  reversedNationality,
+                })
+              }
+            />
+          ),
+        });
+        // analytics.viewEvents
+        //   .countryReverse({
+        //     originCountryName: originCountry.adjustedName,
+        //     destinationCountryName: destinationCountry.adjustedName,
+        //   })
+        //   .dispatch();
+      } else {
+        this.updateProfileAndNavigateToContinueWithNationalityScreen({
+          navigationParams,
+        });
+      }
+    } catch (err) {
+      console.error({
+        message: 'fetch matched nationality request failed',
+        data: {originCountry, destinationCountry},
+      });
+    }
   };
 }
 
 SetUserNationality.propTypes = {
-  // getNationalityGroups: PropTypes.func,
+  getNationalityGroups: PropTypes.func,
   nationalityGroups: PropTypes.array,
   branchData: PropTypes.object,
-  // apiQuery: PropTypes.func,
+  apiQuery: PropTypes.func,
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
   visibleModal: PropTypes.string,
   user: PropTypes.object,
-  // updateProfile: PropTypes.func,
+  updateProfile: PropTypes.func,
   navigation: PropTypes.object,
 };
 
@@ -813,9 +898,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  // apiQuery,
-  // getNationalityGroups,
-  // updateProfile
+  apiQuery,
+  getNationalityGroups,
+  updateProfile,
 };
 
 SetUserNationality = connect(

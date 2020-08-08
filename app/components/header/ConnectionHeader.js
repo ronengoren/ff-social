@@ -1,4 +1,4 @@
-// import NetInfo from '@react-native-community/netinfo';
+import NetInfo from '@react-native-community/netinfo';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
@@ -6,7 +6,7 @@ import {LayoutAnimation, Platform, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Text} from '../basicComponents';
 import {BaseHeaderSnackbar} from '../../components/snackbars';
-import config from '/config';
+import config from '../../config';
 import I18n from '../../infra/localization';
 import {get} from '../../infra/utils';
 import {setConnection} from '../../redux/general/actions';
@@ -57,25 +57,25 @@ class ConnectionHeader extends Component {
     );
   }
 
-  // componentDidMount() {
-  //   this.isNetworkConnected().then((isOnline) => {
-  //     if (isOnline !== this.props.isOnline) {
-  //       if (isOnline) {
-  //         this.showConnectionRestoredMessage();
-  //       } else {
-  //         this.showNoConnectionMessage();
-  //       }
-  //     }
-  //     NetInfo.addEventListener('connectionChange', this.handleConnectionChange);
-  //   });
-  // }
+  componentDidMount() {
+    this.isNetworkConnected().then((isOnline) => {
+      if (isOnline !== this.props.isOnline) {
+        if (isOnline) {
+          this.showConnectionRestoredMessage();
+        } else {
+          this.showNoConnectionMessage();
+        }
+      }
+      NetInfo.addEventListener('connectionChange', this.handleConnectionChange);
+    });
+  }
 
-  // componentWillUnmount() {
-  //   NetInfo.removeEventListener(
-  //     'connectionChange',
-  //     this.handleConnectionChange,
-  //   );
-  // }
+  componentWillUnmount() {
+    NetInfo.removeEventListener(
+      'connectionChange',
+      this.handleConnectionChange,
+    );
+  }
 
   handleConnectionChange = async (connectionInfo) => {
     if (connectionInfo.type === reachabilityTypes.UNKNOWN) return;
@@ -127,27 +127,27 @@ class ConnectionHeader extends Component {
 
   // This is a workaround to a known issue
   // TODO: Follow the issue: https://github.com/facebook/react-native/issues/8615
-  // isNetworkConnected = () =>
-  //   NetInfo.getConnectionInfo().then((reachability) => {
-  //     if (reachability.type === reachabilityTypes.UNKNOWN) {
-  //       return new Promise((resolve) => {
-  //         const handleFirstConnectivityChangeIOS = (isConnected) => {
-  //           NetInfo.isConnected.removeEventListener(
-  //             'connectionChange',
-  //             handleFirstConnectivityChangeIOS,
-  //           );
-  //           resolve(isConnected);
-  //         };
-  //         NetInfo.isConnected.addEventListener(
-  //           'connectionChange',
-  //           handleFirstConnectivityChangeIOS,
-  //         );
-  //       });
-  //     }
-  //     return ![reachabilityTypes.NONE, reachabilityTypes.UNKNOWN].includes(
-  //       reachability.type,
-  //     );
-  //   });
+  isNetworkConnected = () =>
+    NetInfo.getConnectionInfo().then((reachability) => {
+      if (reachability.type === reachabilityTypes.UNKNOWN) {
+        return new Promise((resolve) => {
+          const handleFirstConnectivityChangeIOS = (isConnected) => {
+            NetInfo.isConnected.removeEventListener(
+              'connectionChange',
+              handleFirstConnectivityChangeIOS,
+            );
+            resolve(isConnected);
+          };
+          NetInfo.isConnected.addEventListener(
+            'connectionChange',
+            handleFirstConnectivityChangeIOS,
+          );
+        });
+      }
+      return ![reachabilityTypes.NONE, reachabilityTypes.UNKNOWN].includes(
+        reachability.type,
+      );
+    });
 }
 
 const mapStateToProps = (state) => ({

@@ -13,7 +13,7 @@ import {
   Image,
   Text,
   View,
-  // KeyboardAwareScrollView,
+  KeyboardAwareScrollView,
 } from '../../components/basicComponents';
 import {
   OnboardingInputField,
@@ -27,21 +27,21 @@ import {
   user as userLocalStorage,
 } from '../../infra/localStorage';
 import {navigationService} from '../../infra/navigation';
-// import { apiQuery } from '/redux/apiQuery/actions';
-// import { apiCommand } from '/redux/apiCommands/actions';
+import {apiQuery} from '../../redux/apiQuery/actions';
+import {apiCommand} from '../../redux/apiCommands/actions';
 // import { analytics, Logger } from '/infra/reporting';
 import {get, isEmpty} from '../../infra/utils';
 import {email as validateEmail} from '../../infra/utils/formValidations';
-// import { joinedCommunity } from '/redux/auth/actions';
-// import { updateProfile } from '/redux/profile/actions';
+import {joinedCommunity} from '../../redux/auth/actions';
+import {updateProfile} from '../../redux/profile/actions';
 import {getFirstName} from '../../infra/utils/stringUtils';
-// import { initSearchAddress } from '/redux/searchAddress/actions';
+import {initSearchAddress} from '../../redux/searchAddress/actions';
 import {flipFlopColors, uiConstants, commonStyles} from '../../vars';
 import {SearchAddress} from '/screens/searchAddress';
 import HeaderSearch from '../../components/header/HeaderSearch';
 
 import {screenNames} from '../../vars/enums';
-import {AwesomeIcon, FlipFlopIcon} from '../../assets/icons';
+import {AwesomeIcon, HomeisIcon} from '../../assets/icons';
 import images from '../../assets/images';
 import {formatTopCitiesToMatchPlacesServiceResponse} from '../../infra/utils/onboardingUtils';
 import {
@@ -176,41 +176,40 @@ class SetUserDetails extends Component {
           backgroundColor="transparent"
         />
 
-        {/* <KeyboardAwareScrollView
+        <KeyboardAwareScrollView
           style={commonStyles.flex1}
           contentContainerStyle={styles.scroll}
           keyboardDismissMode="on-drag"
           ref={(node) => {
             this.scroll = node;
-          }}
-        > */}
-        <Animated.View style={{opacity: progressBarAndMediaOpacity}}>
-          <OnBoardingProgressBar step={1} style={styles.progressBar} />
-          <UserProfilePictureHeader
-            modalStyle={styles.modalContent}
-            showModal={showModal}
-            // hideModal={this.hideModalAndAllowKeyboardAnimation}
-            isSmaller={!isHighDevice}
-          />
-        </Animated.View>
+          }}>
+          <Animated.View style={{opacity: progressBarAndMediaOpacity}}>
+            <OnBoardingProgressBar step={1} style={styles.progressBar} />
+            <UserProfilePictureHeader
+              modalStyle={styles.modalContent}
+              showModal={showModal}
+              hideModal={this.hideModalAndAllowKeyboardAnimation}
+              isSmaller={!isHighDevice}
+            />
+          </Animated.View>
 
-        <View style={[styles.mainPadding, commonStyles.flex1]}>
-          {this.renderTitleAndSubTitle()}
-          <View style={styles.mainContent}>
-            <View>
-              {this.renderCurrentCityField()}
-              {email && this.renderEmailField()}
+          <View style={[styles.mainPadding, commonStyles.flex1]}>
+            {this.renderTitleAndSubTitle()}
+            <View style={styles.mainContent}>
+              <View>
+                {this.renderCurrentCityField()}
+                {email && this.renderEmailField()}
+              </View>
             </View>
           </View>
-        </View>
-        {/* </KeyboardAwareScrollView> */}
+        </KeyboardAwareScrollView>
         <Animated.View style={[{transform: [{translateY: btnY}]}]}>
           <SubmitButton
             withShadow={false}
             isDisabled={false}
             wrapperStyle={styles.mainPadding}
             onPress={this.submit}
-            // onPress={isDisabled ? this.scrollToBottom : this.submit}
+            onPress={isDisabled ? this.scrollToBottom : this.submit}
             testID="setUserDetailsSubmitButton"
             busy={isSubmitting}
           />
@@ -220,29 +219,29 @@ class SetUserDetails extends Component {
   }
 
   componentDidMount() {
-    // miscLocalStorage.update({
-    //   onboardingPersistentScreen: screenNames.SetUserDetails,
-    // });
-    // this.getTopCities();
-    // this.keyboardDidShowListener = Keyboard.addListener(
-    //   'keyboardDidShow',
-    //   this.keyboardDidShow,
-    // );
-    // this.keyboardDidHideListener = Keyboard.addListener(
-    //   'keyboardDidHide',
-    //   this.keyboardDidHide,
-    // );
-    // if (isAndroid) {
-    //   BackHandler.addEventListener(
-    //     'hardwareBackPress',
-    //     this.androidBackButtonListener,
-    //   );
-    // }
+    miscLocalStorage.update({
+      onboardingPersistentScreen: screenNames.SetUserDetails,
+    });
+    this.getTopCities();
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this.keyboardDidShow,
+    );
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    );
+    if (isAndroid) {
+      BackHandler.addEventListener(
+        'hardwareBackPress',
+        this.androidBackButtonListener,
+      );
+    }
   }
 
   componentWillUnmount() {
-    // this.keyboardDidShowListener.remove();
-    // this.keyboardDidHideListener.remove();
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
 
     if (isAndroid) {
       BackHandler.removeEventListener(
@@ -294,26 +293,29 @@ class SetUserDetails extends Component {
   };
 
   async getTopCities() {
-    // const { placeSearchCountryFilter, initSearchAddress } = this.props;
-    // const { nationalityChoices = {} } = await (miscLocalStorage.get() || {});
-    // initSearchAddress({ country: placeSearchCountryFilter, isCities: true });
-    // const topCities = get(nationalityChoices, 'matchedNationality.topCities') || [];
-    // if (!isEmpty(topCities)) {
-    //   this.topCities = topCities.filter((city, idx) => idx < MAX_TOP_CITIES).map(formatTopCitiesToMatchPlacesServiceResponse);
-    // }
+    const {placeSearchCountryFilter, initSearchAddress} = this.props;
+    const {nationalityChoices = {}} = await (miscLocalStorage.get() || {});
+    initSearchAddress({country: placeSearchCountryFilter, isCities: true});
+    const topCities =
+      get(nationalityChoices, 'matchedNationality.topCities') || [];
+    if (!isEmpty(topCities)) {
+      this.topCities = topCities
+        .filter((city, idx) => idx < MAX_TOP_CITIES)
+        .map(formatTopCitiesToMatchPlacesServiceResponse);
+    }
   }
 
   renderTitleAndSubTitle() {
-    // const isTitleTextSmaller = this.userName.length > 16;
+    const isTitleTextSmaller = this.userName.length > 16;
     return (
       <View style={!isHighDevice && styles.smallerdeviceTitle}>
         <Text
           bolder
-          // size={isTitleTextSmaller ? 28 : 32}
-          // lineHeight={isTitleTextSmaller ? 34 : 38}
+          size={isTitleTextSmaller ? 28 : 32}
+          lineHeight={isTitleTextSmaller ? 34 : 38}
           color={flipFlopColors.b30}
           style={styles.titleText}>
-          {/* {getFirstName(this.userName)} */}
+          {getFirstName(this.userName)}
         </Text>
         {!isShortDevice && (
           <Text size={18} lineHeight={22} color={flipFlopColors.b30}>
@@ -335,10 +337,10 @@ class SetUserDetails extends Component {
           resizeMode="contain"
         />
         <OnboardingInputField
-          // label={
-          //   !isEmpty(destinationCity) &&
-          //   I18n.t('onboarding.set_user_details.destination_city_field.label')
-          // }
+          label={
+            !isEmpty(destinationCity) &&
+            I18n.t('onboarding.set_user_details.destination_city_field.label')
+          }
           placeholderText={I18n.t(
             'onboarding.set_user_details.destination_city_field.placeholder',
           )}
@@ -349,7 +351,7 @@ class SetUserDetails extends Component {
             isValid ? (
               mapMarkerIcon
             ) : (
-              <FlipFlopIcon
+              <HomeisIcon
                 name="search"
                 color={flipFlopColors.green}
                 size={22}
@@ -374,7 +376,7 @@ class SetUserDetails extends Component {
         label={I18n.t('common.form.email')}
         keyboardType={'email-address'}
         autoCapitalize="none"
-        // onChange={this.handleEmailChanged}
+        onChange={this.handleEmailChanged}
         value={email.value}
         isValid={email.isValid}
         validations={['email']}
@@ -422,7 +424,7 @@ class SetUserDetails extends Component {
                   isOnboarding
                   searchMode
                   searchAddressMode
-                  // onPressClose={this.hideModalAndAllowKeyboardAnimation}
+                  onPressClose={this.hideModalAndAllowKeyboardAnimation}
                   searchPlaceholder={I18n.t(
                     'onboarding.set_user_details.destination_city_field.search_input_placeholder',
                   )}
@@ -436,100 +438,121 @@ class SetUserDetails extends Component {
   };
 
   onSelectCity = ({value, id}) => {
-    // const { email } = this.state;
-    // const { originCountry } = this.props;
+    const {email} = this.state;
+    const {originCountry} = this.props;
     // analytics.actionEvents.onboardingSetCity({ country: originCountry.name, city: value }).dispatch();
-    // Keyboard.dismiss();
-    // this.hideModalAndAllowKeyboardAnimation();
-    // this.setState({ destinationCity: { name: value, cityId: id } });
-    // email && this.scrollToBottom();
+    Keyboard.dismiss();
+    this.hideModalAndAllowKeyboardAnimation();
+    this.setState({destinationCity: {name: value, cityId: id}});
+    email && this.scrollToBottom();
   };
 
   scrollToBottom = () =>
     this.scroll && this.scroll.scrollToPosition(0, 300, true);
 
   submit = async () => {
-    // const { joinedCommunity, isOnWaitingList } = this.props;
-    // const { destinationCity, isSubmitting } = this.state;
-    // if (isSubmitting) {
-    //   return;
-    // }
-    // try {
-    //   this.setState({ isSubmitting: true });
-    //   const { id: communityId, name: communityName } = (await this.getMatchedCommunity()) || {};
-    //   await this.updateProfilePromises(communityId);
-    //   await joinedCommunity({ communityId, communityName, destinationCity, isOnWaitingList });
-    navigationService.navigate(screenNames.OnBoardingDiscover);
-    // } catch (err) {
-    //   Logger.error({ message: 'failed to submit setUserDetails form', destinationCity, err });
-    // }
-    // this.setState({ isSubmitting: false });
+    const {joinedCommunity, isOnWaitingList} = this.props;
+    const {destinationCity, isSubmitting} = this.state;
+    if (isSubmitting) {
+      return;
+    }
+    try {
+      this.setState({isSubmitting: true});
+      const {id: communityId, name: communityName} =
+        (await this.getMatchedCommunity()) || {};
+      await this.updateProfilePromises(communityId);
+      await joinedCommunity({
+        communityId,
+        communityName,
+        destinationCity,
+        isOnWaitingList,
+      });
+      navigationService.navigate(screenNames.OnBoardingDiscover);
+    } catch (err) {
+      console.error({
+        message: 'failed to submit setUserDetails form',
+        destinationCity,
+        err,
+      });
+    }
+    this.setState({isSubmitting: false});
   };
 
   updateProfilePromises = async (communityId) => {
-    // const { user, updateProfile, originCountry, apiCommand } = this.props;
-    // const { destinationCity, email } = this.state;
-    // const { cityId: destinationCityId, name: destinationCityName } = destinationCity;
-    // const { placeSearchCountryFilter: originPlaceSearchCountryFilter, name: originCountryName, countryCode: originCountryCode } = originCountry;
-    // const journey = {
-    //   originPlaceSearchCountryFilter,
-    //   originCountryName,
-    //   originCountryCode,
-    //   destinationCityId,
-    //   destinationCityName
-    // };
-    // const dataToSend = {
-    //   user: {
-    //     journey
-    //   },
-    //   communityId
-    // };
-    // if (email && email.value) {
-    //   dataToSend.user.email = email.value;
-    //   await apiCommand('users.changeEmail', { email: email.value });
-    // }
-    // await updateProfile({ userId: user.id, delta: dataToSend });
+    const {user, updateProfile, originCountry, apiCommand} = this.props;
+    const {destinationCity, email} = this.state;
+    const {
+      cityId: destinationCityId,
+      name: destinationCityName,
+    } = destinationCity;
+    const {
+      placeSearchCountryFilter: originPlaceSearchCountryFilter,
+      name: originCountryName,
+      countryCode: originCountryCode,
+    } = originCountry;
+    const journey = {
+      originPlaceSearchCountryFilter,
+      originCountryName,
+      originCountryCode,
+      destinationCityId,
+      destinationCityName,
+    };
+    const dataToSend = {
+      user: {
+        journey,
+      },
+      communityId,
+    };
+    if (email && email.value) {
+      dataToSend.user.email = email.value;
+      await apiCommand('users.changeEmail', {email: email.value});
+    }
+    await updateProfile({userId: user.id, delta: dataToSend});
   };
 
   getMatchedCommunity = async () => {
-    //     const { originCountry, apiQuery } = this.props;
-    //     const { countryCode: originCountryCode } = originCountry;
-    //     const { destinationCity } = this.state;
-    //     const { cityId: destinationCityId } = destinationCity;
-    //     const apiQueryObject = {
-    //       query: {
-    //         domain: 'auth',
-    //         key: 'matchedCommunity',
-    //         params: { originCountryCode, destinationCityId }
-    //       }
-    //     };
-    //     const matchedCommunityResponse = await apiQuery(apiQueryObject);
-    //     const matchedCommunityData = get(matchedCommunityResponse, 'data.data');
-    //     if (Array.isArray(matchedCommunityData)) {
-    //       Logger.info({
-    //         domain: 'onboarding',
-    //         message: 'Multiple matched communities were returned',
-    //         extraData: {
-    //           apiQueryObject,
-    //           response: matchedCommunityData
-    //         }
-    //       });
-    //       if (!originCountryCode) {
-    //         // Debugging a case where getMatchedCommunity is fired without origin country code
-    //         setTimeout(async () => {
-    //           const [userLS, miscLS] = await Promise.all([userLocalStorage.get(), miscLocalStorage.get()]);
-    //           Logger.debug({
-    //             domain: 'onboarding',
-    //             message: 'Multiple matched communities were returned - deferred user log',
-    //             user: get(this, 'props.user'),
-    //             userLS,
-    //             miscLS
-    //           });
-    //         }, 1000);
-    //       }
-    //       return get(matchedCommunityData, '[0]');
-    //     }
-    //     return matchedCommunityData;
+    const {originCountry, apiQuery} = this.props;
+    const {countryCode: originCountryCode} = originCountry;
+    const {destinationCity} = this.state;
+    const {cityId: destinationCityId} = destinationCity;
+    const apiQueryObject = {
+      query: {
+        domain: 'auth',
+        key: 'matchedCommunity',
+        params: {originCountryCode, destinationCityId},
+      },
+    };
+    const matchedCommunityResponse = await apiQuery(apiQueryObject);
+    const matchedCommunityData = get(matchedCommunityResponse, 'data.data');
+    if (Array.isArray(matchedCommunityData)) {
+      Logger.info({
+        domain: 'onboarding',
+        message: 'Multiple matched communities were returned',
+        extraData: {
+          apiQueryObject,
+          response: matchedCommunityData,
+        },
+      });
+      if (!originCountryCode) {
+        // Debugging a case where getMatchedCommunity is fired without origin country code
+        setTimeout(async () => {
+          const [userLS, miscLS] = await Promise.all([
+            userLocalStorage.get(),
+            miscLocalStorage.get(),
+          ]);
+          Logger.debug({
+            domain: 'onboarding',
+            message:
+              'Multiple matched communities were returned - deferred user log',
+            user: get(this, 'props.user'),
+            userLS,
+            miscLS,
+          });
+        }, 1000);
+      }
+      return get(matchedCommunityData, '[0]');
+    }
+    return matchedCommunityData;
   };
 }
 
@@ -539,18 +562,18 @@ SetUserDetails.propTypes = {
   isOnWaitingList: PropTypes.bool,
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
-  //   apiCommand: PropTypes.func,
-  //   apiQuery: PropTypes.func,
-  //   initSearchAddress: PropTypes.func,
-  //   updateProfile: PropTypes.func,
-  //   joinedCommunity: PropTypes.func,
+  apiCommand: PropTypes.func,
+  apiQuery: PropTypes.func,
+  initSearchAddress: PropTypes.func,
+  updateProfile: PropTypes.func,
+  joinedCommunity: PropTypes.func,
   placeSearchCountryFilter: PropTypes.string,
   navigation: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   user: get(state, 'auth.user'),
-  // isOnWaitingList: state.auth.waitingList,
+  isOnWaitingList: state.auth.waitingList,
   originCountry: get(state, 'auth.user.journey.originCountry', {}),
   placeSearchCountryFilter: get(
     state,
@@ -560,11 +583,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  //   apiQuery,
-  //   apiCommand,
-  //   initSearchAddress,
-  //   updateProfile,
-  //   joinedCommunity
+  apiQuery,
+  apiCommand,
+  initSearchAddress,
+  updateProfile,
+  joinedCommunity,
 };
 SetUserDetails = useSlideUpModal(SetUserDetails);
 SetUserDetails = connect(mapStateToProps, mapDispatchToProps)(SetUserDetails);

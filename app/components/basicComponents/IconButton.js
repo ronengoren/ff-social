@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {flipFlopColors, uiConstants} from '../../vars';
 
 const styles = StyleSheet.create({
@@ -53,7 +53,7 @@ const IconButton = ({
     style,
   ];
 
-  const flipFlopIcon = [disabled && styles.disabledIcon, iconStyle];
+  const homeisIcon = [disabled && styles.disabledIcon, iconStyle];
 
   const buttonIconSize = size === 'large' ? 26 : 19;
   const calculatedIconColor = disabled
@@ -76,14 +76,14 @@ const IconButton = ({
           name={name}
           weight={weight}
           color={calculatedIconColor}
-          style={flipFlopIcon}
+          style={homeisIcon}
           size={iconSize || buttonIconSize}
         />
       ) : (
-        <FlipFlopIcon
+        <HomeisIcon
           name={name}
           color={calculatedIconColor}
-          style={flipFlopIcon}
+          style={homeisIcon}
           size={iconSize || buttonIconSize}
         />
       )}

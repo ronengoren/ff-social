@@ -1,4 +1,4 @@
-// import {ErrorsLogger} from '../../infra/reporting';
+import {ErrorsLogger} from '../../infra/reporting';
 
 export const API_COMMAND_REQUEST = 'API_COMMAND_REQUEST';
 export const API_COMMAND_SUCCESS = 'API_COMMAND_SUCCESS';
@@ -22,11 +22,11 @@ export const apiCommand = (command, params) => (
       })
       .catch((err) => {
         dispatch({type: API_COMMAND_FAILURE, payload: {command, err}});
-        // ErrorsLogger.apiCommandError(
-        //   {command, params},
-        //   err.toString(),
-        //   err.response,
-        // );
+        ErrorsLogger.apiCommandError(
+          {command, params},
+          err.toString(),
+          err.response,
+        );
         reject(err);
       });
   });

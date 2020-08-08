@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from '/infra/localization';
 import {Modal, StyleSheet} from 'react-native';
-// import {closeFriendRequestLimitModal} from '/redux/general/actions';
+import {closeFriendRequestLimitModal} from '../../redux/general/actions';
 import {View, NewTextButton, Text} from '../../components/basicComponents';
 import {AwesomeIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
@@ -111,7 +111,7 @@ const FriendRequestLimitModal = ({show, closeFriendRequestLimitModal}) => {
 
 FriendRequestLimitModal.propTypes = {
   show: PropTypes.bool,
-  //   closeFriendRequestLimitModal: PropTypes.func
+  closeFriendRequestLimitModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

@@ -10,7 +10,7 @@ import {
   avatarBadgePosition,
 } from '../../vars/enums';
 import {flipFlopColors, uiConstants} from '../../vars';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {getInitials} from '../../infra/utils/stringUtils';
 import {stylesScheme} from '../../schemas';
 import {navigationService} from '../../infra/navigation';
@@ -410,7 +410,7 @@ export class Avatar extends Component {
         <TouchableOpacity
           testID={testID}
           onLongPress={onLongPress}
-          onPress={onPress || this.navigateToWrapper}
+          onPress={this.navigateToWrapper}
           activeOpacity={1}
           style={style}
           hitSlop={hitSlop}>
@@ -463,7 +463,7 @@ export class Avatar extends Component {
             size={awesomeIconFontSize[size] || 30}
           />
         ) : (
-          <FlipFlopIcon
+          <HomeisIcon
             name={entityIcon}
             color={flipFlopColors.b90}
             size={iconFontSize[size] || 30}
@@ -566,7 +566,7 @@ export class Avatar extends Component {
         );
       }
       return (
-        <FlipFlopIcon
+        <HomeisIcon
           style={[styles.badgeIcon, {backgroundColor: badgeColor}]}
           name={iconName}
           color={flipFlopColors.white}
@@ -583,13 +583,15 @@ export class Avatar extends Component {
   }
 
   navigateToWrapper = () => {
-    const {entityType, entityId, name, themeColor, thumbnail} = this.props;
-    const params = {entityId, data: {name, themeColor, thumbnail}};
-    if (entityType === entityTypes.USER) {
-      navigationService.navigateToProfile(params);
-    } else {
-      navigationService.navigate(screenNamesByEntityType[entityType], params);
-    }
+    navigationService.navigateToProfile();
+
+    // const {entityType, entityId, name, themeColor, thumbnail} = this.props;
+    // const params = {entityId, data: {name, themeColor, thumbnail}};
+    // if (entityType === entityTypes.USER) {
+    //   navigationService.navigateToProfile(params);
+    // } else {
+    //   navigationService.navigate(screenNamesByEntityType[entityType], params);
+    // }
   };
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import {View, Text, Avatar} from '../../../../components/basicComponents';
 import {mentionUtils, HtmlText} from '../../../../components';
-import {FlipFlopIcon} from '../../../../assets/icons';
+import {HomeisIcon} from '../../../../assets/icons';
 import {flipFlopColors} from '../../../../vars';
 
 const styles = StyleSheet.create({
@@ -110,7 +110,7 @@ const EntityPreview = ({
           )}
           {videoPreview && (
             <View style={styles.videoIconBackground}>
-              <FlipFlopIcon name="play" style={styles.videoIcon} size={30} />
+              <HomeisIcon name="play" style={styles.videoIcon} size={30} />
             </View>
           )}
           <View style={styles.previewImageSeparator} />

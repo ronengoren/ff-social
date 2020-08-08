@@ -21,63 +21,63 @@ const SignUpWizard = createStackNavigator(
       screen: screens.SignUp,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.SetUserGender]: {
       screen: screens.SetUserGender,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.SetUserNationality]: {
       screen: screens.SetUserNationality,
       navigationOptions: () => ({
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       }),
     },
     [screenNames.ContinueWithNationality]: {
       screen: screens.ContinueWithNationality,
       navigationOptions: () => ({
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       }),
     },
     [screenNames.SignUpMethods]: {
       screen: screens.SignUpMethods,
       navigationOptions: () => ({
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       }),
     },
     [screenNames.SetUserDetails]: {
       screen: screens.SetUserDetails,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.NoNationality]: {
       screen: screens.NoNationality,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.ImageUpload]: {
       screen: screens.ImageUpload,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.SearchCountry]: {
       screen: screens.SearchCountry,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.EditProfileDate]: {
@@ -99,21 +99,21 @@ const SignUpWizard = createStackNavigator(
       screen: screens.OnBoardingAddFriends,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.OnBoardingDiscover]: {
       screen: screens.OnBoardingDiscover,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.AllowNotifications]: {
       screen: screens.AllowNotifications,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     [screenNames.WebView]: {

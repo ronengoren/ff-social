@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Platform, StyleSheet, TouchableOpacity} from 'react-native';
 import {View, Text, Image, PlaceholderRectangle} from '../basicComponents';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import {flipFlopColors, commonStyles} from '../../vars';
 import {getInitials} from '../../infra/utils/stringUtils';
 import {stylesScheme} from '../../schemas';
@@ -220,7 +220,7 @@ class UserRelatedEntityCard extends Component {
         {showItemBadge && (
           <View style={componentStyles.badgeOuter}>
             <View style={componentStyles.badgeInner}>
-              <FlipFlopIcon
+              <HomeisIcon
                 name="star"
                 size={16}
                 color={flipFlopColors.white}
@@ -252,7 +252,7 @@ class UserRelatedEntityCard extends Component {
             {initials}
           </Text>
         ) : (
-          <FlipFlopIcon
+          <HomeisIcon
             name="groups-fill"
             color={flipFlopColors.white}
             size={!isSecondary ? 32 : 18}

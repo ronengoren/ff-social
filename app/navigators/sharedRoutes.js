@@ -20,7 +20,7 @@ const sharedRoutes = {
   //   screen: screens.CommentEditor,
   //   navigationOptions: {
   //     headerShown: false,
-  //     gesturesEnabled: false
+  //     gestureEnabled: false
   //   }
   // },
   [screenNames.Chat]: {

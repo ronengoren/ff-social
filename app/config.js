@@ -1,8 +1,24 @@
 import {merge} from 'lodash';
 import {isDevEnv} from './vars/environment';
+import * as firebase from 'firebase';
+import '@firebase/auth';
+import '@firebase/firestore';
 
 // TODO: inject providers keys from env/build
-const GCM_SENDER_ID = '';
+const GCM_SENDER_ID = '491095378161';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyDN-hwrv7_A-yVPUTsrdcYPvjfExorSHPk',
+  authDomain: 'yff-social.firebaseapp.com',
+  databaseURL: 'https://ff-social.firebaseio.com',
+  projectId: 'ff-social',
+  storageBucket: 'gs://ff-social.appspot.com',
+  messagingSenderId: '491095378161',
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const sharedConfig = {
   providers: {
@@ -19,7 +35,7 @@ const sharedConfig = {
 
 const devConfig = {
   api: {
-    url: '',
+    url: 'https://ff-social.firebaseio.com',
     timeout: 60000,
   },
   web: {
@@ -65,7 +81,7 @@ const devConfig = {
 
 const prodConfig = {
   api: {
-    url: '',
+    url: 'https://ff-social.firebaseio.com',
     timeout: 60000,
   },
   web: {

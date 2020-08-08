@@ -8,7 +8,7 @@ import {
   Image,
 } from '../../components/basicComponents';
 import {flipFlopColors} from '../../vars';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {removeAddressSuffix} from '../../infra/utils/addressUtils';
 import I18n from '../../infra/localization';
 import {stylesScheme} from '../../schemas';
@@ -129,7 +129,7 @@ class SuggestionItem extends Component {
             {title}
           </Text>
           <View style={styles.locationWrapper}>
-            <FlipFlopIcon
+            <HomeisIcon
               name="location"
               size={16}
               color={location ? flipFlopColors.b30 : flipFlopColors.b60}

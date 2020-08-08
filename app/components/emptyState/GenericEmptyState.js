@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import {View, Text, Image} from '../basicComponents';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {stylesScheme} from '../../schemas';
 
@@ -40,11 +40,11 @@ class GenericEmptyState extends React.Component {
       headerText,
       bodyText,
       style,
-      isFlipFlopIcon,
+      isHomeisIcon,
       IconComponent,
       iconName,
     } = this.props;
-    const Icon = isFlipFlopIcon ? FlipFlopIcon : AwesomeIcon;
+    const Icon = isHomeisIcon ? HomeisIcon : AwesomeIcon;
     return (
       <View style={[styles.container, style]}>
         <View style={styles.innerContainer}>
@@ -97,7 +97,7 @@ GenericEmptyState.propTypes = {
     PropTypes.string,
   ]),
   resizeMode: PropTypes.string,
-  isFlipFlopIcon: PropTypes.bool,
+  isHomeisIcon: PropTypes.bool,
   IconComponent: PropTypes.element,
   iconName: PropTypes.string,
   headerText: PropTypes.string,

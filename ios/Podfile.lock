@@ -387,6 +387,8 @@ PODS:
     - React
   - react-native-safe-area-context (3.1.1):
     - React
+  - react-native-splash-screen (3.2.0):
+    - React
   - react-native-video (4.4.5):
     - React
     - react-native-video/Video (= 4.4.5)
@@ -550,6 +552,7 @@ DEPENDENCIES:
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-orientation (from `../node_modules/react-native-orientation`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -685,6 +688,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-orientation"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
   react-native-video:
     :path: "../node_modules/react-native-video"
   react-native-webview:
@@ -802,6 +807,7 @@ SPEC CHECKSUMS:
   react-native-netinfo: 7f3f3ed9e8f0e7ab3e7cac00cbfdc6997e25ecaf
   react-native-orientation: d4a97266b06ec8d45d74e626656a730ebbebbb6f
   react-native-safe-area-context: 4c3249e4840225c61fcd215b136af0a737bccb79
+  react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-video: aa527b0acb37f94c4491e70df0274cb26979405d
   react-native-webview: e2c0bce9a1a7c7edd4eb30f0c3016fce216245ce
   React-RCTActionSheet: 1702a1a85e550b5c36e2e03cb2bd3adea053de95

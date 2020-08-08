@@ -114,11 +114,11 @@ function OriginDestinationCountryIcons({
     }
   }, [showIcons]);
 
-  // const {destinationNumericCountryCode} = matchedNationality;
+  const {destinationNumericCountryCode} = matchedNationality;
 
   const iconSources = {
-    // left: getCountryImageByCode(get(originCountry, 'countryCode')),
-    // right: getCountryImageByCode(destinationNumericCountryCode),
+    left: getCountryImageByCode(get(originCountry, 'countryCode')),
+    right: getCountryImageByCode(destinationNumericCountryCode),
   };
 
   const iconAnimationInterpolation = {
@@ -154,14 +154,14 @@ function OriginDestinationCountryIcons({
 OriginDestinationCountryIcons.propTypes = {
   showIcons: PropTypes.bool,
   afterIconsShown: PropTypes.func,
-  // matchedNationality: PropTypes.object,
-  // originCountry: PropTypes.shape({
-  //   countryCode: PropTypes.number,
-  // }),
+  matchedNationality: PropTypes.object,
+  originCountry: PropTypes.shape({
+    countryCode: PropTypes.number,
+  }),
 };
 
 let ContinueWithNationality = ({navigation}) => {
-  // const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const matchedNationality = get(navigation, 'state.params.matchedNationality');
   const hasMatchedNationality = !isEmpty(matchedNationality);
   const suggestedNationalities =
@@ -171,11 +171,11 @@ let ContinueWithNationality = ({navigation}) => {
 
   const nationality = matchedNationality || {};
   if (!hasMatchedNationality) {
-    // nationality.originNumericCountryCodes = [originCountry.countryCode];
-    // nationality.destinationNumericCountryCode = destinationCountry.countryCode;
-    // nationality.originNativesName = originCountry.name;
-    // nationality.destinationCountryName = destinationCountry.name;
-    // nationality.isDummy = true;
+    nationality.originNumericCountryCodes = [originCountry.countryCode];
+    nationality.destinationNumericCountryCode = destinationCountry.countryCode;
+    nationality.originNativesName = originCountry.name;
+    nationality.destinationCountryName = destinationCountry.name;
+    nationality.isDummy = true;
   }
 
   const handleBackPress = useCallback(() => navigation.isFocused(), [
@@ -202,28 +202,28 @@ let ContinueWithNationality = ({navigation}) => {
       Animated.timing(titleOpacity, commonAnimationProps),
       Animated.delay(DELAY_BEFORE_NAVIGATE_TO_SIGNUP),
     ]).start(() => {
-      // if (user) {
-      //   const nextScreen = getRelevantOnboardingScreen({
-      //     user,
-      //     matchedNationality,
-      //     suggestedNationalities,
-      //   });
-      //   navigationService.navigate(nextScreen, {
-      //     suggestedNationalities,
-      //     matchedNationality,
-      //     nationality,
-      //     originCountry,
-      //     destinationCountry,
-      //   });
-      // } else {
-      navigationService.navigate(screenNames.SignUpMethods, {
-        suggestedNationalities,
-        matchedNationality,
-        nationality,
-        originCountry,
-        destinationCountry,
-      });
-      // }
+      if (user) {
+        const nextScreen = getRelevantOnboardingScreen({
+          user,
+          matchedNationality,
+          suggestedNationalities,
+        });
+        navigationService.navigate(nextScreen, {
+          suggestedNationalities,
+          matchedNationality,
+          nationality,
+          originCountry,
+          destinationCountry,
+        });
+      } else {
+        navigationService.navigate(screenNames.SignUpMethods, {
+          suggestedNationalities,
+          matchedNationality,
+          nationality,
+          originCountry,
+          destinationCountry,
+        });
+      }
     });
   };
 
@@ -255,19 +255,19 @@ let ContinueWithNationality = ({navigation}) => {
         </Animated.View>
 
         <View style={[styles.mainContent, styles.mainPadding]}>
-          {/* <ItemErrorBoundary boundaryName="OnboardingCountriesIcons"> */}
-          <OriginDestinationCountryIcons
-            showIcons={showIcons}
-            afterIconsShown={afterCountriesIconsShown}
-            // matchedNationality={nationality}
-            // originCountry={originCountry}
-          />
-          {/* </ItemErrorBoundary> */}
+          <ItemErrorBoundary boundaryName="OnboardingCountriesIcons">
+            <OriginDestinationCountryIcons
+              showIcons={showIcons}
+              afterIconsShown={afterCountriesIconsShown}
+              matchedNationality={nationality}
+              originCountry={originCountry}
+            />
+          </ItemErrorBoundary>
           <Animated.View style={[styles.title, {opacity: titleOpacity}]}>
             <JoinNationalityTitle
-              // nationality={nationality}
-              // originCountry={originCountry}
-              // destinationCountry={destinationCountry}
+              nationality={nationality}
+              originCountry={originCountry}
+              destinationCountry={destinationCountry}
               translationKey="continue_with_nationality_screen"
               smallTextStyle={[styles.text, styles.smallText]}
               textStyle={styles.text}

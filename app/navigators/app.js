@@ -114,7 +114,7 @@ const MiddleSection = createStackNavigator(
       screen: screens.PostEditor,
       navigationOptions: {
         headerShown: false,
-        gesturesEnabled: false,
+        gestureEnabled: false,
       },
     },
     // [screenNames.RichTextEditor]: {
@@ -127,7 +127,7 @@ const MiddleSection = createStackNavigator(
     //   screen: screens.AbusiveReportForm,
     //   navigationOptions: () => ({
     //     header: <Header hasBackButton withShadow={false} withBorderBottom={false} searchMode={false} isHideSearch />,
-    //     gesturesEnabled: false
+    //     gestureEnabled: false
     //   })
     // },
     // [screenNames.DatesPicker]: {
@@ -157,14 +157,14 @@ const MiddleSection = createStackNavigator(
     //   screen: CreateEvent,
     //   navigationOptions: {
     //     headerShown: false,
-    //     gesturesEnabled: false
+    //     gestureEnabled: false
     //   }
     // },
     // [screenGroupNames.CREATE_PAGE_MODAL]: {
     //   screen: CreatePage,
     //   navigationOptions: {
     //     headerShown: false,
-    //     gesturesEnabled: false
+    //     gestureEnabled: false
     //   }
     // },
     // [screenNames.AddListItem]: {
@@ -235,7 +235,7 @@ const MiddleSection = createStackNavigator(
     //   screen: screens.ImageUpload,
     //   navigationOptions: {
     //     headerShown: false,
-    //     gesturesEnabled: false
+    //     gestureEnabled: false
     //   }
     // }
   },

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import {TextInput, View, Text, TranslatedText} from '../basicComponents';
-import {FlipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {flipFlopColors, commonStyles} from '../../vars';
 import {stylesScheme} from '../../schemas';
 
@@ -198,7 +198,7 @@ class OnboardingInputField extends Component {
     }
     if (placeholderIconName === 'search') {
       return (
-        <FlipFlopIcon
+        <HomeisIcon
           key="icon"
           name="search"
           color={iconColor}
@@ -208,7 +208,7 @@ class OnboardingInputField extends Component {
       );
     } else if (placeholderIconName === 'envelope') {
       return (
-        <FlipFlopIcon
+        <HomeisIcon
           key="icon"
           name={placeholderIconName}
           color={iconColor}

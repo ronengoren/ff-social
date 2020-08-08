@@ -22,7 +22,11 @@ class LocalStorageBase {
     return new Promise((resolve, reject) => {
       AsyncStorage.getItem(this.key, (err, val) => {
         if (err) {
-          //   Logger.error({ message: 'AsyncStorage failed to get item', key: this.key, err });
+          console.error({
+            message: 'AsyncStorage failed to get item',
+            key: this.key,
+            err,
+          });
           reject(err);
         } else {
           resolve(JSON.parse(val));

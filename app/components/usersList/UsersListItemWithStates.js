@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import I18n from '../../infra/localization';
 import {View, Text, Avatar} from '../basicComponents';
-import {FlipFlopIcon} from '../../assets/icons';
+import {HomeisIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {groupRoleTypes, entityTypes} from '../../vars/enums';
 import {translateDate} from '../../infra/utils/dateTimeUtils';
@@ -112,7 +112,7 @@ class UsersListItemWithStates extends React.Component {
             {showBadgeCheck && showBadgeCheck(user) && (
               <View style={styles.badgeIconWrapper}>
                 <View style={styles.badgeIconInnerWrapper}>
-                  <FlipFlopIcon
+                  <HomeisIcon
                     name={iconName}
                     size={iconSize}
                     color={badgeColor}

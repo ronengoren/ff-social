@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Text, View} from '../basicComponents';
-import {flipFlopIcon, AwesomeIcon} from '../../assets/icons';
+import {HomeisIcon, AwesomeIcon} from '../../assets/icons';
 import {flipFlopColors} from '../../vars';
 import {stylesScheme} from '../../schemas';
 
@@ -92,7 +92,7 @@ const ImagePlaceholder = ({
         size={iconSize}
       />
     ) : (
-      <flipFlopIcon
+      <HomeisIcon
         key={1}
         name={iconName}
         size={iconSize}

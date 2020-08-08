@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import I18n from '../../infra/localization';
 import {connect} from 'react-redux';
-// import { apiQuery } from '/redux/apiQuery/actions';
-// import { signIn } from '/redux/auth/actions';
+import {apiQuery} from '../../redux/apiQuery/actions';
+import {signIn} from '../../redux/auth/actions';
 // import { updateAnnotations } from '/redux/general/actions';
 import {facebookLogin, AccessToken} from '../../infra/facebook/loginService';
 // import { login as appleLogin, isAppleAuthSupported } from '/infra/apple/authService';
@@ -42,7 +42,7 @@ import {
   signInMethodTypes,
   authErrors,
 } from '../../vars/enums';
-// import { getRelevantOnboardingScreen } from '/infra/utils/onboardingUtils';
+import {getRelevantOnboardingScreen} from '../../infra/utils/onboardingUtils';
 import {GoBackButton, HeaderMedia} from '../../components/onboarding';
 import {isHighDevice, isShortDevice} from '../../infra/utils/deviceUtils';
 
@@ -211,33 +211,33 @@ class SignIn extends React.Component {
                 label={I18n.t('common.form.email')}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                // onChange={this.onChangeHandlerWrapper('email')}
-                // onFocus={this.onInputFocus}
+                onChange={this.onChangeHandlerWrapper('email')}
+                onFocus={this.onInputFocus}
                 value={email.value}
                 validations={['email']}
-                // errorText={email.errorText}
+                errorText={email.errorText}
                 required
                 testID="emailInput"
                 autoCorrect={false}
                 style={styles.emailForm}
                 focusedBorderColor={flipFlopColors.green}
                 errorColor={flipFlopColors.cerise}
-                // onSubmitEditing={
-                //   email.isValid ? this.emailVerification : () => {}
-                // }
+                onSubmitEditing={
+                  email.isValid ? this.emailVerification : () => {}
+                }
               />
               <React.Fragment>
                 <PasswordInput
                   autoFocus
                   testID="passwordInput"
-                  // onChange={this.onChangeHandlerWrapper('password')}
+                  onChange={this.onChangeHandlerWrapper('password')}
                   onFocus={this.onInputFocus}
-                  // value={password.value}
-                  // errorText={password.errorText}
+                  value={password.value}
+                  errorText={password.errorText}
                   ref={(node) => {
                     this.passwordInput = node;
                   }}
-                  // onSubmitEditing={this.handleSubmitFromKeyboardPress}
+                  onSubmitEditing={this.handleSubmitFromKeyboardPress}
                 />
                 <Text
                   style={styles.forgotPasswordText}
@@ -286,53 +286,59 @@ class SignIn extends React.Component {
     );
   }
 
-  // componentDidMount() {
-  //   this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
-  //   this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
-  // }
+  componentDidMount() {
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this.keyboardDidShow,
+    );
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    );
+  }
 
-  // componentWillUnmount() {
-  //   this.keyboardDidShowListener.remove();
-  //   this.keyboardDidHideListener.remove();
-  // }
+  componentWillUnmount() {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+  }
 
-  // keyboardDidShow = (e) => {
-  //   const {opacity, btnY} = this.state;
-  //   const keyboardHeight = e.endCoordinates.height;
-  //   const {width} = Dimensions.get('window');
-  //   const videoHeight = width / VIDEO_RATIO;
-  //   this.setState({isKeyboardShown: true});
-  //   this.scroll &&
-  //     this.scroll.scrollTo({x: 0, y: videoHeight - 20, animated: true});
-  //   Animated.parallel([
-  //     Animated.timing(opacity, {
-  //       toValue: 0,
-  //       duration: 300,
-  //       useNativeDriver: true,
-  //     }),
-  //     Platform.OS === 'ios' &&
-  //       Animated.timing(btnY, {
-  //         toValue:
-  //           -keyboardHeight + uiConstants.FOOTER_MARGIN_BOTTOM_ONBOARDING,
-  //         duration: 300,
-  //         useNativeDriver: true,
-  //       }),
-  //   ]).start();
-  // };
+  keyboardDidShow = (e) => {
+    const {opacity, btnY} = this.state;
+    const keyboardHeight = e.endCoordinates.height;
+    const {width} = Dimensions.get('window');
+    const videoHeight = width / VIDEO_RATIO;
+    this.setState({isKeyboardShown: true});
+    this.scroll &&
+      this.scroll.scrollTo({x: 0, y: videoHeight - 20, animated: true});
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Platform.OS === 'ios' &&
+        Animated.timing(btnY, {
+          toValue:
+            -keyboardHeight + uiConstants.FOOTER_MARGIN_BOTTOM_ONBOARDING,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+    ]).start();
+  };
 
-  // keyboardDidHide = () => {
-  //   const {opacity, btnY} = this.state;
-  //   this.setState({isKeyboardShown: false});
-  //   this.scroll && this.scroll.scrollTo({x: 0, y: 0, animated: true});
-  //   Animated.parallel([
-  //     Animated.timing(opacity, {
-  //       toValue: 1,
-  //       duration: 300,
-  //       useNativeDriver: true,
-  //     }),
-  //     Animated.timing(btnY, {toValue: 0, duration: 300, useNativeDriver: true}),
-  //   ]).start();
-  // };
+  keyboardDidHide = () => {
+    const {opacity, btnY} = this.state;
+    this.setState({isKeyboardShown: false});
+    this.scroll && this.scroll.scrollTo({x: 0, y: 0, animated: true});
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(btnY, {toValue: 0, duration: 300, useNativeDriver: true}),
+    ]).start();
+  };
 
   renderSocialButtons = () => {
     const {facebookSignIn, appleSignIn} = this.state;
@@ -397,25 +403,37 @@ class SignIn extends React.Component {
   };
 
   emailVerification = async () => {
-    // const { apiQuery } = this.props;
-    // const { email } = this.state;
-    // this.setState({ isSendingMail: true });
-    // try {
-    //   const res = await apiQuery({ query: { domain: 'auth', key: 'isEmailAddressExists', params: { email: encodeURIComponent(email.value) } } });
-    //   const exists = get(res, 'data.data.exists');
-    //   if (exists === true) {
-    //     this.setState({ isEmailExists: true });
-    //   } else {
-    //     this.setState({ email: { ...this.state.email, errorText: 'Couldn’t find your flipflop account' }, isRenderCreateAccount: true });
-    //   }
-    // } catch (err) {
-    //   this.setState({
-    //     isEmailExists: true
-    //   });
-    // }
-    // this.setState({
-    //   isSendingMail: false
-    // });
+    const {apiQuery} = this.props;
+    const {email} = this.state;
+    this.setState({isSendingMail: true});
+    try {
+      const res = await apiQuery({
+        query: {
+          domain: 'auth',
+          key: 'isEmailAddressExists',
+          params: {email: encodeURIComponent(email.value)},
+        },
+      });
+      const exists = get(res, 'data.data.exists');
+      if (exists === true) {
+        this.setState({isEmailExists: true});
+      } else {
+        this.setState({
+          email: {
+            ...this.state.email,
+            errorText: 'Couldn’t find your flipflop account',
+          },
+          isRenderCreateAccount: true,
+        });
+      }
+    } catch (err) {
+      this.setState({
+        isEmailExists: true,
+      });
+    }
+    this.setState({
+      isSendingMail: false,
+    });
   };
 
   renderSignInButton = () => {
@@ -463,14 +481,14 @@ class SignIn extends React.Component {
     }
   };
 
-  // onChangeHandlerWrapper = (field) => (changes) => {
-  //   this.setState((state) => ({
-  //     [field]: {
-  //       ...state[field],
-  //       ...changes,
-  //     },
-  //   }));
-  // };
+  onChangeHandlerWrapper = (field) => (changes) => {
+    this.setState((state) => ({
+      [field]: {
+        ...state[field],
+        ...changes,
+      },
+    }));
+  };
 
   navigateToSignUp = () => {
     // const {email, isRenderCreateAccount} = this.state;

@@ -19,7 +19,7 @@
     "@react-native-community/netinfo": "^5.9.5",
     "algoliasearch": "^4.3.0",
     "autolinker": "^3.14.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "babel-root-slash-import": "^1.1.0",
     "firebase": "^7.17.1",

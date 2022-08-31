@@ -31,7 +31,7 @@
     "lodash": "^4.17.19",
     "memoize-one": "^5.1.1",
     "moment": "^2.27.0",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "normalizr": "^3.6.0",
     "pluralize": "^8.0.0",
     "prop-types": "^15.7.2",

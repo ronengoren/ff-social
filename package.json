@@ -67,7 +67,7 @@
     "rn-fetch-blob": "^0.12.0",
     "sanitize-html": "^1.27.1",
     "stacktrace-js": "^2.0.2",
-    "stream-chat": "^1.13.2"
+    "stream-chat": "^8.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
